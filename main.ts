@@ -5,7 +5,7 @@ let mainWindow;
 
 function createWindow() {
 
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 1366, height: 768});
   mainWindow.loadURL('http://localhost:4200');
   mainWindow.webContents.openDevTools();
 
