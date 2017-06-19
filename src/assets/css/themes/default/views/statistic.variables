@@ -20,7 +20,7 @@
 @elementMaxWidth: @maxWidth;
 
 /*-------------------
-       Content
+       Content.ts
 --------------------*/
 
 /* Value */

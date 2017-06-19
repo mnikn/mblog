@@ -114,7 +114,7 @@
 @basicHoverBorder: @basicBorder;
 @basicHoverBoxShadow: @basicBoxShadow;
 
-/* Tag */
+/* Tag.ts */
 @tagCircleColor: @white;
 @tagCircleSize: 0.5em;
 @tagHorizontalPadding: 1.5em;

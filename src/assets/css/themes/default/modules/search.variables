@@ -46,7 +46,7 @@
 @resultImageBorderRadius: 0.25em;
 @resultImageMargin: 0em 6em 0em 0em;
 
-/* Result Content */
+/* Result Content.ts */
 @resultTitleFont: @headerFont;
 @resultTitleMargin: -@headerLineHeightOffset 0em 0em;
 @resultTitleFontWeight: bold;

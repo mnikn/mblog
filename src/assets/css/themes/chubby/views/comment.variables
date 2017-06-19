@@ -25,7 +25,7 @@
 @avatarSpacing: 1.5em;
 @avatarBorderRadius: @circularRadius;
 
-/* Content */
+/* Content.ts */
 @contentMargin: @avatarWidth + @avatarSpacing;
 
 /* Author */

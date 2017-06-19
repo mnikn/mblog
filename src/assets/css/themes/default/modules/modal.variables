@@ -37,7 +37,7 @@
 @headerFontFamily: @headerFont;
 @headerBorder: 1px solid @borderColor;
 
-/* Content */
+/* Content.ts */
 @contentFontSize: 1em;
 @contentPadding: 1.5rem;
 @contentLineHeight: 1.4;

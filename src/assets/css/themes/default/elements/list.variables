@@ -44,7 +44,7 @@
 @imageDistance: 0.5em;
 @imageAlign: top;
 
-/* Content */
+/* Content.ts */
 @contentDistance: 0.5em;
 @contentLineHeight: @itemLineHeight;
 @contentLineHeightOffset: (@contentLineHeight - 1em) / 2;

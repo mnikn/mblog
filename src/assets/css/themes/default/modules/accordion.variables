@@ -30,7 +30,7 @@
 @childAccordionMargin: 1em 0em 0em;
 @childAccordionPadding: 0em;
 
-/* Content */
+/* Content.ts */
 @contentMargin: '';
 @contentPadding: 0.5em 0em 1em;
 
@@ -63,11 +63,11 @@
   0px 0px 0px 1px @borderColor
 ;
 
-/* Content */
+/* Content.ts */
 @styledContentMargin: 0em;
 @styledContentPadding: 0.5em 1em 1.5em;
 
-/* Child Content */
+/* Child Content.ts */
 @styledChildContentMargin: 0em;
 @styledChildContentPadding: @styledContentPadding;
 

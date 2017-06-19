@@ -56,7 +56,7 @@
 @labelDistance: 0.5rem;
 @labelVerticalAlign: middle;
 
-/* Content */
+/* Content.ts */
 @contentAlignment: top;
 @contentIconAlignment: middle;
 @contentImageAlignment: middle;

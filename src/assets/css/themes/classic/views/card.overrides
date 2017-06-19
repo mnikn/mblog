@@ -27,7 +27,7 @@
 @groupMargin: 1em -@horizontalSpacing;
 
 /*-------------------
-       Content
+       Content.ts
 --------------------*/
 
 /* Image */
@@ -37,7 +37,7 @@
 @imageBoxShadow: none;
 @imageBorder: none;
 
-/* Content */
+/* Content.ts */
 @contentMargin: 0em;
 @contentPadding: 0.75em 1em;
 @contentFontSize: 1em;
@@ -67,7 +67,7 @@
 /* Paragraph */
 @paragraphDistance: 0.1em;
 
-/* Additional Content */
+/* Additional Content.ts */
 @extraDisplay: absolute;
 @extraTop: 100%;
 @extraLeft: 0em;
