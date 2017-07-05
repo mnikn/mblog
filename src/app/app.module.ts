@@ -5,7 +5,8 @@ import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {HomeModule} from '../home/home.module';
-import {NoteModule} from "../note/note.module";
+import {NoteModule} from '../note/note.module';
+import {AppTemplateModule} from '../common/app-template.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {NoteModule} from "../note/note.module";
     BrowserModule,
     FormsModule,
     HttpModule,
+    AppTemplateModule,
     HomeModule,
     NoteModule
   ],

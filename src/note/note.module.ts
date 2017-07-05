@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {NoteComponent} from './note.component';
-import {SharedModule} from '../shared/shared.module';
+import {AppTemplateModule} from '../common/app-template.module';
 
 @NgModule({
   declarations: [
     NoteComponent
   ],
   imports: [
-    SharedModule
+    AppTemplateModule
   ],
   exports: [
     NoteComponent
