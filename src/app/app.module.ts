@@ -7,6 +7,7 @@ import {AppComponent} from './app.component';
 import {HomeModule} from '../home/home.module';
 import {NoteModule} from '../note/note.module';
 import {AppTemplateModule} from '../common/app-template.module';
+import {TrashModule} from '../trash/trash.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {AppTemplateModule} from '../common/app-template.module';
     HttpModule,
     AppTemplateModule,
     HomeModule,
-    NoteModule
+    NoteModule,
+    TrashModule
   ],
   providers: [],
   bootstrap: [AppComponent]
