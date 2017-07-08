@@ -1,4 +1,4 @@
-interface  IArticleDataService {
+export interface  IArticleDataService {
   GetArticles(filter);
   AddArticle(article);
   UpdateArticle(article);

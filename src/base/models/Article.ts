@@ -5,5 +5,6 @@ export class Article {
   id: number;
   title: string;
   content: Content;
-  tag: Tag[];
+  tags: Tag[];
+  insertDate: Date;
 }

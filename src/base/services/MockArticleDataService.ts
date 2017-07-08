@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Article} from '../models/Article';
+import {ARTICLES} from '../mockData';
+import {IArticleDataService} from './IArticleDataService';
 
 @Injectable()
 export class ArticleDataService implements IArticleDataService {
-  articles: Article[];
+  articles: Article[] = ARTICLES;
 
   GetArticles(filter) {
     return this.articles;
