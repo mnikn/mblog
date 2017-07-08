@@ -1,16 +1,13 @@
 import {NgModule} from '@angular/core';
-import {NoteComponent} from './note.component';
-import {AppTemplateModule} from '../common/app-template.module';
+import {NoteListModule} from './list/note-list.module';
+import {NoteListComponent} from './list/note-list.component';
 
 @NgModule({
-  declarations: [
-    NoteComponent
-  ],
   imports: [
-    AppTemplateModule
+    NoteListModule
   ],
   exports: [
-    NoteComponent
+    NoteListComponent
   ]
 })
 
