@@ -24,5 +24,9 @@ export class NoteListComponent implements OnInit {
     this.getArticles();
   }
 
+  onSelect(): void {
+    this.isSelected = true;
+  }
+
 
 }

@@ -4,7 +4,7 @@ import {AppTemplateModule} from '../../common/app-template.module';
 import {CommonModule} from '@angular/common';
 import {ArticleDataService} from '../../base/services/MockArticleDataService';
 import {IArticleDataService} from '../../base/services/IArticleDataService';
-import {NoteDetailModule} from '../detail/note-detail.module';
+import {NotePreviewModule} from '../preview/note-preview.module';
 import {AppRoutingModule} from '../../app/app-routing.moudle';
 
 @NgModule({
@@ -15,7 +15,7 @@ import {AppRoutingModule} from '../../app/app-routing.moudle';
     AppTemplateModule,
     CommonModule,
     AppRoutingModule,
-    NoteDetailModule
+    NotePreviewModule
   ],
   exports: [
     NoteListComponent

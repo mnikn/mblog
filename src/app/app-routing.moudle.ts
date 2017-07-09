@@ -3,11 +3,11 @@ import {HomeComponent} from '../home/home.component';
 import {NoteListComponent} from '../note/list/note-list.component';
 import {NgModule} from '@angular/core';
 import {TrashComponent} from '../trash/trash.component';
-import {NoteDetailComponent} from '../note/detail/note-detail.component';
+import {NotePreviewComponent} from '../note/preview/note-preview.component';
 
 const noteRoutes: Routes = [
   {path: 'list', component: NoteListComponent},
-  {path: 'detail', component: NoteDetailComponent},
+  {path: 'preview', component: NotePreviewComponent},
   {
     path: '**', redirectTo: 'list'
   }

@@ -3,8 +3,7 @@
     <div class="column" style="padding: 0">
       <div class="ui large inverted segment">
         <div class="ui inverted relaxed divided list">
-          <div class="item" *ngFor="let article of articles" style="cursor: pointer"
-               routerLink="/note/detail">
+          <div class="item" *ngFor="let article of articles" style="cursor: pointer" (click)="onSelect()" >
             <a>{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
             <p></p>
             <div class="content">
@@ -19,7 +18,7 @@
       </div>
     </div>
     <div class="column" *ngIf="isSelected">
-      <router-outlet></router-outlet>
+      <preview></preview>
     </div>
   </div>
 </div>
