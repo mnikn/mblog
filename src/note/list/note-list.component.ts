@@ -3,18 +3,20 @@ import {Article} from '../../base/models/Article';
 import {IArticleDataService} from '../../base/services/IArticleDataService';
 
 @Component({
-  selector: 'note-list',
+  selector: 'list',
   templateUrl: './note-list.component.html'
 })
 
 export class NoteListComponent implements OnInit {
   articles: Article[];
+  isSelected: boolean;
 
   constructor(@Inject('IArticleDataService') private articleService: IArticleDataService) {
   }
 
   getArticles(): void {
     this.articles = this.articleService.GetArticles(null);
+    this.isSelected = false;
   }
 
 

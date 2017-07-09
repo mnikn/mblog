@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'note-detail',
+  selector: 'detail',
   templateUrl: './note-detail.component.html'
 })
 
