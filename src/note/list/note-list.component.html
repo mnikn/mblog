@@ -1,7 +1,7 @@
 <div class="ui internally celled equal width grid">
   <div class="row">
     <div class="column" style="padding: 0">
-      <div class="ui large inverted segment">
+      <div class="ui inverted segment">
         <div class="ui inverted relaxed divided list">
           <div class="item" *ngFor="let article of articles" style="cursor: pointer" (click)="onSelect()" >
             <a>{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="column" *ngIf="isSelected">
+    <div class="column" *ngIf="isSelected" style="padding: 0">
       <preview></preview>
     </div>
   </div>
