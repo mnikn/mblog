@@ -1,6 +1,6 @@
-import {Article} from './models/Article';
-import {Tag} from './models/Tag';
-import {Content} from './models/Content';
+import {Article} from './models/article';
+import {Tag} from './models/tag';
+import {Content} from './models/content';
 
 export const TAGS: Tag[] = [{name: 'Feeling'},{name: 'Life'}];
 export const CONTENT: Content = {mdContent: '# Good', htmlContent: '<h1>Good</h1>'};

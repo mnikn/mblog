@@ -37,7 +37,7 @@
 
 
 /*-------------------
-       Content.ts
+       content.ts
 --------------------*/
 
 /* Image */
@@ -52,7 +52,7 @@
 @imageBoxShadow: none;
 @imageBorder: none;
 
-/* Content.ts */
+/* content.ts */
 @contentDisplay: block;
 @contentVerticalAlign: top;
 
@@ -107,7 +107,7 @@
 @descriptionLineHeight: @lineHeight;
 @descriptionColor: @textColor;
 
-/* Content.ts Image */
+/* content.ts Image */
 @contentImageWidth: '';
 @contentImageVerticalAlign: middle;
 
@@ -118,7 +118,7 @@
 /* Paragraph */
 @paragraphDistance: 0.5em;
 
-/* Additional Content.ts */
+/* Additional content.ts */
 @extraDivider: none;
 @extraHorizontalSpacing: 0.5rem;
 @extraRowSpacing: 0.5rem;

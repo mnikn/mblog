@@ -41,7 +41,7 @@
 @avatarMargin: (@commentLineHeight - 1em) 0em 0em;
 @avatarBorderRadius: 0.25rem;
 
-/* Content.ts */
+/* content.ts */
 @contentMargin: @avatarWidth + @avatarSpacing;
 
 /* Author */

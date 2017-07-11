@@ -1,5 +1,5 @@
-import {Content} from './Content';
-import {Tag} from './Tag';
+import {Content} from './content';
+import {Tag} from './tag';
 
 export class Article {
   id: number;

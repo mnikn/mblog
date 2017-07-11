@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Article} from '../models/Article';
+import {Article} from '../models/article';
 import {ARTICLES} from '../mockData';
 import {IArticleDataService} from './IArticleDataService';
 

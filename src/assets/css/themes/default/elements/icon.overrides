@@ -30,7 +30,7 @@ for instance `lemon icon` not `lemon outline icon` since there is only one lemon
             Icons
 *******************************/
 
-/* Web Content.ts */
+/* Web content.ts */
 i.icon.search:before { content: "\f002"; }
 i.icon.mail.outline:before { content: "\f003"; }
 i.icon.signal:before { content: "\f012"; }

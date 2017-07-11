@@ -29,7 +29,7 @@
 /* Hidden (Default) */
 @hiddenOpacity: 0;
 
-/* Content.ts */
+/* content.ts */
 @contentDisplay: table;
 @contentChildDisplay: table-cell;
 

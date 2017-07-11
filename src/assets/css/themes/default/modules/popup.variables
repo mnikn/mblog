@@ -39,7 +39,7 @@
 @headerDistance: @relative7px;
 @headerLineHeight: 1.2;
 
-/* Content.ts Border */
+/* content.ts Border */
 @border: @borderWidth solid @borderColor;
 
 /* Arrow */
