@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
 import {HomeModule} from '../home/home.module';
 import {AppTemplateModule} from '../common/app-template.module';
 import {TrashModule} from '../trash/trash.module';
-import {NoteModule} from '../note/note.module';
+import {NoteInfoModule} from '../note/note-info.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import {NoteModule} from '../note/note.module';
     HttpModule,
     AppTemplateModule,
     HomeModule,
-    NoteModule,
+    NoteInfoModule,
     TrashModule
   ],
   providers: [],

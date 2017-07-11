@@ -4,19 +4,20 @@ import {NoteListComponent} from '../note/list/note-list.component';
 import {NgModule} from '@angular/core';
 import {TrashComponent} from '../trash/trash.component';
 import {NotePreviewComponent} from '../note/preview/note-preview.component';
+import {NoteInfoComponent} from 'note/note-info.component';
 
-const noteRoutes: Routes = [
-  {path: 'list', component: NoteListComponent},
-  {path: 'preview', component: NotePreviewComponent},
-  {
-    path: '**', redirectTo: 'list'
-  }
-];
+// const noteInfoRoutes: Routes = [
+//   {path: 'list', component: NoteListComponent},
+//   {path: 'preview/:title', component: NotePreviewComponent},
+//   {
+//     path: '**', redirectTo: 'list'
+//   }
+// ];
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'note', children: noteRoutes},
+  {path: 'note-info', component: NoteInfoComponent},
   {path: 'trash', component: TrashComponent},
 ];
 

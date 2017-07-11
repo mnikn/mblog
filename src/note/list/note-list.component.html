@@ -1,25 +1,15 @@
-<div class="ui internally celled equal width grid">
-  <div class="row">
-    <div class="column" style="padding: 0">
-      <div class="ui inverted segment">
-        <div class="ui inverted relaxed divided list">
-          <div class="item" *ngFor="let article of articles" style="cursor: pointer" (click)="onSelect()" >
-            <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
-            <p></p>
-            <div class="content">
-              <a class="header">标题：{{article.title}}</a><br>
-              <div class="description">
-                <span class="ui inverted">标签：</span>
-                <div class="ui inverted basic button" *ngFor="let tag of article.tags">{{tag.name}}</div>
-              </div>
-            </div>
-          </div>
+<div class="ui inverted segment">
+  <div class="ui inverted relaxed divided list">
+    <div class="item" *ngFor="let article of articles" style="cursor: pointer">
+      <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
+      <p></p>
+      <div class="content">
+        <a class="header">标题：{{article.title}}</a><br>
+        <div class="description">
+          <span class="ui inverted">标签：</span>
+          <div class="ui inverted basic button" *ngFor="let tag of article.tags">{{tag.name}}</div>
         </div>
       </div>
     </div>
-    <div class="column" *ngIf="isSelected" style="padding: 0">
-      <preview></preview>
-    </div>
   </div>
 </div>
-

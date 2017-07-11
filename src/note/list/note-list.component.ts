@@ -1,32 +1,27 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Article} from '../../base/models/article';
 import {IArticleDataService} from '../../base/services/IArticleDataService';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'list',
+  selector: 'note-list',
   templateUrl: './note-list.component.html'
 })
 
 export class NoteListComponent implements OnInit {
   articles: Article[];
-  isSelected: boolean;
 
-  constructor(@Inject('IArticleDataService') private articleService: IArticleDataService) {
+  constructor(@Inject('IArticleDataService') private articleService: IArticleDataService,
+              private router: Router) {
   }
 
   getArticles(): void {
     this.articles = this.articleService.GetArticles(null);
-    this.isSelected = false;
   }
 
 
   ngOnInit(): void {
     this.getArticles();
   }
-
-  onSelect(): void {
-    this.isSelected = true;
-  }
-
 
 }
