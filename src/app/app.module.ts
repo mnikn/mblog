@@ -8,7 +8,6 @@ import {HomeModule} from '../home/home.module';
 import {AppTemplateModule} from '../common/app-template.module';
 import {TrashModule} from '../trash/trash.module';
 import {NoteInfoModule} from '../note/note-info.module';
-import {ArticleDataService} from '../base/services/MockArticleDataService';
 
 @NgModule({
   declarations: [

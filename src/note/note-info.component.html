@@ -3,7 +3,7 @@
     <div class="column" style="padding: 0">
       <note-list></note-list>
     </div>
-    <div class="column" style="padding: 0">
+    <div class="column" *ngIf="dataService.getSelectedArticle().title !== undefined" style="padding: 0">
       <note-preview></note-preview>
     </div>
   </div>

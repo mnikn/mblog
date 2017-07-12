@@ -5,6 +5,7 @@ import {NotePreviewModule} from './preview/note-preview.module';
 import {NotePreviewComponent} from './preview/note-preview.component';
 import {NoteInfoComponent} from './note-info.component';
 import {ArticleDataService} from '../base/services/MockArticleDataService';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {ArticleDataService} from '../base/services/MockArticleDataService';
   ],
   imports: [
     NoteListModule,
-    NotePreviewModule
+    NotePreviewModule,
+    CommonModule
   ],
   exports: [
     NoteInfoComponent,
