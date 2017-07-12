@@ -1,6 +1,10 @@
+import {Article} from '../models/article';
+
 export interface  IArticleDataService {
-  GetArticles(filter);
-  AddArticle(article);
-  UpdateArticle(article);
-  RemoveArticle(article);
+  getSelectedArticle(): Article;
+  setSelectedArticle(article: Article);
+  getArticles(filter);
+  addArticle(article);
+  updateArticle(article);
+  removeArticle(article);
 }

@@ -1,6 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {IArticleDataService} from '../../base/services/IArticleDataService';
-import {ActivatedRoute} from '@angular/router';
 import {Article} from '../../base/models/article';
 
 @Component({
@@ -10,13 +9,13 @@ import {Article} from '../../base/models/article';
 
 export class NotePreviewComponent implements OnInit {
 
-  article: Article
+  service: IArticleDataService;
 
-  constructor(@Inject('IArticleDataService') private articleService: IArticleDataService,
-              private route: ActivatedRoute) {
+  constructor(@Inject('IArticleDataService') private articleService: IArticleDataService) {
   }
 
   ngOnInit(): void {
+    this.service = this.articleService;
   }
 
 }

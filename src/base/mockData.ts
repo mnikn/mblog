@@ -7,7 +7,7 @@ export const CONTENT: Content = {mdContent: '# Good', htmlContent: '<h1>Good</h1
 
 export const ARTICLES: Article[] = [
   {title: 'good', content: CONTENT, tags: TAGS, insertDate: new Date(2016, 5, 4)},
-  {title: 'good', content: CONTENT, tags: TAGS, insertDate: new Date(2016, 3, 4)},
-  {title: 'good', content: CONTENT, tags: TAGS, insertDate: new Date(2017, 4, 4)},
-  {title: 'good', content: CONTENT, tags: TAGS, insertDate: new Date(2017, 2, 4)}
+  {title: 'nice', content: CONTENT, tags: TAGS, insertDate: new Date(2016, 3, 4)},
+  {title: 'well', content: CONTENT, tags: TAGS, insertDate: new Date(2017, 4, 4)},
+  {title: 'fuck', content: CONTENT, tags: TAGS, insertDate: new Date(2017, 2, 4)}
 ];

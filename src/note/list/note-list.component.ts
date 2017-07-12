@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Article} from '../../base/models/article';
 import {IArticleDataService} from '../../base/services/IArticleDataService';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'note-list',
@@ -11,17 +10,20 @@ import {Router} from '@angular/router';
 export class NoteListComponent implements OnInit {
   articles: Article[];
 
-  constructor(@Inject('IArticleDataService') private articleService: IArticleDataService,
-              private router: Router) {
+  constructor(@Inject('IArticleDataService') private articleService: IArticleDataService) {
   }
 
   getArticles(): void {
-    this.articles = this.articleService.GetArticles(null);
+    this.articles = this.articleService.getArticles(null);
   }
 
 
   ngOnInit(): void {
     this.getArticles();
+  }
+
+  onSelect(article: Article): void {
+    this.articleService.setSelectedArticle(article);
   }
 
 }

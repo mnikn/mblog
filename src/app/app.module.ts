@@ -8,6 +8,7 @@ import {HomeModule} from '../home/home.module';
 import {AppTemplateModule} from '../common/app-template.module';
 import {TrashModule} from '../trash/trash.module';
 import {NoteInfoModule} from '../note/note-info.module';
+import {ArticleDataService} from '../base/services/MockArticleDataService';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,6 @@ import {NoteInfoModule} from '../note/note-info.module';
     NoteInfoModule,
     TrashModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

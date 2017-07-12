@@ -1,6 +1,5 @@
-import {NgModule} from '@angular/core';
-import {NotePreviewComponent} from './note-preview.component';
-import {ArticleDataService} from '../../base/services/MockArticleDataService';
+import {NgModule} from "@angular/core";
+import {NotePreviewComponent} from "./note-preview.component";
 
 @NgModule({
   declarations: [
@@ -8,10 +7,6 @@ import {ArticleDataService} from '../../base/services/MockArticleDataService';
   ],
   exports: [
     NotePreviewComponent
-  ]
-  ,
-  providers: [
-    {provide: 'IArticleDataService', useClass: ArticleDataService}
   ]
 })
 

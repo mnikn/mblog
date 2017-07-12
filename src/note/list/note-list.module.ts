@@ -19,9 +19,6 @@ import {AppRoutingModule} from '../../app/app-routing.moudle';
   ],
   exports: [
     NoteListComponent
-  ],
-  providers: [
-    {provide: 'IArticleDataService', useClass: ArticleDataService}
   ]
 })
 
