@@ -1,8 +1,20 @@
-<span style="font-size: 1.2rem;font-weight: bolder">你已经写了 1 篇博客，继续加油！</span>
-<br><br><br>
+<div class="ui basic segment">
+  <span style="font-size: 1.2rem;font-weight: bolder">你已经写了 {{dataService.getArticles(null).length}} 篇博客，继续加油！</span>
 
-<p>
-  <span>2016-4-5 </span>
-  <span style="margin-left: 5%">Title</span>
-</p>
+  <div class="ui large feed">
+    <div class="event" *ngFor="let article of dataService.getArticles(null)">
+      <div class="label">
+        <i class="pencil icon"></i>
+      </div>
+      <div class="content">
+        <div class="date">
+          {{article.insertDate | date: 'yyyy/MM/dd'}}
+          <div class="summary">
+            {{article.title}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

@@ -4,7 +4,6 @@ import {NoteListComponent} from './list/note-list.component';
 import {NotePreviewModule} from './preview/note-preview.module';
 import {NotePreviewComponent} from './preview/note-preview.component';
 import {NoteInfoComponent} from './note-info.component';
-import {ArticleDataService} from '../base/services/MockArticleDataService';
 import {CommonModule} from '@angular/common';
 
 @NgModule({
@@ -20,9 +19,6 @@ import {CommonModule} from '@angular/common';
     NoteInfoComponent,
     NoteListComponent,
     NotePreviewComponent
-  ],
-  providers: [
-    {provide: 'IArticleDataService', useClass: ArticleDataService}
   ],
 })
 
