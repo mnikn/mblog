@@ -10,7 +10,9 @@
         <div class="date">
           {{article.insertDate | date: 'yyyy/MM/dd'}}
           <div class="summary">
-            {{article.title}}
+            <a routerLink="note-info" (click)="gotoNoteInfo(article)">
+              {{article.title}}
+            </a>
           </div>
         </div>
       </div>
