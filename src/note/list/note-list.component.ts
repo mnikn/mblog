@@ -13,7 +13,12 @@ export class NoteListComponent {
   }
 
   onSelect(article: Article): void {
-    this.dataService.setSelectedArticle(article);
+    // when then item has been clicked,the select will be canceled
+    if (article === this.dataService.getSelectedArticle()) {
+      this.dataService.setSelectedArticle(new Article());
+    } else {
+      this.dataService.setSelectedArticle(article);
+    }
   }
 
 }
