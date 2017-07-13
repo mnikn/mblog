@@ -4,8 +4,7 @@
     <div class="ui button"><i class="expand icon"></i></div>
   </div>
   <hr/>
-  <div class="content">
-    {{dataService.getSelectedArticle().title}}
+  <div class="content" [innerHTML]="dataService.getSelectedArticle().content.htmlContent">
   </div>
 </div>
 
