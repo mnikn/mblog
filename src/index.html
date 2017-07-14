@@ -12,6 +12,8 @@
 <body>
 <app-root>Loading...</app-root>
 </body>
+
+<script type="text/javascript" src="./assets/js/store.js"></script>
 <script>
   const remote = require('electron').remote;
   const Menu = remote.Menu;
@@ -127,7 +129,8 @@
           role: 'blogDir',
           click: function () {
             const {dialog} = require('electron').remote;
-            console.log(dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}));
+            let blogDir = dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']});
+            store.set("blogDir",blogDir);
           }
         },
         {
