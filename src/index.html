@@ -124,7 +124,11 @@
         },
         {
           label: '设置博客目录',
-          role: 'blogDir'
+          role: 'blogDir',
+          click: function () {
+            const {dialog} = require('electron').remote;
+            console.log(dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}));
+          }
         },
         {
           label: '设置',
