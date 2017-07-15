@@ -1,5 +1,5 @@
 {
-  "name": "BlogNote",
+  "name": "blogNote",
   "version": "0.0.1",
   "main": "main.ts",
   "license": "MIT",
@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "npm start && electron platform"
   },
   "private": true,
   "dependencies": {
