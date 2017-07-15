@@ -13,7 +13,6 @@
 <app-root>Loading...</app-root>
 </body>
 
-<script type="text/javascript" src="./assets/js/store.js"></script>
 <script>
   const remote = require('electron').remote;
   const Menu = remote.Menu;
@@ -130,7 +129,8 @@
           click: function () {
             const {dialog} = require('electron').remote;
             let blogDir = dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']});
-            store.set("blogDir",blogDir);
+            require('storejs').set('blogDir', blogDir);
+//            store.set("blogDir",blogDir);
           }
         },
         {
@@ -152,8 +152,9 @@
         {
           label: '退出',
           accelerator: 'Command+Q',
+          role: 'quit',
           click: function () {
-            app.quit();
+            require('electron').app.quit();
           }
         }
       ]

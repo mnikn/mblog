@@ -3,9 +3,16 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
-function createWindow () {
+function createWindow() {
 
-  mainWindow = new BrowserWindow({width: 1366, height: 768});
+  mainWindow = new BrowserWindow({
+    width: 1366,
+    height: 768,
+    minWidth: 1024,
+    minHeight: 800,
+    frame: true,
+    center: true
+  });
 
   mainWindow.loadURL('http://localhost:4200');
 
