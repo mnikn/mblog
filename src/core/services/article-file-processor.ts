@@ -5,12 +5,15 @@ import { Tag } from '../models/tag';
 
 @Injectable()
 export class ArticleFileProcessor {
+
   public getArticleFromDir(dir: string): Article[] {
     let fs = require('fs');
+    console.log(fs);
     let articles: Article[] = [];
     let self = this;
-    fs.readdir(require('storejs').get('blogDir')[0] + '/source/_posts', (err, data) => {
-      for (let file of dir) {
+    fs.readdir(dir, (err, data) => {
+      console.log(data);
+      for (let file of data) {
         if (file.substr(file.lastIndexOf('.')) === '.md') {
           articles.push(self.getArticleFromFile(file));
         }

@@ -1,14 +1,21 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Article } from '../models/article';
 import { ArticleFileProcessor } from './article-file-processor';
 
 @Injectable()
-export class ArticleDataService implements ArticleDataService {
+export class ArticleDataServiceImpl implements ArticleDataServiceImpl {
 
-  public selectedArticle: Article = new Article();
-  public articles: Article[];
+  private articleFileProcessor = new ArticleFileProcessor();
+  private selectedArticle: Article = new Article();
+  private articles: Article[];
 
-  constructor(@Inject('ArticleFileProcessor') private articleFileProcessor: ArticleFileProcessor) {
+  constructor() {
+    this.refresh();
+  }
+
+  public refresh(): void {
+    let dir = require('storejs').get('blogDir')[0] + '/source/_posts';
+    this.articles = this.articleFileProcessor.getArticleFromDir('');
   }
 
   public getSelectedArticle(): Article {
@@ -20,14 +27,7 @@ export class ArticleDataService implements ArticleDataService {
   }
 
   public getArticles(filter) {
-    let fs = require('fs');
-    fs.readdir(require('storejs').get('blogDir')[0] + '/source/_posts', function (err, data) {
-      for (let file of data) {
-        if (file.substr(file.lastIndexOf('.')) === '.md') {
-          console.log(file);
-        }
-      }
-    });
+    return this.articles;
   }
 
   public addArticle(article) {
