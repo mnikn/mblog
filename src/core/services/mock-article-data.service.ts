@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article';
 import { ARTICLES } from '../mock-data';
-import { ArticleDataService } from './article-data-service';
+import { ArticleDataManager } from './article-data-manager';
 
 @Injectable()
-export class MockArticleDataService implements ArticleDataService {
+export class MockArticleDataService implements ArticleDataManager {
   public selectedArticle: Article = new Article();
   public articles: Article[] = ARTICLES;
 

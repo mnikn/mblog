@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { ArticleDataService } from '../core/services/article-data-service';
+import { ArticleDataManager } from '../core/services/article-data-manager';
 import { Article } from '../core/models/article';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent {
 
-  constructor(@Inject('ArticleDataService') public dataService: ArticleDataService,
+  constructor(@Inject('ArticleDataManager') public dataService: ArticleDataManager,
               private router: Router) {
   }
 

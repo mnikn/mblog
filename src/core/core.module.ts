@@ -3,7 +3,7 @@ import { MockArticleDataService } from './services/mock-article-data.service';
 
 @NgModule({
   providers: [
-    {provide: 'ArticleDataService', useClass: MockArticleDataService}
+    {provide: 'ArticleDataManager', useClass: MockArticleDataService}
   ]
 })
 

@@ -3,7 +3,7 @@ import { Article } from '../models/article';
 import { ArticleFileProcessor } from './article-file-processor';
 
 @Injectable()
-export class ArticleDataServiceImpl implements ArticleDataServiceImpl {
+export class ArticleDataService implements ArticleDataService {
 
   private articleFileProcessor = new ArticleFileProcessor();
   private selectedArticle: Article = new Article();
