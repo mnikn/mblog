@@ -1,4 +1,4 @@
 export class Content {
-  mdContent: string;
-  htmlContent: string;
+  public mdContent: string;
+  public htmlContent: string;
 }

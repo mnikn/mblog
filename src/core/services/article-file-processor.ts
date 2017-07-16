@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Content } from 'core/models/content';
 import { Article } from '../models/article';
+import { Tag } from '../models/tag';
 
 @Injectable()
 export class ArticleFileProcessor {
   public getArticleFromDir(dir: string): Article[] {
     let fs = require('fs');
-    let articles: Article[];
+    let articles: Article[] = [];
     let self = this;
     fs.readdir(require('storejs').get('blogDir')[0] + '/source/_posts', (err, data) => {
       for (let file of dir) {
@@ -19,9 +21,35 @@ export class ArticleFileProcessor {
 
   public getArticleFromFile(file: string): Article {
     let fs = require('fs');
+    let readline = require('readline');
+
     let article = new Article();
-    fs.readFile(file, 'utf8', (err, data) => {
-      console.log(data);
+    article.content = new Content();
+    let buffer = fs.createReadStream(file);
+
+    let objReadline = readline.createInterface({
+      input: buffer
+    });
+
+    let infoLines = 0;
+    objReadline.on('line', (line) => {
+      if (infoLines < 2 && line.includes('title: ')) {
+        let startIndex = line.indexOf('title: ') + 'title: '.length;
+        article.title = line.substring(startIndex);
+      } else if (infoLines < 2 && line.includes('date: ')) {
+        let startIndex = line.indexOf('date: ') + 'date: '.length;
+        article.insertDate.setDate(Date.parse(line.substring(startIndex)));
+      } else if (infoLines < 2 && line.includes('tags: ')) {
+        article.tags = [];
+        let trimLine = line.substring(line.indexOf('[') + 1, line.IndexOf(']'));
+        for (let tagStr of trimLine.split(',')) {
+          article.tags.push(new Tag(tagStr));
+        }
+      } else if (infoLines >= 2) {
+        article.content.mdContent = line;
+      } else if (line === '---') {
+        ++infoLines;
+      }
     });
     return article;
   }
