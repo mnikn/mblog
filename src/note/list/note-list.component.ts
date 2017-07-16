@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {Article} from '../../base/models/article';
-import {IArticleDataService} from '../../base/services/IArticleDataService';
+import {Article} from '../../core/models/article';
+import {ArticleDataService} from '../../core/services/article-data-service';
 
 @Component({
   selector: 'note-list',
@@ -9,7 +9,7 @@ import {IArticleDataService} from '../../base/services/IArticleDataService';
 
 export class NoteListComponent {
 
-  constructor(@Inject('IArticleDataService') public dataService: IArticleDataService) {
+  constructor(@Inject('ArticleDataService') public dataService: ArticleDataService) {
   }
 
   onSelect(article: Article): void {

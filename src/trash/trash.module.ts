@@ -1,6 +1,6 @@
-import {TrashComponent} from './trash.component';
-import {AppTemplateModule} from '../common/app-template.module';
-import {NgModule} from '@angular/core';
+import { TrashComponent } from './trash.component';
+import { AppTemplateModule } from '../common/app-template.module';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [

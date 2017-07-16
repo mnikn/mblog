@@ -1,14 +1,14 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-import {AppComponent} from './app.component';
-import {HomeModule} from '../home/home.module';
-import {AppTemplateModule} from '../common/app-template.module';
-import {TrashModule} from '../trash/trash.module';
-import {NoteInfoModule} from '../note/note-info.module';
-import {ArticleDataService} from '../base/services/MockArticleDataService';
+import { AppComponent } from './app.component';
+import { HomeModule } from '../home/home.module';
+import { AppTemplateModule } from '../common/app-template.module';
+import { TrashModule } from '../trash/trash.module';
+import { NoteInfoModule } from '../note/note-info.module';
+import { MockArticleDataService } from '../core/services/mock-article-data.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import {ArticleDataService} from '../base/services/MockArticleDataService';
     TrashModule
   ],
   providers: [
-    {provide: 'IArticleDataService', useClass: ArticleDataService}
+    {provide: 'ArticleDataService', useClass: MockArticleDataService}
   ],
   bootstrap: [AppComponent]
 })

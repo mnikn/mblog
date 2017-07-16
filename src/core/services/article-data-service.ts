@@ -1,6 +1,6 @@
-import {Article} from '../models/article';
+import { Article } from '../models/article';
 
-export interface  IArticleDataService {
+export interface  ArticleDataService {
   getSelectedArticle(): Article;
   setSelectedArticle(article: Article);
   getArticles(filter);

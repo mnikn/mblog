@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {IArticleDataService} from '../base/services/IArticleDataService';
+import { Component, Inject } from '@angular/core';
+import { ArticleDataService } from '../core/services/article-data-service';
 
 @Component({
   selector: 'note-info',
@@ -8,6 +8,6 @@ import {IArticleDataService} from '../base/services/IArticleDataService';
 
 export class NoteInfoComponent {
 
-  constructor(@Inject('IArticleDataService') public dataService: IArticleDataService) {
+  constructor(@Inject('ArticleDataService') public dataService: ArticleDataService) {
   }
 }
