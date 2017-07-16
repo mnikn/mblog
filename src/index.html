@@ -6,6 +6,7 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>var __require = require;</script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="./assets/css/semantic.min.css">
 </head>
@@ -130,7 +131,6 @@
             const {dialog} = require('electron').remote;
             let blogDir = dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']});
             require('storejs').set('blogDir', blogDir);
-//            store.set("blogDir",blogDir);
           }
         },
         {
