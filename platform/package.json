@@ -1,5 +1,5 @@
 {
   "name": "blogNote",
   "version": "0.0.1",
-  "main": "electron.ts"
+  "main": "main.ts"
 }
