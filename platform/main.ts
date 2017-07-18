@@ -14,7 +14,7 @@ function createWindow() {
     center: true
   });
 
-  mainWindow.loadURL('http://localhost:4200');
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   mainWindow.webContents.openDevTools();
 
