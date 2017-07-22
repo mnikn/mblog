@@ -11,7 +11,7 @@
     "e2e": "protractor",
     "build": "ng build && cp -R src/public dist/public",
     "prepare": "cp -a platform/. dist",
-    "electron": "npm run prepare && electron dist",
+    "electron": "npm run build && npm run prepare && electron dist",
     "package": "npm run build && npm run prepare && ./node_modules/electron-packager/cli.js dist App --platform=darwin --arch=all --out=dist-app --overwrite"
   },
   "private": true,
