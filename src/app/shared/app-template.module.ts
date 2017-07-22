@@ -3,7 +3,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SuiSidebarModule } from 'ng2-semantic-ui';
 import { InfoHeaderComponent } from './info-header/info-header.component';
 import { AppTemplateComponent } from './app-template.component';
-import { AppRoutingModule } from '../app/app-routing.moudle';
+import { AppRoutingModule } from '../app-routing.moudle';
 
 @NgModule({
   declarations: [
