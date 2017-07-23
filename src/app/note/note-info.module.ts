@@ -5,6 +5,7 @@ import { NotePreviewModule } from './preview/note-preview.module';
 import { NotePreviewComponent } from './preview/note-preview.component';
 import { NoteInfoComponent } from './note-info.component';
 import { CommonModule } from '@angular/common';
+import { AppTemplateModule } from '../shared/app-template.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     NoteListModule,
     NotePreviewModule,
-    CommonModule
+    CommonModule,
+    AppTemplateModule
   ],
   exports: [
     NoteInfoComponent,

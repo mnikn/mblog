@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'infoHeader',
+  selector: 'info-header',
   templateUrl: './info-header.component.html'
 })
 
