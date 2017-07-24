@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SearchService } from './interface/search-service';
 import { Article } from '../../models/article';
-import { List } from 'linqts';
+import { SearchService } from './interface/search-service';
 
 @Injectable()
 export class ArticleSearchService implements SearchService<Article> {
