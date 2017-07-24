@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ARTICLES } from './mock-data';
 import { DataService } from './interface/data-service';
+import * as _ from 'lodash';
 
 @Injectable()
 export class MockArticleDataService implements DataService<Article> {
@@ -16,8 +17,8 @@ export class MockArticleDataService implements DataService<Article> {
     this.selectedArticle = article;
   }
 
-  public getList() {
-    return this.articles;
+  public getList(filter?: (value: Article) => boolean): Article[] {
+    return _.forEach(this.articles, filter);
   }
 
   public add(article) {

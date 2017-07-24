@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleFileProcessor } from './article-file-processor';
 import { DataService } from './interface/data-service';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ArticleDataService implements DataService<Article> {
@@ -27,8 +28,8 @@ export class ArticleDataService implements DataService<Article> {
     this.selectedArticle = data;
   }
 
-  public getList(): Article[] {
-    return this.articles;
+  public getList(filter?: (value: Article) => boolean): Article[] {
+    return _.forEach(this.articles, filter);
   }
 
   public add(data: Article) {
