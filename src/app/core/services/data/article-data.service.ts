@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../models/article';
+import { Article } from '../../models/article';
 import { ArticleFileProcessor } from './article-file-processor';
+import { DataService } from './interface/data-service';
 
 @Injectable()
-export class ArticleDataService implements ArticleDataService {
+export class ArticleDataService implements DataService<Article> {
 
   private articleFileProcessor = new ArticleFileProcessor();
   private selectedArticle: Article = new Article();
@@ -18,25 +19,28 @@ export class ArticleDataService implements ArticleDataService {
     this.articles = this.articleFileProcessor.getArticleFromDir('');
   }
 
-  public getSelectedArticle(): Article {
+  public getSelected(): Article {
     return this.selectedArticle;
   }
 
-  public setSelectedArticle(article: Article) {
-    this.selectedArticle = article;
+  public setSelected(data: Article) {
+    this.selectedArticle = data;
   }
 
-  public getArticles(filter) {
+  public getList(): Article[] {
     return this.articles;
   }
 
-  public addArticle(article) {
+  public add(data: Article) {
+    throw new Error('Method not implemented.');
   }
 
-  public updateArticle(article) {
+  public update(data: Article) {
+    throw new Error('Method not implemented.');
   }
 
-  public removeArticle(article) {
+  public remove(data: Article) {
+    throw new Error('Method not implemented.');
   }
 
 }

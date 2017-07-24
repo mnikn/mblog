@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../models/article';
-import { ARTICLES } from '../mock-data';
-import { ArticleDataManager } from './article-data-manager';
+import { Article } from '../../models/article';
+import { ARTICLES } from './mock-data';
+import { DataService } from './interface/data-service';
 
 @Injectable()
-export class MockArticleDataService implements ArticleDataManager {
+export class MockArticleDataService implements DataService<Article> {
   public selectedArticle: Article = new Article();
   public articles: Article[] = ARTICLES;
 
-  public getSelectedArticle(): Article {
+  public getSelected(): Article {
     return this.selectedArticle;
   }
 
-  public setSelectedArticle(article: Article) {
+  public setSelected(article: Article) {
     this.selectedArticle = article;
   }
 
-  public getArticles(filter) {
+  public getList() {
     return this.articles;
   }
 
-  public addArticle(article) {
+  public add(article) {
     this.articles.push(article);
   }
 
-  public updateArticle(article) {
+  public update(article) {
     const index = this.articles.findIndex(article);
     this.articles[index] = article;
     return index;
   }
 
-  public removeArticle(article) {
+  public remove(article) {
     this.articles.reduce(article);
   }
 

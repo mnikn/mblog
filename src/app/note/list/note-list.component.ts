@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {Article} from '../../core/models/article';
-import {ArticleDataManager} from '../../core/services/article-data-manager';
+import {DataService} from '../../core/services/data/interface/data-service';
 
 @Component({
   selector: 'note-list',
@@ -9,15 +9,15 @@ import {ArticleDataManager} from '../../core/services/article-data-manager';
 
 export class NoteListComponent {
 
-  constructor(@Inject('ArticleDataManager') public dataService: ArticleDataManager) {
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
   }
 
   onSelect(article: Article): void {
     // when then item has been clicked,the select will be canceled
-    if (article === this.dataService.getSelectedArticle()) {
-      this.dataService.setSelectedArticle(new Article());
+    if (article === this.dataService.getSelected()) {
+      this.dataService.setSelected(new Article());
     } else {
-      this.dataService.setSelectedArticle(article);
+      this.dataService.setSelected(article);
     }
   }
 

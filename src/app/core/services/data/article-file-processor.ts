@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Content } from '../models/content';
-import { Article } from '../models/article';
-import { Tag } from '../models/tag';
+import { Content } from '../../models/content';
+import { Article } from '../../models/article';
+import { Tag } from '../../models/tag';
 
 @Injectable()
 export class ArticleFileProcessor {

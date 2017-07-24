@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { MockArticleDataService } from './services/mock-article-data.service';
+import { MockArticleDataService } from './services/data/mock-article-data.service';
 
 @NgModule({
   providers: [
-    {provide: 'ArticleDataManager', useClass: MockArticleDataService}
+    {provide: 'DataService<Article>', useClass: MockArticleDataService}
   ]
 })
 

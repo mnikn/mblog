@@ -4,19 +4,19 @@
       <div class="content">
         <div class="text">
           <span class="ui inverted">标签：</span>
-          <div class="ui inverted basic button" *ngFor="let tag of dataService.getSelectedArticle().tags">
+          <div class="ui inverted basic button" *ngFor="let tag of dataService.getSelected().tags">
             {{tag.name}}
           </div>
         </div>
         <br>
-        <div class="text">创建日期：{{dataService.getSelectedArticle().insertDate | date: 'yyyy/MM/dd'}}</div>
+        <div class="text">创建日期：{{dataService.getSelected().insertDate | date: 'yyyy/MM/dd'}}</div>
         <br>
-        <div class="header">标题：{{dataService.getSelectedArticle().title}}</div>
+        <div class="header">标题：{{dataService.getSelected().title}}</div>
       </div>
     </div>
   </div>
   <hr/>
-  <div class="content" [innerHTML]="dataService.getSelectedArticle().content.htmlContent">
+  <div class="content" [innerHTML]="dataService.getSelected().content.htmlContent">
   </div>
 </div>
 

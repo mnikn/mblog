@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { ArticleDataManager } from '../core/services/article-data-manager';
+import { DataService } from '../core/services/data/interface/data-service';
 import { Article } from '../core/models/article';
 import { Router } from '@angular/router';
 
@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 
 export class HomeComponent {
 
-  constructor(@Inject('ArticleDataManager') public dataService: ArticleDataManager,
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
               private router: Router) {
   }
 
   public gotoNoteInfo(article: Article): void {
-    this.dataService.setSelectedArticle(article);
+    this.dataService.setSelected(article);
     this.router.navigate(['/note-info']);
   }
 }

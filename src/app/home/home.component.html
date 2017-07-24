@@ -1,8 +1,8 @@
 <div class="ui basic segment">
-  <span style="font-size: 1.2rem;font-weight: bolder">你已经写了 {{dataService.getArticles(null).length}} 篇博客，继续加油！</span>
+  <span style="font-size: 1.2rem;font-weight: bolder">你已经写了 {{dataService.getList(null).length}} 篇博客，继续加油！</span>
 
   <div class="ui large feed">
-    <div class="event" *ngFor="let article of dataService.getArticles(null)">
+    <div class="event" *ngFor="let article of dataService.getList(null)">
       <div class="label">
         <i class="pencil icon"></i>
       </div>

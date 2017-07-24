@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { ArticleDataManager } from '../../core/services/article-data-manager';
+import { DataService } from '../../core/services/data/interface/data-service';
+import { Article } from '../../core/models/article';
 
 @Component({
   selector: 'note-preview',
@@ -8,7 +9,7 @@ import { ArticleDataManager } from '../../core/services/article-data-manager';
 
 export class NotePreviewComponent {
 
-  constructor(@Inject('ArticleDataManager') public dataService: ArticleDataManager) {
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
   }
 
 }
