@@ -4,11 +4,10 @@ import { ArticleFileProcessor } from './article-file-processor';
 import { DataService } from './interface/data-service';
 import * as _ from 'lodash';
 import { Tag } from '../../models/tag';
+import { Filter } from '../../models/filter';
 
 @Injectable()
 export class ArticleDataService implements DataService<Article> {
-
-
   private articleFileProcessor = new ArticleFileProcessor();
   private selectedArticle: Article = new Article();
   private articles: Article[];
@@ -30,12 +29,19 @@ export class ArticleDataService implements DataService<Article> {
     this.selectedArticle = data;
   }
 
-  public getList(searchValue?: string): Article[] {
+  public getList(): Article[] {
+    return undefined;
+  }
+
+  public getFilteredList(): Article[] {
     return this.articles;
   }
 
-  public getListByFilter(filter?: (value: Article) => boolean): Article[] {
-    return undefined;
+  public getFilter(): Filter {
+    return null;
+  }
+
+  public setFilter(filter: Filter) {
   }
 
   public add(data: Article) {

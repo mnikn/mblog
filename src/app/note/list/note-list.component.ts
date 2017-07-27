@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { DataService } from '../../core/services/data/interface/data-service';
 import * as _ from 'lodash';
+import { Filter } from 'app/core/models/filter';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class NoteListComponent {
   public articles: Article[];
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
-    this.articles = dataService.getList();
+    this.articles = dataService.getFilteredList();
   }
 
   public onSelect(article: Article): void {
@@ -25,12 +26,7 @@ export class NoteListComponent {
   }
 
   public onTagClick(tag): void {
-    this.articles = this.dataService.getListByFilter((article) => {
-      let has = false;
-      _.forEach(article.tags, (t) => {
-        has = has ? has : (t.name === tag.name);
-      });
-      return has;
-    });
-  }
+    this.dataService.setFilter(new Filter(true, tag.name));
+    this.articles = this.dataService.getFilteredList();
+  };
 }
