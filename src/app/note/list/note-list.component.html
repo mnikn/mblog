@@ -1,6 +1,6 @@
 <div class="ui inverted segment">
   <div class="ui inverted relaxed divided selection list">
-    <div class="item" *ngFor="let article of dataService.getList()" style="cursor: pointer"
+    <div class="item" *ngFor="let article of articles" style="cursor: pointer"
          [ngStyle]="{'padding-left': dataService.getSelected() === article ? '32px' :'0px'}"
          (click)="onSelect(article)">
       <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
@@ -10,7 +10,9 @@
         <div class="description">
           <span class="ui inverted">标签：</span>
           <div class="ui inverted basic button" *ngFor="let tag of article.tags">
-            {{tag.name}}
+            <span (click)="onTagClick(tag)">
+              {{tag.name}}
+            </span>
           </div>
         </div>
       </div>

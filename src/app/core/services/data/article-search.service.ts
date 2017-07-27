@@ -5,23 +5,19 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class ArticleSearchService implements SearchService<Article> {
-  public googleLikeSearch(data: Article[], searchValue: string): Article {
-    let article = new Article();
-    let maxCount = 0;
+  public googleLikeSearch(data: Article[], searchValue: string): Article[] {
+    if (searchValue === undefined) {
+      return data;
+    }
+    let articles = [];
     _.forEach(data, (value: Article) => {
-      let count = 0;
       _.forEach(value, (prop) => {
-        count += this.LCS(prop.toStringTag(), searchValue);
+        if (prop.toString().indexOf(searchValue) !== -1) {
+          articles.push(value);
+          return false;
+        }
       });
-      if (count > maxCount) {
-        article = value;
-        maxCount = count;
-      }
     });
-    return article;
-  }
-
-  private LCS(str: string, sub: string): number {
-    return 1;
+    return articles;
   }
 }
