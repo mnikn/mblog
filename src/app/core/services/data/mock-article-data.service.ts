@@ -4,14 +4,14 @@ import { ARTICLES } from './mock-data';
 import { DataService } from './interface/data-service';
 import * as _ from 'lodash';
 import { ArticleSearchService } from './article-search.service';
-import { Filter } from '../../models/filter';
+import { ArticleFilter } from '../../models/article-filter';
 
 @Injectable()
 export class MockArticleDataService implements DataService<Article> {
 
   private selectedArticle: Article = new Article();
   private articles: Article[] = ARTICLES;
-  private filter = new Filter();
+  private filter = new ArticleFilter();
   private articleSearchService = new ArticleSearchService();
 
   public getSelected(): Article {
@@ -30,11 +30,11 @@ export class MockArticleDataService implements DataService<Article> {
     return this.articleSearchService.googleLikeSearch(this.articles, this.filter);
   }
 
-  public getFilter(): Filter {
+  public getFilter(): ArticleFilter {
     return this.filter;
   }
 
-  public setFilter(filter: Filter) {
+  public setFilter(filter: ArticleFilter) {
     this.filter = filter;
   }
 

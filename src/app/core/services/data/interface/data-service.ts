@@ -1,9 +1,9 @@
-import { Filter } from '../../../models/filter';
+import { ArticleFilter } from '../../../models/article-filter';
 export interface  DataService<T> {
   getSelected(): T;
   setSelected(data: T);
-  getFilter(): Filter;
-  setFilter(filter: Filter);
+  getFilter(): ArticleFilter;
+  setFilter(filter: ArticleFilter);
   getList(): T[]
   getFilteredList(): T[];
   add(data: T);

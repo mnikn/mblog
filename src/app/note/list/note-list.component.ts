@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { DataService } from '../../core/services/data/interface/data-service';
 import * as _ from 'lodash';
-import { Filter } from 'app/core/models/filter';
+import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class NoteListComponent {
   }
 
   public onTagClick(tag): void {
-    this.dataService.setFilter(new Filter(true, tag.name));
+    this.dataService.setFilter(new ArticleFilter(FILTER_METHOD.FILTER_TAG, tag.name));
     this.articles = this.dataService.getFilteredList();
   };
 }

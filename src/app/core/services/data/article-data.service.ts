@@ -4,7 +4,7 @@ import { ArticleFileProcessor } from './article-file-processor';
 import { DataService } from './interface/data-service';
 import * as _ from 'lodash';
 import { Tag } from '../../models/tag';
-import { Filter } from '../../models/filter';
+import { ArticleFilter } from '../../models/article-filter';
 
 @Injectable()
 export class ArticleDataService implements DataService<Article> {
@@ -37,11 +37,11 @@ export class ArticleDataService implements DataService<Article> {
     return this.articles;
   }
 
-  public getFilter(): Filter {
+  public getFilter(): ArticleFilter {
     return null;
   }
 
-  public setFilter(filter: Filter) {
+  public setFilter(filter: ArticleFilter) {
   }
 
   public add(data: Article) {
