@@ -14,7 +14,8 @@ function createWindow() {
     center: true
   });
 
-  mainWindow.loadURL(`file://${__dirname}/index.html`);
+  console.log(__dirname);
+  mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
 
   mainWindow.webContents.openDevTools();
 
