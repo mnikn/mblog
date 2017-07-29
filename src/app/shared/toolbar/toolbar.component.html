@@ -11,7 +11,8 @@
   <div class="right menu" style="margin-right: 20%">
     <div class="item">
       <div class="ui icon input">
-        <input #input type="text" placeholder="搜索...">
+        <input #searchFilter type="text" placeholder="搜索..."
+               (keyup.enter)="onSearchEnter(searchFilter.value)">
         <i class="search icon"></i>
       </div>
     </div>

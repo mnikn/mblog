@@ -1,6 +1,6 @@
 <div class="ui inverted segment">
   <div class="ui inverted relaxed divided selection list">
-    <div class="item" *ngFor="let article of articles" style="cursor: pointer"
+    <div class="item" *ngFor="let article of dataService.getFilteredList()" style="cursor: pointer"
          [ngStyle]="{'padding-left': dataService.getSelected() === article ? '32px' :'0px'}"
          (click)="onSelect(article)">
       <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>

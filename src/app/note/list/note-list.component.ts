@@ -12,10 +12,8 @@ import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
 
 export class NoteListComponent {
 
-  public articles: Article[];
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
-    this.articles = dataService.getFilteredList();
   }
 
   public onSelect(article: Article): void {
@@ -27,6 +25,5 @@ export class NoteListComponent {
 
   public onTagClick(tag): void {
     this.dataService.setFilter(new ArticleFilter(FILTER_METHOD.FILTER_TAG, tag.name));
-    this.articles = this.dataService.getFilteredList();
   };
 }
