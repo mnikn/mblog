@@ -13,7 +13,6 @@ export class ToolbarComponent {
   }
 
   public onSearchEnter(value) {
-    console.log(value);
     this.dataService.getFilteredList();
     this.dataService.setFilter(new ArticleFilter(FILTER_METHOD.FILTER_BLUR, value));
   }

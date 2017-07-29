@@ -1,5 +1,6 @@
 import { ArticleFilter } from '../../../models/article-filter';
 export interface  DataService<T> {
+  refresh();
   getSelected(): T;
   setSelected(data: T);
   getFilter(): ArticleFilter;

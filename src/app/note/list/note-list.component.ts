@@ -1,9 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { DataService } from '../../core/services/data/interface/data-service';
-import * as _ from 'lodash';
 import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
-
 
 @Component({
   selector: 'note-list',
@@ -11,7 +9,6 @@ import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
 })
 
 export class NoteListComponent {
-
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
   }

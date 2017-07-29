@@ -4,7 +4,7 @@ declare let electron: any;
 @Injectable()
 export class IpcRenderService {
 
-  private ipcRender;
+  public ipcRender;
 
   constructor() {
     this.ipcRender = electron.ipcRender;

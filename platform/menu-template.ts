@@ -17,7 +17,10 @@ let template = [
           const {dialog} = require('electron').remote;
           let blogDir = dialog
             .showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']});
-          require('storejs').set('blogDir', blogDir);
+          require('fs').writeFile('./dist/config.txt',
+            blogDir + '/source/_posts', 'utf8', (err) => {
+              console.log('Saved');
+            });
         }
       },
       {

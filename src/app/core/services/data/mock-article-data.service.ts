@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ARTICLES } from './mock-data';
 import { DataService } from './interface/data-service';
-import * as _ from 'lodash';
 import { ArticleSearchService } from './article-search.service';
 import { ArticleFilter } from '../../models/article-filter';
+declare let electron: any;
 
 @Injectable()
 export class MockArticleDataService implements DataService<Article> {
-
   private selectedArticle: Article = new Article();
   private articles: Article[] = ARTICLES;
   private filter = new ArticleFilter();
   private articleSearchService = new ArticleSearchService();
+
+  public refresh() {
+  }
 
   public getSelected(): Article {
     return this.selectedArticle;
@@ -27,6 +29,7 @@ export class MockArticleDataService implements DataService<Article> {
   }
 
   public getFilteredList(): Article[] {
+    console.log(electron);
     return this.articleSearchService.googleLikeSearch(this.articles, this.filter);
   }
 
