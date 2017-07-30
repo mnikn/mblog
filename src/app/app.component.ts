@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IpcRenderService } from './core/services/ipcRender/ipc-render.service';
 
 @Component({
   selector: 'app-root',
