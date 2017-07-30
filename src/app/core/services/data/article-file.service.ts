@@ -8,8 +8,12 @@ export class ArticleFileService {
   private fileReader = new ArticleFileReader();
 
   public getArticles(): Article[] {
-    let dir = electron.remote.require('fs').readFileSync('./dist/config.txt');
-    return this.getArticlesFromDir(dir.toString());
+    let fs = electron.remote.require('fs');
+    if (fs.existsSync('./dist/config.txt')) {
+      let dir = electron.remote.require('fs').readFileSync('./dist/config.txt');
+      return this.getArticlesFromDir(dir.toString());
+    }
+    return [];
   }
 
   public getArticlesFromDir(dir: string): Article[] {

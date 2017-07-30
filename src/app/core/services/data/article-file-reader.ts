@@ -31,7 +31,7 @@ export class ArticleFileReader {
           article.tags.push(new Tag(tagStr));
         }
       } else if (infoLines >= 2) {
-        article.content.mdContent += line;
+        article.content.mdContent += (line + '\n');
       } else if (line === '---') {
         ++infoLines;
       }

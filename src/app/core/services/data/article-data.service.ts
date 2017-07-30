@@ -11,10 +11,14 @@ declare let electron: any;
 @Injectable()
 export class ArticleDataService implements DataService<Article> {
   private selectedArticle: Article = new Article();
-  private articles: Article[] = ARTICLES;
+  private articles: Article[];
   private filter = new ArticleFilter();
   private searchService = new ArticleSearchService();
   private fileService = new ArticleFileService();
+
+  constructor() {
+    this.refresh();
+  }
 
   public refresh() {
     this.articles = this.fileService.getArticles();
@@ -33,7 +37,6 @@ export class ArticleDataService implements DataService<Article> {
   }
 
   public getFilteredList(): Article[] {
-    this.articles = this.fileService.getArticles();
     return this.searchService.googleLikeSearch(this.articles, this.filter);
   }
 

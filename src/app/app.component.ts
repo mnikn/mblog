@@ -3,8 +3,7 @@ import { IpcRenderService } from './core/services/ipcRender/ipc-render.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  providers: [IpcRenderService]
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 }
