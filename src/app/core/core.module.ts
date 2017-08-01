@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { MockArticleDataService } from './services/data/mock-article-data.service';
 import { ArticleDataService } from './services/data/article-data.service';
+import { ArticlePagerService } from './services/data/article-pager.service';
 
 @NgModule({
   providers: [
-    {provide: 'DataService<Article>', useClass: ArticleDataService}
+    {provide: 'DataService<Article>', useClass: ArticleDataService},
+    {provide: 'Pager<Article>', useClass: ArticlePagerService},
   ]
 })
 

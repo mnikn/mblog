@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { DataService } from '../../core/services/data/interface/data-service';
 import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
+import { Pager } from "../../core/services/data/interface/pager";
 
 @Component({
   selector: 'note-list',
@@ -10,7 +11,9 @@ import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
 
 export class NoteListComponent {
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
+              @Inject('Pager<Article>') public pager: Pager<Article>) {
+    this.pager.setList(this.dataService.getList());
   }
 
   public onSelect(article: Article): void {
