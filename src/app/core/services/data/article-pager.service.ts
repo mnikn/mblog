@@ -1,18 +1,17 @@
-import { Pager } from './interface/pager';
+import { DataPagerService } from '../../base/interfaces/data-pager-service';
 import { Article } from '../../models/article';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
 @Injectable()
-export class ArticlePagerService implements Pager<Article> {
-  private pageSize: number;
-  private currentPage: number;
+export class ArticlePagerService implements DataPagerService<Article> {
+  private pageSize: number = 7;
+  private currentPage: number = 1;
   private lastPage: number;
-  private list: Article[];
+  private list: Article[] = [];
+  private pageList: number[] = [];
 
   constructor() {
-    this.list = [];
-    this.pageSize = 5;
     this.reset();
   }
 
@@ -78,6 +77,10 @@ export class ArticlePagerService implements Pager<Article> {
     return this.pageSize;
   }
 
+  public getPageList(): number[] {
+    return this.pageList;
+  }
+
   private pageItemCount(page: number): number {
     return (page - 1) * this.pageSize;
   }
@@ -88,6 +91,9 @@ export class ArticlePagerService implements Pager<Article> {
     if (this.list.length % this.pageSize > 0) {
       ++this.lastPage;
       this.lastPage = Math.floor(this.lastPage);
+    }
+    for (let i = 1; i <= this.lastPage; ++i) {
+      this.pageList.push(i);
     }
   }
 }

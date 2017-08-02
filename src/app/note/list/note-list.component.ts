@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
-import { DataService } from '../../core/services/data/interface/data-service';
+import { DataService } from '../../core/base/interfaces/data-service';
 import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
-import { Pager } from "../../core/services/data/interface/pager";
 
 @Component({
   selector: 'note-list',
@@ -11,19 +10,19 @@ import { Pager } from "../../core/services/data/interface/pager";
 
 export class NoteListComponent {
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
-              @Inject('Pager<Article>') public pager: Pager<Article>) {
-    this.pager.setList(this.dataService.getList());
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
   }
 
   public onSelect(article: Article): void {
     // when then item has been clicked,the select will be canceled
     article === this.dataService.getSelected() ?
-      this.dataService.setSelected(new Article()) :
+      this.dataService.setSelected(null) :
       this.dataService.setSelected(article);
   }
 
   public onTagClick(tag): void {
-    this.dataService.setFilter(new ArticleFilter(FILTER_METHOD.FILTER_TAG, tag.name));
+    this.dataService
+      .getFilterService()
+      .setFilter(new ArticleFilter(FILTER_METHOD.FILTER_TAG, tag.name));
   };
 }

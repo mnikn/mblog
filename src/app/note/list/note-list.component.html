@@ -1,6 +1,6 @@
 <div class="ui inverted segment">
   <div class="ui inverted relaxed divided selection list">
-    <div class="item" *ngFor="let article of dataService.getFilteredList()" style="cursor: pointer"
+    <div class="item" *ngFor="let article of dataService.getList()" style="cursor: pointer"
          [ngStyle]="{'padding-left': dataService.getSelected() === article ? '32px' :'0px'}"
          (click)="onSelect(article)">
       <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
@@ -19,17 +19,8 @@
     </div>
   </div>
   <div class="ui pagination menu">
-    <a class="active item">
-      1
-    </a>
-    <a class="item">
-      10
-    </a>
-    <a class="item">
-      11
-    </a>
-    <a class="item">
-      {{pager.getLastPage()}}
+    <a class="item" *ngFor="let page of dataService.getPagerService().getPageList()">
+      {{page}}
     </a>
   </div>
 </div>

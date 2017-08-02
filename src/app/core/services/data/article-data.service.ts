@@ -1,65 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleFileService } from './article-file.service';
-import { DataService } from './interface/data-service';
-import { ArticleFilter } from '../../models/article-filter';
-import { ARTICLES } from './mock-data';
-import { ArticleSearchService } from './article-search.service';
-import { connectableObservableDescriptor } from "rxjs/observable/ConnectableObservable";
+import { BaseDataService } from '../../base/base-data-service';
+import { DataPagerService } from 'app/core/base/interfaces/data-pager-service';
+import { DataFilterService } from '../../base/interfaces/data-filter-service';
+import { ArticlePagerService } from "./article-pager.service";
+import { ArticleFilterService } from "./article-filter.service";
 declare let electron: any;
 
 @Injectable()
-export class ArticleDataService implements DataService<Article> {
-  private selectedArticle: Article = new Article();
-  private articles: Article[];
-  private filter = new ArticleFilter();
-  private searchService = new ArticleSearchService();
+export class ArticleDataService extends BaseDataService<Article> {
   private fileService = new ArticleFileService();
 
   constructor() {
+    super();
+    this.pagerService = new ArticlePagerService();
+    this.filterService = new ArticleFilterService();
     this.refresh();
   }
 
   public refresh() {
-    this.articles = this.fileService.getArticles();
-  }
-
-  public getSelected(): Article {
-    return this.selectedArticle;
-  }
-
-  public setSelected(article: Article) {
-    this.selectedArticle = article;
-  }
-
-  public getList(): Article[] {
-    return this.articles;
-  }
-
-  public getFilteredList(): Article[] {
-    return this.searchService.googleLikeSearch(this.articles, this.filter);
-  }
-
-  public getFilter(): ArticleFilter {
-    return this.filter;
-  }
-
-  public setFilter(filter: ArticleFilter) {
-    this.filter = filter;
+    this.list = this.fileService.getArticles();
+    this.pagerService.setList(this.list);
+    this.filterService.setList(this.list);
   }
 
   public add(article) {
-    this.articles.push(article);
+    this.list.push(article);
   }
 
   public update(article) {
-    const index = this.articles.findIndex(article);
-    this.articles[index] = article;
+    const index = this.list.findIndex(article);
+    this.list[index] = article;
     return index;
   }
 
   public remove(article) {
-    this.articles.reduce(article);
+    this.list.reduce(article);
   }
 
 }

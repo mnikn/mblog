@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
-import { DataService } from '../../core/services/data/interface/data-service';
+import { DataService } from '../../core/base/interfaces/data-service';
 import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
 
 @Component({
@@ -13,7 +13,8 @@ export class ToolbarComponent {
   }
 
   public onSearchEnter(value) {
-    this.dataService.getFilteredList();
-    this.dataService.setFilter(new ArticleFilter(FILTER_METHOD.FILTER_BLUR, value));
+    this.dataService
+      .getFilterService()
+      .setFilter(new ArticleFilter(FILTER_METHOD.FILTER_BLUR, value));
   }
 }

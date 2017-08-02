@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { DataService } from '../../core/services/data/interface/data-service';
+import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
 
 @Component({
