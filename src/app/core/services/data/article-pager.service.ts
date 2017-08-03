@@ -92,6 +92,7 @@ export class ArticlePagerService implements DataPagerService<Article> {
       ++this.lastPage;
       this.lastPage = Math.floor(this.lastPage);
     }
+    this.pageList = [];
     for (let i = 1; i <= this.lastPage; ++i) {
       this.pageList.push(i);
     }

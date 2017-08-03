@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleFileService } from './article-file.service';
 import { BaseDataService } from '../../base/base-data-service';
-import { DataPagerService } from 'app/core/base/interfaces/data-pager-service';
-import { DataFilterService } from '../../base/interfaces/data-filter-service';
-import { ArticlePagerService } from "./article-pager.service";
-import { ArticleFilterService } from "./article-filter.service";
+import { ArticlePagerService } from './article-pager.service';
+import { ArticleFilterService } from './article-filter.service';
 declare let electron: any;
 
 @Injectable()
@@ -22,7 +20,6 @@ export class ArticleDataService extends BaseDataService<Article> {
   public refresh() {
     this.list = this.fileService.getArticles();
     this.pagerService.setList(this.list);
-    this.filterService.setList(this.list);
   }
 
   public add(article) {

@@ -9,15 +9,6 @@ import { DataFilterService } from '../../base/interfaces/data-filter-service';
 export class ArticleFilterService implements DataFilterService<Article> {
 
   private filter: ArticleFilter = new ArticleFilter();
-  private list: Article[] = [];
-
-  public getList(): Article[] {
-    return this.list;
-  }
-
-  public setList(list: Article[]) {
-    this.list = list;
-  }
 
   public getFilter() {
     return this.filter;
@@ -27,9 +18,9 @@ export class ArticleFilterService implements DataFilterService<Article> {
     this.filter = filter;
   }
 
-  public getFilteredList(): Article[] {
-    if (this.filter.searchValue.length === 0) {
-      return this.list;
+  public getFilteredList(list: Article[]): Article[] {
+    if (!this.filter.searchValue || this.filter.searchValue.length === 0) {
+      return list;
     }
     let articles = [];
     let judgeCondition;
@@ -47,12 +38,14 @@ export class ArticleFilterService implements DataFilterService<Article> {
       case FILTER_METHOD.FILTER_BLUR:
       default:
         judgeCondition = (value: Article) => {
-          return value.title.indexOf(this.filter.searchValue);
+          let toSearch = value.title.toUpperCase();
+          let searchValue = this.filter.searchValue.toUpperCase();
+          return toSearch.indexOf(searchValue);
         };
         break;
     }
-    _.forEach(this.list, (value: Article) => {
-      if (judgeCondition(value) && articles.indexOf(value) === -1) {
+    _.forEach(list, (value: Article) => {
+      if (judgeCondition(value) >= 0 && articles.indexOf(value) === -1) {
         articles.push(value);
       }
     });

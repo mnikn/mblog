@@ -46,11 +46,12 @@ export abstract class BaseDataService<T> implements DataService<T> {
   }
 
   public getList(): T[] {
-    let retList = [];
+    let retList = this.list;
     if (this.option.useFilter && this.filterService) {
-      retList = this.filterService.getFilteredList();
+      retList = this.filterService.getFilteredList(retList);
     }
     if (this.option.usePager && this.pagerService) {
+      this.pagerService.setList(retList);
       retList = this.pagerService.currentPageList();
     }
     return retList;
@@ -58,6 +59,9 @@ export abstract class BaseDataService<T> implements DataService<T> {
 
   public setList(list: T[]) {
     this.list = list;
+    if (this.pagerService) {
+      this.pagerService.setList(list);
+    }
   }
 
   public getOriginList(): T[] {
