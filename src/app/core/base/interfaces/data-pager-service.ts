@@ -3,7 +3,7 @@ export interface DataPagerService<T> {
   getList(): T[];
   getListSize(): number;
   getCurrentPage(): number;
-  setCurrentPage(page: number);
+  switchPage(page: number);
   getLastPage(): number;
   switchFirstPage(): void;
   currentPageList(): T[];

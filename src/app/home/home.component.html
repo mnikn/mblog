@@ -2,7 +2,7 @@
   <span style="font-size: 1.2rem;font-weight: bolder">你已经写了 {{dataService.getOriginList().length}} 篇博客，继续加油！</span>
 
   <div class="ui large feed">
-    <div class="event" *ngFor="let article of dataService.getList()">
+    <div class="event" *ngFor="let article of dataService.getPagerService().currentPageList()">
       <div class="label">
         <i class="pencil icon"></i>
       </div>
@@ -17,6 +17,35 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="ui pagination menu" style="margin-top: 24px" *ngIf="dataService.getOriginList().length !== 0">
+    <a class="item" *ngFor="let page of dataService.getPagerService().getPageList()"
+       (click)="dataService.getPagerService().switchPage(page)">
+      {{page}}
+    </a>
+    <!--<a class="item"-->
+    <!--*ngIf="dataService.getPagerService().getCurrentPage() >= 2"-->
+    <!--(click)="dataService.getPagerService().switchFirstPage()">-->
+    <!--1-->
+    <!--</a>-->
+    <!--<a class="item"-->
+    <!--*ngIf="dataService.getPagerService().getCurrentPage() - 1 > 1"-->
+    <!--(click)="dataService.getPagerService().switchPreviousPage()">-->
+    <!--{{dataService.getPagerService().getCurrentPage() - 1}}-->
+    <!--</a>-->
+    <!--<a class="active item">-->
+    <!--{{dataService.getPagerService().getCurrentPage()}}-->
+    <!--</a>-->
+    <!--<a class="item"-->
+    <!--*ngIf="dataService.getPagerService().getCurrentPage() + 1 < dataService.getPagerService().getLastPage()"-->
+    <!--(click)="dataService.getPagerService().switchNextPage()">-->
+    <!--{{dataService.getPagerService().getCurrentPage() + 1}}-->
+    <!--</a>-->
+    <!--<a class="item"-->
+    <!--*ngIf="dataService.getPagerService().getCurrentPage() < dataService.getPagerService().getLastPage()"-->
+    <!--(click)="dataService.getPagerService().switchLastPage()">-->
+    <!--{{dataService.getPagerService().getLastPage()}}-->
+    <!--</a>-->
   </div>
 </div>
 

@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class ArticlePagerService implements DataPagerService<Article> {
-  private pageSize: number = 7;
+  private pageSize: number = 10;
   private currentPage: number = 1;
   private lastPage: number;
   private list: Article[] = [];
@@ -32,7 +32,7 @@ export class ArticlePagerService implements DataPagerService<Article> {
     return this.currentPage;
   }
 
-  public setCurrentPage(page: number) {
+  public switchPage(page: number) {
     this.currentPage = page;
   }
 
@@ -45,15 +45,18 @@ export class ArticlePagerService implements DataPagerService<Article> {
   }
 
   public currentPageList(): Article[] {
+    console.log(this.getCurrentPage());
     if (this.currentPage <= 1) {
       return _.take(this.list, this.pageSize);
     }
     if (this.currentPage >= this.lastPage) {
-      return _.slice(this.list, this.pageItemCount(this.lastPage), this.pageSize);
+      console.log(this.pageItemCount(this.lastPage));
+      return _.slice(this.list, this.pageItemCount(this.lastPage),
+        this.pageItemCount(this.lastPage) + this.pageSize);
     }
     return _.slice(this.list,
-      (this.currentPage - 2) * this.pageSize,
-      (this.currentPage - 1) * this.pageSize);
+      this.pageItemCount(this.currentPage),
+      this.pageItemCount(this.currentPage) + this.pageSize);
   }
 
   public switchNextPage(): void {
