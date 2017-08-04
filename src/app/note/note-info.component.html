@@ -1,4 +1,5 @@
 <toolbar></toolbar>
+<filter-bar *ngIf="dataService.getFilterService().getFilter().searchValue !== '' "></filter-bar>
 <div class="ui internally celled equal width grid">
   <div class="row">
     <div class="column" style="padding: 0">
