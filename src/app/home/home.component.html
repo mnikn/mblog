@@ -18,11 +18,13 @@
       </div>
     </div>
   </div>
-  <sui-pagination [collectionSize]="dataService.getOriginList().length"
-                  [pageSize]="10"
-                  [maxSize]="5"
-                  [hasEllipses]="true"
-                  [canRotate]="true"
-                  [(page)]="dataService.getPagerService()">
-  </sui-pagination>
+  <div *ngIf="dataService.getOriginList().length !== 0">
+    <sui-pagination [collectionSize]="dataService.getOriginList().length"
+                    [pageSize]="10"
+                    [maxSize]="5"
+                    [hasEllipses]="true"
+                    [canRotate]="true"
+                    [(page)]="dataService.getPagerService().currentPage">
+    </sui-pagination>
+  </div>
 </div>

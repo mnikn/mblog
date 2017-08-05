@@ -45,7 +45,6 @@ export class ArticlePagerService implements DataPagerService<Article> {
   }
 
   public currentPageList(): Article[] {
-    console.log(this.getCurrentPage());
     if (this.currentPage <= 1) {
       return _.take(this.list, this.pageSize);
     }
