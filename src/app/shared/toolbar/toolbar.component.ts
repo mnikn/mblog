@@ -13,6 +13,10 @@ export class ToolbarComponent {
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
   }
 
+  public onRefresh() {
+    this.dataService.refresh();
+  }
+
   public onSearchEnter(value) {
     this.dataService
       .getFilterService()
