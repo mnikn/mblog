@@ -1,3 +1,4 @@
+import { FILTER_METHOD } from '../base/params/filter-method';
 export class ArticleFilter {
   // 1: filter blur
   // 2: filter by tag
@@ -11,5 +12,4 @@ export class ArticleFilter {
   }
 }
 
-export const enum FILTER_METHOD {FILTER_BLUR, FILTER_TAG, FILTER_DATE}
 

@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { DataService } from '../../core/base/interfaces/data-service';
-import { ArticleFilter, FILTER_METHOD } from 'app/core/models/article-filter';
+import { ArticleFilter } from 'app/core/models/article-filter';
+import { FILTER_METHOD } from '../../core/base/params/filter-method';
 
 @Component({
   selector: 'note-list',

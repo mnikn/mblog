@@ -1,3 +1,8 @@
 <div class="ui inverted segment" style="margin-bottom: 1px;border-radius: 0">
-  <p>搜索标题：{{dataService.getFilterService().getFilter().searchValue}}</p>
+  <p *ngIf="dataService.getFilterService().getFilter().filterMethod === 1">
+    搜索标签：{{dataService.getFilterService().getFilter().searchValue}}
+  </p>
+  <p *ngIf="dataService.getFilterService().getFilter().filterMethod === 0">
+    搜索标题：{{dataService.getFilterService().getFilter().searchValue}}
+  </p>
 </div>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Article } from '../../models/article';
-import { ArticleFilter, FILTER_METHOD } from '../../models/article-filter';
+import { ArticleFilter } from '../../models/article-filter';
 import { Tag } from '../../models/tag';
 import { DataFilterService } from '../../base/interfaces/data-filter-service';
+import { FILTER_METHOD } from '../../base/params/filter-method';
 
 @Injectable()
 export class ArticleFilterService implements DataFilterService<Article> {

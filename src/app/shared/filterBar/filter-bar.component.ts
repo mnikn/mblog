@@ -10,6 +10,5 @@ import { Article } from '../../core/models/article';
 export class FilterBarComponent {
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
-
   }
 }
