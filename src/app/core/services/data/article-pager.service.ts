@@ -5,8 +5,8 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class ArticlePagerService implements DataPagerService<Article> {
+  public currentPage: number = 1;
   private pageSize: number = 10;
-  private currentPage: number = 1;
   private lastPage: number;
   private list: Article[] = [];
   private pageList: number[] = [];

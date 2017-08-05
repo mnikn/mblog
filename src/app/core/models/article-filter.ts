@@ -11,5 +11,3 @@ export class ArticleFilter {
     this.searchValue = searchValue;
   }
 }
-
-

@@ -18,34 +18,11 @@
       </div>
     </div>
   </div>
-  <div class="ui pagination menu" style="margin-top: 24px" *ngIf="dataService.getOriginList().length !== 0">
-    <a class="item" *ngFor="let page of dataService.getPagerService().getPageList()"
-       (click)="dataService.getPagerService().switchPage(page)">
-      {{page}}
-    </a>
-    <!--<a class="item"-->
-    <!--*ngIf="dataService.getPagerService().getCurrentPage() >= 2"-->
-    <!--(click)="dataService.getPagerService().switchFirstPage()">-->
-    <!--1-->
-    <!--</a>-->
-    <!--<a class="item"-->
-    <!--*ngIf="dataService.getPagerService().getCurrentPage() - 1 > 1"-->
-    <!--(click)="dataService.getPagerService().switchPreviousPage()">-->
-    <!--{{dataService.getPagerService().getCurrentPage() - 1}}-->
-    <!--</a>-->
-    <!--<a class="active item">-->
-    <!--{{dataService.getPagerService().getCurrentPage()}}-->
-    <!--</a>-->
-    <!--<a class="item"-->
-    <!--*ngIf="dataService.getPagerService().getCurrentPage() + 1 < dataService.getPagerService().getLastPage()"-->
-    <!--(click)="dataService.getPagerService().switchNextPage()">-->
-    <!--{{dataService.getPagerService().getCurrentPage() + 1}}-->
-    <!--</a>-->
-    <!--<a class="item"-->
-    <!--*ngIf="dataService.getPagerService().getCurrentPage() < dataService.getPagerService().getLastPage()"-->
-    <!--(click)="dataService.getPagerService().switchLastPage()">-->
-    <!--{{dataService.getPagerService().getLastPage()}}-->
-    <!--</a>-->
-  </div>
+  <sui-pagination [collectionSize]="dataService.getOriginList().length"
+                  [pageSize]="10"
+                  [maxSize]="5"
+                  [hasEllipses]="true"
+                  [canRotate]="true"
+                  [(page)]="dataService.getPagerService()">
+  </sui-pagination>
 </div>
-

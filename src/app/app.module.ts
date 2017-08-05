@@ -9,6 +9,8 @@ import { NoteInfoModule } from './note/note-info.module';
 import { TrashModule } from './trash/trash.module';
 
 import { AppComponent } from './app.component';
+import { SuiModule } from 'ng2-semantic-ui';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    SuiModule,
     CoreModule,
+    CommonModule,
     AppTemplateModule,
     HomeModule,
     NoteInfoModule,
