@@ -28,7 +28,7 @@ export class ArticleFilterService implements DataFilterService<Article> {
     switch (this.filter.filterMethod) {
       case FILTER_METHOD.FILTER_TAG:
         judgeCondition = (value: Article) => {
-          return _.filter(value.tags, (p: Tag) => p.name === this.filter.searchValue).length !== 0;
+          return _.filter(value.tags, (p: Tag) => p.name !== this.filter.searchValue);
         };
         break;
       case FILTER_METHOD.FILTER_DATE:

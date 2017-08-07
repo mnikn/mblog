@@ -1,8 +1,9 @@
 <div class="ui inverted segment" style="margin-bottom: 1px;border-radius: 0">
-  <p *ngIf="dataService.getFilterService().getFilter().filterMethod === 1">
+  <span *ngIf="dataService.getFilterService().getFilter().filterMethod === 1">
     搜索标签：{{dataService.getFilterService().getFilter().searchValue}}
-  </p>
-  <p *ngIf="dataService.getFilterService().getFilter().filterMethod === 0">
+  </span>
+  <span *ngIf="dataService.getFilterService().getFilter().filterMethod === 0">
     搜索标题：{{dataService.getFilterService().getFilter().searchValue}}
-  </p>
+  </span>
+  <i class="delete icon" style="margin-left: 12px;cursor: pointer" (click)="onCancelClick()"></i>
 </div>
