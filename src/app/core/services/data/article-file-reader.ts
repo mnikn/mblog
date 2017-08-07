@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Tag } from '../../models/tag';
 import { Article } from '../../models/article';
 import { Content } from '../../models/content';
-import { forEach } from "@angular/router/src/utils/collection";
+import { ArticleContentProcessor } from './article-content-processor';
 declare let electron: any;
 
 @Injectable()
 export class ArticleFileReader {
+  private markdownProcessor: ArticleContentProcessor = new ArticleContentProcessor();
+
   public getArticleFromFile(file: string): Article {
     let fs = electron.remote.require('fs');
     let readline = electron.remote.require('readline');
@@ -36,6 +38,7 @@ export class ArticleFileReader {
         ++infoLines;
       }
     }
+    article.content.htmlContent = this.markdownProcessor.doProcess(article.content.mdContent);
     return article;
   }
 }
