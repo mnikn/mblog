@@ -1,19 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from '../../app-routing.moudle';
-import { AppTemplateModule } from '../../shared/app-template.module';
-import { NotePreviewModule } from '../../shared/notePreview/note-preview.module';
 import { NoteListComponent } from './note-list.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
     NoteListComponent
   ],
   imports: [
-    AppTemplateModule,
+    SharedModule,
     CommonModule,
-    AppRoutingModule,
-    NotePreviewModule
+    AppRoutingModule
   ],
   exports: [
     NoteListComponent

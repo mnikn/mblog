@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
-import { AppTemplateModule } from '../shared/app-template.module';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.moudle';
 import { SuiPaginationModule } from 'ng2-semantic-ui';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
   ],
   imports: [
-    AppTemplateModule,
+    SharedModule,
     CommonModule,
     SuiPaginationModule,
     AppRoutingModule

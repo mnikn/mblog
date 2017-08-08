@@ -1,13 +1,13 @@
 import { TrashComponent } from './trash.component';
-import { AppTemplateModule } from '../shared/app-template.module';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     TrashComponent
   ],
   imports: [
-    AppTemplateModule
+    SharedModule
   ],
   exports: [
     TrashComponent
