@@ -4,9 +4,6 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { MainModule } from './main/main.module';
 import { CoreModule } from './core/core.module';
-import { HomeModule } from './main/home/home.module';
-import { NoteInfoModule } from './main/note/note-info.module';
-import { TrashModule } from './main/trash/trash.module';
 
 import { AppComponent } from './app.component';
 import { SuiModule } from 'ng2-semantic-ui';
@@ -23,10 +20,7 @@ import { CommonModule } from '@angular/common';
     SuiModule,
     CoreModule,
     CommonModule,
-    MainModule,
-    HomeModule,
-    NoteInfoModule,
-    TrashModule
+    MainModule
   ],
   bootstrap: [AppComponent]
 })
