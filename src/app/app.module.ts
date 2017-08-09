@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app-routing.moudle';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     SuiModule,
     CoreModule,
     CommonModule,
+    AppRoutingModule,
     MainModule
   ],
   bootstrap: [AppComponent]

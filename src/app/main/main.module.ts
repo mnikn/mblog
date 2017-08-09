@@ -9,6 +9,7 @@ import { TrashModule } from './trash/trash.module';
 import { HomeComponent } from './home/home.component';
 import { NoteInfoComponent } from './note/note-info.component';
 import { TrashComponent } from './trash/trash.component';
+import { MainRoutingModule } from './main-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { TrashComponent } from './trash/trash.component';
     TrashModule,
     SharedModule,
     CommonModule,
-    AppRoutingModule
+    MainRoutingModule
   ],
   exports: [
     MainComponent,

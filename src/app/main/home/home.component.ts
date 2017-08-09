@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
 import { Router } from '@angular/router';
-import { ArticleFilter } from "../../core/models/article-filter";
+import { ArticleFilter } from '../../core/models/article-filter';
 
 @Component({
   selector: 'home',
@@ -18,6 +18,6 @@ export class HomeComponent {
   public gotoNoteInfo(article: Article): void {
     this.dataService.setSelected(article);
     this.dataService.getFilterService().setFilter(new ArticleFilter());
-    this.router.navigate(['/note-info']);
+    this.router.navigate(['/main-page/note-info']);
   }
 }
