@@ -1,23 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HomeComponent } from './home.component';
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../../app-routing.moudle';
-import { NoteListComponent } from './note-list.component';
+import { SuiPaginationModule } from 'ng2-semantic-ui';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
-    NoteListComponent
+    HomeComponent,
   ],
   imports: [
     SharedModule,
     CommonModule,
+    SuiPaginationModule,
     AppRoutingModule
   ],
   exports: [
-    NoteListComponent
+    HomeComponent
   ]
 })
 
-export class NoteListModule {
-
+export class HomeModule {
 }

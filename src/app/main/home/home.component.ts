@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { DataService } from '../core/base/interfaces/data-service';
-import { Article } from '../core/models/article';
+import { DataService } from '../../core/base/interfaces/data-service';
+import { Article } from '../../core/models/article';
 import { Router } from '@angular/router';
-import { ArticleFilter } from "../core/models/article-filter";
+import { ArticleFilter } from "../../core/models/article-filter";
 
 @Component({
   selector: 'home',
