@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppTemplateModule } from './main/app-template.module';
+import { MainModule } from './main/main.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './main/home/home.module';
 import { NoteInfoModule } from './main/note/note-info.module';
@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
     SuiModule,
     CoreModule,
     CommonModule,
-    AppTemplateModule,
+    MainModule,
     HomeModule,
     NoteInfoModule,
     TrashModule

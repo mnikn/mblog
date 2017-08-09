@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
-import { AppTemplateComponent } from './app-template.component';
+import { MainComponent } from './main.component';
 import { AppRoutingModule } from '../app-routing.moudle';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppTemplateComponent
+    MainComponent
   ],
   imports: [
-    // SuiSidebarModule,
     SharedModule,
     CommonModule,
     AppRoutingModule
   ],
   exports: [
-    AppTemplateComponent
+    MainComponent
   ]
 })
 
-export class AppTemplateModule {
+export class MainModule {
 }
