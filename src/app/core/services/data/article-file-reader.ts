@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tag } from '../../models/tag';
 import { Article } from '../../models/article';
 import { Content } from '../../models/content';
-import { ArticleContentProcessor } from './article-content-processor';
+import { ArticleContentProcessor } from '../content/article-content-processor';
 declare let electron: any;
 
 @Injectable()
