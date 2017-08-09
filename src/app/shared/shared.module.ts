@@ -5,13 +5,14 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SuiSidebarModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.moudle';
+import { NotePreviewComponent } from './notePreview/note-preview.component';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     ToolbarComponent,
     FilterBarComponent,
-    // NotePreviewComponent,
+    NotePreviewComponent,
   ],
   imports: [
     SuiSidebarModule,
@@ -22,7 +23,7 @@ import { AppRoutingModule } from '../app-routing.moudle';
     SidebarComponent,
     ToolbarComponent,
     FilterBarComponent,
-    // NotePreviewComponent
+    NotePreviewComponent
   ]
 })
 
