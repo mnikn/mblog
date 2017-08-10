@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.moudle';
+import { EditorModule } from './editor/editor.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.moudle';
     CoreModule,
     CommonModule,
     AppRoutingModule,
-    MainModule
+    MainModule,
+    EditorModule
   ],
   bootstrap: [AppComponent]
 })
