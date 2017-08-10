@@ -19,7 +19,7 @@
         <i class="search icon"></i>
       </div>
     </div>
-    <div class="item">
+    <div class="item" *ngIf="dataService.getSelected()">
       <a class="ui small button" routerLink="/editor">
         <i class="edit icon"></i>
       </a>
