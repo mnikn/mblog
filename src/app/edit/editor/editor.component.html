@@ -1,0 +1,13 @@
+<style>
+  #editor {
+    height: 100%;
+    font-size: 1.2em;
+    border: none;
+  }
+</style>
+
+<div class="ui form" style="height: 100%">
+  <textarea id="editor">
+    {{dataService.getSelected().content.mdContent}}
+  </textarea>
+</div>
