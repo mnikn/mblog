@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditorComponent } from './editor.component';
+import { EditComponent } from './edit.component';
 
 const editorRoutes: Routes = [{
-  path: 'editor', component: EditorComponent
+  path: 'edit', component: EditComponent
 }];
 
 @NgModule({
@@ -11,6 +11,6 @@ const editorRoutes: Routes = [{
   exports: [RouterModule]
 })
 
-export class EditorRoutingModule {
+export class EditRoutingModule {
 
 }

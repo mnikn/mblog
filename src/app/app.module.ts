@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.moudle';
-import { EditorModule } from './editor/editor.module';
+import { EditModule } from './edit/edit.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { EditorModule } from './editor/editor.module';
     CommonModule,
     AppRoutingModule,
     MainModule,
-    EditorModule
+    EditModule
   ],
   bootstrap: [AppComponent]
 })

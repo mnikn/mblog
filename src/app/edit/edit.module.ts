@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
-import { EditorComponent } from './editor.component';
-import { EditorRoutingModule } from './editor-routing.module';
+import { EditComponent } from './edit.component';
+import { EditRoutingModule } from './edit-routing.module';
 import { EditorToolbarComponent } from './editorToolbar/editor-toolbar.component';
 
 @NgModule({
   declarations: [
-    EditorComponent,
+    EditComponent,
     EditorToolbarComponent
   ],
   imports: [
-    EditorRoutingModule
+    EditRoutingModule
   ],
   exports: [
-    EditorComponent,
+    EditComponent,
     EditorToolbarComponent
   ]
 })
 
-export class EditorModule {
+export class EditModule {
 
 }
