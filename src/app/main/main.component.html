@@ -1,9 +1,9 @@
 <div class="ui bottom attached segment pushable" style="height: 100%">
-  <div class="ui visible inverted left vertical sidebar menu">
+  <div class="ui visible inverted left vertical sidebar menu" style="height: 100%">
     <sidebar></sidebar>
   </div>
   <div class="pusher">
-    <div class="ui basic segment" style="padding: 0 1px 1px;">
+    <div class="ui basic segment" [style.height]="windowService.getScreenHeight() + 'px'" style="padding: 0 1px 1px;overflow: scroll">
       <router-outlet></router-outlet>
     </div>
   </div>

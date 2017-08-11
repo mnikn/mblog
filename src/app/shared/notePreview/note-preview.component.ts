@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
+import { WindowService } from '../../core/services/windowService';
 
 @Component({
   selector: 'note-preview',
@@ -9,7 +10,8 @@ import { Article } from '../../core/models/article';
 
 export class NotePreviewComponent {
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
+              @Inject('WindowService') public windowService: WindowService) {
   }
 
 }

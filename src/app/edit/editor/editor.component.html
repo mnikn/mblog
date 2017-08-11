@@ -1,13 +1,15 @@
 <style>
   #editor {
-    height: 100%;
     font-size: 1.2em;
+    resize: none;
     border: none;
   }
 </style>
 
-<div class="ui form" style="height: 100%">
-  <textarea id="editor">
+<div class="ui form">
+  <textarea id="editor"
+            rows="1" cols="27"
+            [style.height]="windowService.getScreenHeight() + 'px'">
     {{dataService.getSelected().content.mdContent}}
   </textarea>
 </div>
