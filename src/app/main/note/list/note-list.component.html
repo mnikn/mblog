@@ -1,4 +1,6 @@
-<div class="ui inverted segment">
+<div class="ui inverted segment"
+     [style.height]="windowService.getScreenHeight() + 'px'"
+     [style.overflow]="'scroll'">
   <div class="ui inverted relaxed divided selection list">
     <div class="item" *ngFor="let article of dataService.getList()" style="cursor: pointer"
          [ngStyle]="{'padding-left': dataService.getSelected() === article ? '32px' :'0px'}"
