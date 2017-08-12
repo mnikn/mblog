@@ -4,7 +4,6 @@ import { ArticleFileService } from './article-file.service';
 import { BaseDataService } from '../../base/base-data-service';
 import { ArticlePagerService } from './article-pager.service';
 import { ArticleFilterService } from './article-filter.service';
-declare let electron: any;
 
 @Injectable()
 export class ArticleDataService extends BaseDataService<Article> {
