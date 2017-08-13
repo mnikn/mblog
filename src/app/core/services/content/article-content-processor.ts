@@ -1,5 +1,8 @@
 import { MarkdownParser } from '../../base/interfaces/content/markdown-parser';
 import { ArticleMarkdownParser } from './article-markdown-parser';
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class ArticleContentProcessor {
   private mdParserService: MarkdownParser;
 

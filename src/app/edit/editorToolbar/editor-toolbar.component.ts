@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
+import { DataService } from '../../core/base/interfaces/data-service';
+import { Article } from '../../core/models/article';
 
 @Component({
   selector: 'editor-toolbar',
@@ -6,4 +8,14 @@ import { Component } from '@angular/core';
 })
 
 export class EditorToolbarComponent {
+
+  private originMdContent: string;
+
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
+    this.originMdContent = this.dataService.getSelected().content.mdContent;
+  }
+
+  public onBack() {
+    this.dataService.getSelected().content.mdContent = this.originMdContent;
+  }
 }

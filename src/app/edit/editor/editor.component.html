@@ -9,7 +9,7 @@
 <div class="ui form">
   <textarea id="editor"
             rows="1" cols="27"
-            [style.height]="windowService.getScreenHeight() + 'px'">
-    {{dataService.getSelected().content.mdContent}}
+            [style.height]="windowService.getScreenHeight() + 'px'"
+            [(ngModel)]="dataService.getSelected().content.mdContent">
   </textarea>
 </div>

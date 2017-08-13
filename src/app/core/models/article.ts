@@ -2,6 +2,7 @@ import { Content } from './content';
 import { Tag } from './tag';
 
 export class Article {
+  public id: number;
   public title: string;
   // -1: trash
   // 0: draft

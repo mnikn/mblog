@@ -4,6 +4,8 @@ import { EditRoutingModule } from './edit-routing.module';
 import { EditorToolbarComponent } from './editorToolbar/editor-toolbar.component';
 import { EditorComponent } from './editor/editor.component';
 import { SharedModule } from '../shared/shared.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     EditRoutingModule,
+    CommonModule,
+    FormsModule,
     SharedModule
   ],
   exports: [

@@ -23,7 +23,9 @@ export class ArticleFileService {
     let files = fs.readdirSync(dir);
     for (let file of files) {
       if (file.substr(file.lastIndexOf('.')) === '.md') {
-        articles.push(self.fileReader.getArticleFromFile(dir + '/' + file));
+        let article = self.fileReader.getArticleFromFile(dir + '/' + file);
+        article.id = articles.length;
+        articles.push(article);
       }
     }
     console.log(articles);
