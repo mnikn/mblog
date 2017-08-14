@@ -10,12 +10,20 @@ import { Article } from '../../core/models/article';
 export class EditorToolbarComponent {
 
   private originMdContent: string;
+  private isSaved: boolean;
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
     this.originMdContent = this.dataService.getSelected().content.mdContent;
   }
 
   public onBack() {
-    this.dataService.getSelected().content.mdContent = this.originMdContent;
+    if (!this.isSaved) {
+      this.dataService.getSelected().content.mdContent = this.originMdContent;
+    }
+  }
+
+  public onSave() {
+    this.dataService.update(this.dataService.getSelected());
+    this.isSaved = true;
   }
 }

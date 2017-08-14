@@ -26,10 +26,8 @@ export class ArticleDataService extends BaseDataService<Article> {
   }
 
   public update(article) {
-    const index = this.list.findIndex((a) => a.id === article.id);
-    this.list[index] = article;
-    console.log(this.list[index]);
-    return index;
+    this.fileService.saveArticle(article);
+    this.refresh();
   }
 
   public remove(article) {

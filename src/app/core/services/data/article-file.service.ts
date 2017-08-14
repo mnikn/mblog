@@ -31,4 +31,11 @@ export class ArticleFileService {
     console.log(articles);
     return articles;
   }
+
+  public saveArticle(article: Article): void {
+    let fs = electron.remote.require('fs');
+    let dir = electron.remote.require('fs').readFileSync('./dist/config.txt');
+    let fileName = dir + '/' + article.title + '.md';
+    fs.writeFileSync(fileName, article.toString(), 'utf8');
+  }
 }
