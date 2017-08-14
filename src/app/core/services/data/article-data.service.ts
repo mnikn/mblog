@@ -4,6 +4,7 @@ import { ArticleFileService } from './article-file.service';
 import { BaseDataService } from '../../base/base-data-service';
 import { ArticlePagerService } from './article-pager.service';
 import { ArticleFilterService } from './article-filter.service';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ArticleDataService extends BaseDataService<Article> {
@@ -18,6 +19,7 @@ export class ArticleDataService extends BaseDataService<Article> {
 
   public refresh() {
     this.list = this.fileService.getArticles();
+    this.list = _.sortBy(this.list, 'insertDate').reverse();
     this.pagerService.setList(this.list);
   }
 
