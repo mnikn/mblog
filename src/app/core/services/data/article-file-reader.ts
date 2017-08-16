@@ -14,8 +14,8 @@ export class ArticleFileReader {
     let readline = electron.remote.require('readline');
 
     let article = new Article();
-    article.content = new Content();
-    article.content.mdContent = '';
+    // article.content = new Content();
+    // article.content.mdContent = '';
 
     let infoLines = 0;
     let lines = fs.readFileSync(file).toString().split('\n');
@@ -27,7 +27,7 @@ export class ArticleFileReader {
         let startIndex = line.indexOf('date: ') + 'date: '.length;
         article.insertDate = new Date(line.substring(startIndex).split(' ')[0]);
       } else if (infoLines < 2 && line.includes('tags: ')) {
-        article.tags = [];
+        // article.tags = [];
         let trimLine = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
         for (let tagStr of trimLine.split(',')) {
           article.tags.push(new Tag(tagStr));

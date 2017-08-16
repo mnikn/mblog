@@ -25,6 +25,8 @@ export class ArticleDataService extends BaseDataService<Article> {
 
   public add(article) {
     this.list.push(article);
+    this.fileService.createArticle(article);
+    this.refresh();
   }
 
   public update(article) {

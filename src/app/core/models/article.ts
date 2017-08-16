@@ -4,14 +4,14 @@ import { DatePipe } from '@angular/common';
 
 export class Article {
   public id: number;
-  public title: string;
+  public title: string = '标题';
   // -1: trash
   // 0: draft
   // 1: post
-  public status: number;
-  public content: Content;
-  public tags: Tag[];
-  public insertDate: Date;
+  public status: number = 1;
+  public content: Content = new Content();
+  public tags: Tag[] = [];
+  public insertDate: Date = new Date();
   public fileName: string;
 
   public toString(): string {
