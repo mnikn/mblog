@@ -12,6 +12,7 @@ export class Article {
   public content: Content;
   public tags: Tag[];
   public insertDate: Date;
+  public fileName: string;
 
   public toString(): string {
     let str = '';

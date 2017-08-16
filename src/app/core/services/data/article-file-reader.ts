@@ -39,6 +39,7 @@ export class ArticleFileReader {
       }
     }
     article.content.htmlContent = this.markdownProcessor.doProcess(article.content.mdContent);
+    article.fileName = file;
     return article;
   }
 }

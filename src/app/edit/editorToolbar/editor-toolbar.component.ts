@@ -2,6 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
 import { ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
+import { Tag } from '../../core/models/tag';
 
 export interface IContext {
   title: string;
@@ -16,6 +17,8 @@ export interface IContext {
 export class EditorToolbarComponent {
 
   private originMdContent: string;
+  private originTitle: string;
+  private originTags: Tag[];
   private isSaved: boolean;
 
   @ViewChild('modalTemplate')
@@ -24,11 +27,15 @@ export class EditorToolbarComponent {
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
               public modalService: SuiModalService) {
     this.originMdContent = this.dataService.getSelected().content.mdContent;
+    this.originTitle = this.dataService.getSelected().title;
+    this.originTags = this.dataService.getSelected().tags;
   }
 
   public onBack() {
     if (!this.isSaved) {
       this.dataService.getSelected().content.mdContent = this.originMdContent;
+      this.dataService.getSelected().title = this.originTitle;
+      this.dataService.getSelected().tags = this.originTags;
     }
   }
 
@@ -52,7 +59,7 @@ export class EditorToolbarComponent {
         this.dataService.getSelected().title = config.context.title;
         this.dataService.getSelected().setStringTags(config.context.tags);
       })
-      .onDeny((result) => { /* deny callback */
+      .onDeny(() => { /* deny callback */
       });
   }
 }

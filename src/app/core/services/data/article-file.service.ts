@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleFileReader } from './article-file-reader';
+import { isUndefined } from "util";
 declare let electron: any;
 
 @Injectable()
@@ -35,6 +36,9 @@ export class ArticleFileService {
   public saveArticle(article: Article): void {
     let fs = electron.remote.require('fs');
     let dir = electron.remote.require('fs').readFileSync('./dist/config.txt');
+    if (!isUndefined(article.fileName)) {
+      fs.unlinkSync(article.fileName);
+    }
     let fileName = dir + '/' + article.title + '.md';
     fs.writeFileSync(fileName, article.toString(), 'utf8');
   }
