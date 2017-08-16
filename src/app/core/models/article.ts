@@ -31,4 +31,17 @@ export class Article {
     str += this.content.mdContent;
     return str;
   }
+
+  public tagsToString(): string {
+    return this.tags.map((tag) => {
+      return tag.toString();
+    }).join(',');
+  }
+
+  public setStringTags(tags: string) {
+    this.tags = [];
+    tags.split(',').forEach((tag) => {
+      this.tags.push(new Tag(tag));
+    });
+  }
 }
