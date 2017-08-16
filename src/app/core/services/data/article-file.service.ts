@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleFileReader } from './article-file-reader';
+import { isUndefined } from 'util';
 declare let electron: any;
 
 @Injectable()
 export class ArticleFileService {
   private fileReader = new ArticleFileReader();
   private fs = electron.remote.require('fs');
+  private config;
 
   public getArticles(): Article[] {
-    if (this.fs.existsSync('./dist/config.txt')) {
-      let dir = this.fs.readFileSync('./dist/config.txt');
-      return this.getArticlesFromDir(dir.toString());
+    this.readConfig();
+    if (!isUndefined(this.config)) {
+      return this.getArticlesFromDir(this.config.postArticleDir);
     }
     return [];
   }
@@ -22,18 +24,16 @@ export class ArticleFileService {
     let files = this.fs.readdirSync(dir);
     for (let file of files) {
       if (file.substr(file.lastIndexOf('.')) === '.md') {
-        let article = self.fileReader.getArticleFromFile(dir + '/' + file);
+        let article = self.fileReader.getArticleFromFile(this.config.postArticleDir + file);
         article.id = articles.length;
         articles.push(article);
       }
     }
-    console.log(articles);
     return articles;
   }
 
   public createArticle(article: Article): void {
-    let dir = this.fs.readFileSync('./dist/config.txt');
-    let fileName = dir + '/' + article.title + '.md';
+    let fileName = this.config.postArticleDir + article.title + '.md';
     this.fs.writeFileSync(fileName, article.toString(), 'utf8');
   }
 
@@ -45,6 +45,12 @@ export class ArticleFileService {
   public removeArticle(article: Article): void {
     if (article.fileName) {
       this.fs.unlinkSync(article.fileName);
+    }
+  }
+
+  private readConfig(): void {
+    if (this.fs.existsSync('./dist/config.json')) {
+      this.config = JSON.parse(this.fs.readFileSync('./dist/config.json'));
     }
   }
 }

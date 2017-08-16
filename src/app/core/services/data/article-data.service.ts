@@ -21,6 +21,7 @@ export class ArticleDataService extends BaseDataService<Article> {
     this.list = this.fileService.getArticles();
     this.list = _.sortBy(this.list, 'insertDate').reverse();
     this.pagerService.setList(this.list);
+    console.log(this.list);
   }
 
   public add(article) {
