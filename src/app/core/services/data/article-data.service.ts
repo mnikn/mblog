@@ -24,7 +24,6 @@ export class ArticleDataService extends BaseDataService<Article> {
   }
 
   public add(article) {
-    this.list.push(article);
     this.fileService.createArticle(article);
     this.refresh();
   }
@@ -35,7 +34,8 @@ export class ArticleDataService extends BaseDataService<Article> {
   }
 
   public remove(article) {
-    this.list.reduce(article);
+    this.fileService.removeArticle(article);
+    this.refresh();
   }
 
 }

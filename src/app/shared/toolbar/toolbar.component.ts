@@ -13,9 +13,16 @@ export class ToolbarComponent {
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
   }
 
-  public onAddClick() {
+  public onAdd() {
     let article = new Article();
     this.dataService.add(article);
+  }
+
+  public onDelete() {
+    if (this.dataService.getSelected()) {
+      this.dataService.remove(this.dataService.getSelected());
+      this.dataService.setSelected(null);
+    }
   }
 
   public onRefresh() {
