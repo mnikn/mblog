@@ -27,14 +27,19 @@ export class EditorComponent implements AfterViewInit {
       })
       .on('compositionend', () => {
         this.useInputMethod = false;
+        this.processMarkdown();
       })
-      .on('keyup', () => {
+      .on('input', () => {
         if (!this.useInputMethod) {
-          let value = $('#editor')[0].value;
-          this.dataService.getSelected().content.mdContent = value;
-          this.dataService.getSelected().content.htmlContent = this.contentProcessor
-            .doProcess(value);
+          this.processMarkdown();
         }
       });
+  }
+
+  private processMarkdown(): void {
+    let value = $('#editor')[0].value;
+    this.dataService.getSelected().content.mdContent = value;
+    this.dataService.getSelected().content.htmlContent = this.contentProcessor
+      .doProcess(value);
   }
 }
