@@ -32,6 +32,7 @@ export class ArticleContentProcessor {
       htmlText = this.cssProcessor.processHtmlWithCss(htmlText);
     }
 
+    console.log('here!');
     return htmlText;
   }
 }
