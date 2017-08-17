@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleFileReader } from './article-file-reader';
 import { isUndefined } from 'util';
+import { Context } from '../context';
 declare let electron: any;
 
 @Injectable()
 export class ArticleFileService {
   private fileReader = new ArticleFileReader();
   private fs = electron.remote.require('fs');
-  private config;
+  private config: any;
 
   public getArticles(): Article[] {
     this.readConfig();
@@ -51,6 +52,7 @@ export class ArticleFileService {
   private readConfig(): void {
     if (this.fs.existsSync('./dist/config.json')) {
       this.config = JSON.parse(this.fs.readFileSync('./dist/config.json'));
+      Context.config = this.config;
     }
   }
 }

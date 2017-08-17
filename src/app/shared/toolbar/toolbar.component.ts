@@ -3,6 +3,8 @@ import { Article } from '../../core/models/article';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { ArticleFilter } from 'app/core/models/article-filter';
 import { FILTER_METHOD } from '../../core/base/params/filter-method';
+import { Context } from '../../core/services/context';
+declare let electron: any;
 
 @Component({
   selector: 'toolbar',
@@ -27,6 +29,17 @@ export class ToolbarComponent {
 
   public onRefresh() {
     this.dataService.refresh();
+  }
+
+  public onDeploy() {
+    let dir = Context.config.blogRoot.replace(' ', '\\ ');
+
+    electron.remote.require('child_process')
+      .exec('cd ' + dir + ' && hexo g && hexo d', (error, stdout, stderr) => {
+        console.log(error);
+        console.log(stdout + ' Finish!');
+        console.log(stderr);
+      });
   }
 
   public onSearchEnter(value) {
