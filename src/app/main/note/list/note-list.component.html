@@ -11,8 +11,8 @@
         <a class="header">标题：{{article.title}}</a><br>
         <div class="description">
           <span class="ui inverted">标签：</span>
-          <div class="ui inverted basic button" *ngFor="let tag of article.tags">
-            <span (click)="onTagClick(tag)">
+          <div class="ui inverted basic button" *ngFor="let tag of article.tags" (click)="onTagClick(tag)">
+            <span>
               {{tag.name}}
             </span>
           </div>
