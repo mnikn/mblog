@@ -2,7 +2,11 @@
   <a class="item" (click)="onAdd()">
     <i class="add square icon"></i>添加笔记
   </a>
-  <a class="item" (click)="onDelete()">
+  <a class="item" (click)="onDelete(popup)"
+     suiPopup
+     popupText="你还没有选择笔记！"
+     #popup="suiPopup"
+     popupTrigger="manual">
     <i class="delete square icon"></i>删除笔记
   </a>
   <a class="item" (click)="onDeploy()">
@@ -26,3 +30,15 @@
     </div>
   </div>
 </div>
+
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">删除笔记</div>
+  <div class="content">
+    <p>{{ context.question }}</p>
+  </div>
+  <div class="actions">
+    <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+    <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+  </div>
+</ng-template>

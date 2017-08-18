@@ -1,10 +1,15 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { ArticleFilter } from 'app/core/models/article-filter';
 import { FILTER_METHOD } from '../../core/base/params/filter-method';
 import { Context } from '../../core/services/context';
+import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 declare let electron: any;
+
+interface IModalContext {
+  question: string;
+}
 
 @Component({
   selector: 'toolbar',
@@ -12,7 +17,12 @@ declare let electron: any;
 })
 
 export class ToolbarComponent {
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
+
+  @ViewChild('modalTemplate')
+  public modalTemplate: ModalTemplate<IModalContext, string, string>;
+
+  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
+              public modalService: SuiModalService) {
   }
 
   public onAdd() {
@@ -20,11 +30,23 @@ export class ToolbarComponent {
     this.dataService.add(article);
   }
 
-  public onDelete() {
-    if (this.dataService.getSelected()) {
-      this.dataService.remove(this.dataService.getSelected());
-      this.dataService.setSelected(null);
+  public onDelete(popup: IPopup) {
+    if (!this.dataService.getSelected()) {
+      popup.open();
+      setInterval(() => {
+        popup.close();
+      }, 2000);
+      return;
     }
+
+    const config = new TemplateModalConfig<IModalContext, string, string>(this.modalTemplate);
+    config.context = {question: '确定要删除笔记吗？'};
+    this.modalService
+      .open(config)
+      .onApprove(() => {
+        this.dataService.remove(this.dataService.getSelected());
+        this.dataService.setSelected(null);
+      });
   }
 
   public onRefresh() {
