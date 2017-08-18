@@ -33,9 +33,9 @@ export class ToolbarComponent {
   public onDelete(popup: IPopup) {
     if (!this.dataService.getSelected()) {
       popup.open();
-      setInterval(() => {
+      setTimeout(() => {
         popup.close();
-      }, 2000);
+      }, 1000);
       return;
     }
 
