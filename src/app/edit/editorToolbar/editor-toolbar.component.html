@@ -11,7 +11,11 @@
   <a class="item">
     <i class="undo icon"></i>
   </a>
-  <a class="item" (click)="onSave()">
+  <a class="item" (click)="onSave(popup)"
+     suiPopup
+     popupText="保存成功！"
+     #popup="suiPopup"
+     popupTrigger="manual">
     <i class="save icon"></i>
   </a>
   <a class="item" (click)="showNoteInfoModal()">

@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
-import { ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
+import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 import { Tag } from '../../core/models/tag';
 
 export interface IContext {
@@ -39,9 +39,13 @@ export class EditorToolbarComponent {
     }
   }
 
-  public onSave() {
+  public onSave(popup: IPopup) {
     this.dataService.update(this.dataService.getSelected());
     this.isSaved = true;
+    popup.open();
+    setTimeout(() => {
+      popup.close();
+    }, 1000);
   }
 
   public showNoteInfoModal() {
@@ -58,8 +62,6 @@ export class EditorToolbarComponent {
       .onApprove(() => { /* approve callback */
         this.dataService.getSelected().title = config.context.title;
         this.dataService.getSelected().setStringTags(config.context.tags);
-      })
-      .onDeny(() => { /* deny callback */
       });
   }
 }

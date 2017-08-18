@@ -6,7 +6,7 @@ import { EditorComponent } from './editor/editor.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SuiModalModule } from 'ng2-semantic-ui';
+import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { SuiModalModule } from 'ng2-semantic-ui';
     CommonModule,
     FormsModule,
     SharedModule,
-    SuiModalModule
+    SuiModalModule,
+    SuiPopupModule
   ],
   exports: [
     EditComponent,
