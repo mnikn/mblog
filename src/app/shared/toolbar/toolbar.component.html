@@ -1,4 +1,7 @@
 <div class="ui black inverted menu">
+  <sui-dimmer class="inverted" [(isDimmed)]="isDeploying">
+    <span class="ui text loader">{{isDeploying? '正在部署中.......' : '部署完成!'}}</span>
+  </sui-dimmer>
   <a class="item" (click)="onAdd()">
     <i class="add square icon"></i>添加笔记
   </a>

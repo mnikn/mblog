@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FilterBarComponent } from 'app/shared/filterBar/filter-bar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { SuiModalModule, SuiPopupModule, SuiSidebarModule } from 'ng2-semantic-ui';
+import { SuiDimmerModule, SuiModalModule, SuiPopupModule, SuiSidebarModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.moudle';
 import { NotePreviewComponent } from './notePreview/note-preview.component';
@@ -18,6 +18,7 @@ import { NotePreviewComponent } from './notePreview/note-preview.component';
     SuiSidebarModule,
     SuiModalModule,
     SuiPopupModule,
+    SuiDimmerModule,
     CommonModule,
     AppRoutingModule
   ],

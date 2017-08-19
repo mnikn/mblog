@@ -18,6 +18,8 @@ interface IModalContext {
 
 export class ToolbarComponent {
 
+  public isDeploying: boolean = false;
+
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IModalContext, string, string>;
 
@@ -54,13 +56,15 @@ export class ToolbarComponent {
   }
 
   public onDeploy() {
+    this.isDeploying = true;
     let dir = Context.config.blogRoot.replace(' ', '\\ ');
 
     electron.remote.require('child_process')
       .exec('cd ' + dir + ' && hexo g && hexo d', (error, stdout, stderr) => {
-        console.log(error);
+        this.isDeploying = false;
+        console.log('error: ' + error);
         console.log(stdout + ' Finish!');
-        console.log(stderr);
+        console.log('stderr: ' + stderr);
       });
   }
 
