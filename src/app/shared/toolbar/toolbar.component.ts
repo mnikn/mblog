@@ -56,16 +56,10 @@ export class ToolbarComponent {
   }
 
   public onDeploy() {
-    this.isDeploying = true;
+    // this.isDeploying = true;
     let dir = Context.config.blogRoot.replace(' ', '\\ ');
-
-    electron.remote.require('child_process')
-      .exec('cd ' + dir + ' && hexo g && hexo d', (error, stdout, stderr) => {
-        this.isDeploying = false;
-        console.log('error: ' + error);
-        console.log(stdout + ' Finish!');
-        console.log('stderr: ' + stderr);
-      });
+    let command = 'cd ' + dir + ' && hexo g && hexo d';
+    electron.remote.require('child_process').exec(command);
   }
 
   public onSearchEnter(value) {
