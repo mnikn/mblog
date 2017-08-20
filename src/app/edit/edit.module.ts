@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
     FormsModule,
     SharedModule,
     SuiModalModule,
-    SuiPopupModule
+    SuiPopupModule,
+    HotkeyModule
   ],
   exports: [
     EditComponent,

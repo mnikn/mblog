@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, Inject, Renderer, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/windowService';
 import { ArticleContentProcessor } from '../../core/services/content/article-content-processor';
+declare let electron: any;
 
 @Component({
   selector: 'editor',
@@ -18,11 +19,10 @@ export class EditorComponent implements AfterViewInit {
               @Inject('ArticleContentProcessor') public contentProcessor: ArticleContentProcessor,
               @Inject('WindowService') public windowService: WindowService,
               private render: Renderer2) {
-
   }
 
   public ngAfterViewInit() {
-    console.log(this.dataService.getSelected());
+
     let element = this.editor.nativeElement;
     this.render.listen(element, 'compositionstart', () => {
       this.useInputMethod = true;
@@ -39,7 +39,7 @@ export class EditorComponent implements AfterViewInit {
   }
 
   private processMarkdown(): void {
-    let value = this.editor.nativeElement.value.replace(' ', '  ');
+    let value = this.editor.nativeElement.value;
     this.dataService.getSelected().content.mdContent = value;
     this.dataService.getSelected().content.htmlContent = this.contentProcessor
       .doProcess(value);

@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.moudle';
 import { EditModule } from './edit/edit.module';
+import { HotkeyModule } from 'angular2-hotkeys';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { EditModule } from './edit/edit.module';
     CommonModule,
     AppRoutingModule,
     MainModule,
-    EditModule
+    EditModule,
+    HotkeyModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
