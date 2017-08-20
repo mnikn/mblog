@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FilterBarComponent } from 'app/shared/filterBar/filter-bar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { SuiDimmerModule, SuiModalModule, SuiPopupModule, SuiSidebarModule } from 'ng2-semantic-ui';
+import { SuiModalModule, SuiPopupModule, SuiSidebarModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.moudle';
 import { NotePreviewComponent } from './notePreview/note-preview.component';
+import { ConfirmModalComponent } from './confirmModal/cofirm-modal';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,12 @@ import { NotePreviewComponent } from './notePreview/note-preview.component';
     ToolbarComponent,
     FilterBarComponent,
     NotePreviewComponent,
+    ConfirmModalComponent
   ],
   imports: [
     SuiSidebarModule,
     SuiModalModule,
     SuiPopupModule,
-    SuiDimmerModule,
     CommonModule,
     AppRoutingModule
   ],
@@ -26,8 +27,10 @@ import { NotePreviewComponent } from './notePreview/note-preview.component';
     SidebarComponent,
     ToolbarComponent,
     FilterBarComponent,
-    NotePreviewComponent
-  ]
+    NotePreviewComponent,
+    ConfirmModalComponent
+  ],
+  entryComponents: [ConfirmModalComponent]
 })
 
 export class SharedModule {

@@ -5,11 +5,8 @@ import { ArticleFilter } from 'app/core/models/article-filter';
 import { FILTER_METHOD } from '../../core/base/params/filter-method';
 import { Context } from '../../core/services/context';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
+import { ConfirmModal } from "../confirmModal/cofirm-modal";
 declare let electron: any;
-
-interface IModalContext {
-  question: string;
-}
 
 @Component({
   selector: 'toolbar',
@@ -19,9 +16,6 @@ interface IModalContext {
 export class ToolbarComponent {
 
   public isDeploying: boolean = false;
-
-  @ViewChild('modalTemplate')
-  public modalTemplate: ModalTemplate<IModalContext, string, string>;
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
               public modalService: SuiModalService) {
@@ -41,10 +35,8 @@ export class ToolbarComponent {
       return;
     }
 
-    const config = new TemplateModalConfig<IModalContext, string, string>(this.modalTemplate);
-    config.context = {question: '确定要删除笔记吗？'};
     this.modalService
-      .open(config)
+      .open(new ConfirmModal('确定要删除笔记吗？'))
       .onApprove(() => {
         this.dataService.remove(this.dataService.getSelected());
         this.dataService.setSelected(null);
