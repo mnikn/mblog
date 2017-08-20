@@ -22,27 +22,27 @@ export class EditComponent implements OnDestroy {
   }
 
   private setHotKeys(): void {
-    this.hotkeysService.mousetrap.bind('command+s', () => {
+    this.doSetHotKey('command+s', () => {
       this.toolbar.onSave(this.toolbar.popup);
-      return false;
-    });
-    this.hotkeysService.mousetrap.bind('command+b', () => {
+    }).doSetHotKey('command+b', () => {
       this.editor.insertAtCursor('****');
-      return false;
-    });
-    this.hotkeysService.mousetrap.bind('command+i', () => {
+    }).doSetHotKey('command+i', () => {
       this.editor.insertAtCursor('**');
-      return false;
-    });
-    this.hotkeysService.mousetrap.bind('command+p', () => {
+    }).doSetHotKey('command+p', () => {
       this.editor.insertAtCursor('![]()');
-      return false;
-    });
-    this.hotkeysService.mousetrap.bind('command+l', () => {
+    }).doSetHotKey('command+p', () => {
+      this.editor.insertAtCursor('![]()');
+    }).doSetHotKey('command+l', () => {
       this.editor.insertAtCursor('[]()', 1);
-      return false;
     });
   }
 
+  private doSetHotKey(key: string, callback) {
+    this.hotkeysService.mousetrap.bind(key, () => {
+      callback();
+      return false;
+    });
+    return this;
+  }
 
 }
