@@ -31,7 +31,6 @@ export class ArticleDataService extends BaseDataService<Article> {
 
   public update(article) {
     this.fileService.saveArticle(article);
-    this.list[article.id] = article;
   }
 
   public remove(article) {
