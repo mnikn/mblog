@@ -6,7 +6,6 @@ import { MainModule } from './main/main.module';
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
-import { SuiModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.moudle';
 import { EditModule } from './edit/edit.module';
@@ -19,7 +18,6 @@ import { EditModule } from './edit/edit.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    SuiModule,
     CoreModule,
     CommonModule,
     AppRoutingModule,

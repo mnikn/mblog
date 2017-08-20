@@ -6,6 +6,8 @@ import { FILTER_METHOD } from '../../core/base/params/filter-method';
 import { Context } from '../../core/services/context';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 import { ConfirmModal } from "../confirmModal/cofirm-modal";
+import { until } from "selenium-webdriver";
+import { setTimeout } from "timers";
 declare let electron: any;
 
 @Component({
@@ -48,10 +50,19 @@ export class ToolbarComponent {
   }
 
   public onDeploy() {
-    // this.isDeploying = true;
+    this.isDeploying = true;
     let dir = Context.config.blogRoot.replace(' ', '\\ ');
     let command = 'cd ' + dir + ' && hexo g && hexo d';
-    electron.remote.require('child_process').exec(command);
+    electron.remote.require('child_process').exec(command, (error, stdout, stderr) => {
+      console.log(error);
+      console.log(stdout);
+      console.log(stderr);
+    });
+
+    // remove later
+    setTimeout(() => {
+      this.isDeploying = false;
+    }, 10000);
   }
 
   public onSearchEnter(value) {
