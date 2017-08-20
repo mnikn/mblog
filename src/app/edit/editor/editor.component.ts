@@ -22,6 +22,7 @@ export class EditorComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
+    console.log(this.dataService.getSelected());
     let element = this.editor.nativeElement;
     this.render.listen(element, 'compositionstart', () => {
       this.useInputMethod = true;
@@ -38,7 +39,7 @@ export class EditorComponent implements AfterViewInit {
   }
 
   private processMarkdown(): void {
-    let value = this.editor.nativeElement.value;
+    let value = this.editor.nativeElement.value.replace(' ', '  ');
     this.dataService.getSelected().content.mdContent = value;
     this.dataService.getSelected().content.htmlContent = this.contentProcessor
       .doProcess(value);
