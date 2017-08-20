@@ -34,6 +34,10 @@ export class EditComponent implements OnDestroy {
       this.editor.insertAtCursor('![]()');
     }).doSetHotKey('command+l', () => {
       this.editor.insertAtCursor('[]()', 1);
+    }).doSetHotKey('command+/', () => {
+      this.editor.insertAtCursor('<!---->', 4);
+    }).doSetHotKey('command+`', () => {
+      this.editor.insertAtCursor('```\n```');
     });
   }
 

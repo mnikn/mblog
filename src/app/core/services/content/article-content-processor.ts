@@ -31,8 +31,6 @@ export class ArticleContentProcessor {
     if (this.cssProcessor) {
       htmlText = this.cssProcessor.processHtmlWithCss(htmlText);
     }
-
-    console.log('here!');
     return htmlText;
   }
 }

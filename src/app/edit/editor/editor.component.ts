@@ -53,8 +53,6 @@ export class EditorComponent implements AfterViewInit {
     this.dataService.getSelected().content.mdContent = value;
     this.dataService.getSelected().content.htmlContent = this.contentProcessor
       .doProcess(value);
-    console.log(this.editor.nativeElement.selectionStart);
-
   }
 
 
