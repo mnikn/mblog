@@ -35,6 +35,7 @@ export class ArticleFileService {
 
   public createArticle(article: Article): void {
     let fileName = this.config.postArticleDir + article.title + '.md';
+    article.fileName = fileName;
     this.fs.writeFileSync(fileName, article.toString(), 'utf8');
   }
 
