@@ -22,7 +22,6 @@ export class EditorComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-
     let element = this.editor.nativeElement;
     this.render.listen(element, 'compositionstart', () => {
       this.useInputMethod = true;
@@ -38,10 +37,25 @@ export class EditorComponent implements AfterViewInit {
     });
   }
 
+  public insertAtCursor(value: string, relAfterPos: number = value.length / 2): void {
+    let textarea = this.editor.nativeElement;
+    console.log(textarea.selectionStart);
+    let startPos = textarea.selectionStart;
+    let endPos = textarea.selectionEnd;
+    textarea.value = textarea.value.substring(0, startPos)
+      + value
+      + textarea.value.substring(endPos, textarea.value.length);
+    textarea.selectionStart = textarea.selectionEnd = startPos + relAfterPos;
+  }
+
   private processMarkdown(): void {
     let value = this.editor.nativeElement.value;
     this.dataService.getSelected().content.mdContent = value;
     this.dataService.getSelected().content.htmlContent = this.contentProcessor
       .doProcess(value);
+    console.log(this.editor.nativeElement.selectionStart);
+
   }
+
+
 }

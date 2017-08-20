@@ -1,24 +1,38 @@
 <div class="ui black big inverted menu">
-  <a class="item" routerLink="/main-page/note-info" (click)="onBack()">
+  <a class="item" routerLink="/main-page/note-info" (click)="onBack()"
+     suiPopup popupText="返回">
     <i class="backward icon"></i>
   </a>
-  <a class="item">
+  <a class="item"
+     suiPopup popupText="插入粗体">
     <i class="bold icon"></i>
   </a>
-  <a class="item">
+  <a class="item"
+     suiPopup popupText="插入斜体">
     <i class="italic icon"></i>
   </a>
-  <a class="item">
+  <a class="item"
+     suiPopup popupText="插入图片">
+    <i class="picture icon"></i>
+  </a>
+  <a class="item"
+     suiPopup popupText="插入链接">
+    <i class="attach icon"></i>
+  </a>
+  <a class="item"
+     suiPopup popupText="撤回">
     <i class="undo icon"></i>
   </a>
-  <a class="item" (click)="onSave(popup)"
+  <div suiPopup popupText="保存">
+    <a class="item" (click)="onSave(popup)"
+       suiPopup popupText="保存成功！"
+       #popup="suiPopup" popupTrigger="manual">
+      <i class="save icon"></i>
+    </a>
+  </div>
+  <a class="item" (click)="showNoteInfoModal()"
      suiPopup
-     popupText="保存成功！"
-     #popup="suiPopup"
-     popupTrigger="manual">
-    <i class="save icon"></i>
-  </a>
-  <a class="item" (click)="showNoteInfoModal()">
+     popupText="笔记信息">
     <i class="info icon"></i>
   </a>
 </div>
