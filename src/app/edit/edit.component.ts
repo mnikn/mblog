@@ -38,6 +38,8 @@ export class EditComponent implements OnDestroy {
       this.editor.insertAtCursor('<!---->', 4);
     }).doSetHotKey('command+`', () => {
       this.editor.insertAtCursor('```\n```');
+    }).doSetHotKey('enter', () => {
+      this.editor.insertEnter();
     });
   }
 
