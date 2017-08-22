@@ -3,7 +3,7 @@ import { Article } from '../../../core/models/article';
 import { DataService } from '../../../core/base/interfaces/data-service';
 import { ArticleFilter } from 'app/core/models/article-filter';
 import { FILTER_METHOD } from '../../../core/base/params/filter-method';
-import { WindowService } from '../../../core/services/windowService';
+import { WindowService } from '../../../core/services/window.service';
 
 @Component({
   selector: 'note-list',
@@ -13,7 +13,7 @@ import { WindowService } from '../../../core/services/windowService';
 export class NoteListComponent {
 
   constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
-              @Inject('WindowService') public windowService: WindowService) {
+              public windowService: WindowService) {
   }
 
   public onSelect(article: Article): void {

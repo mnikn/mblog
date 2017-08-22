@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { WindowService } from '../core/services/windowService';
+import { WindowService } from '../core/services/window.service';
 
 @Component({
   selector: 'main-page',
@@ -8,7 +8,7 @@ import { WindowService } from '../core/services/windowService';
 
 export class MainComponent {
 
-  constructor(@Inject('WindowService') public windowService: WindowService) {
+  constructor(public windowService: WindowService) {
 
   }
 }

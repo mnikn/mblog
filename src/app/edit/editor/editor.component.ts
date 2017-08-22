@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
-import { WindowService } from '../../core/services/windowService';
+import { WindowService } from '../../core/services/window.service';
 import { ArticleContentProcessor } from '../../core/services/content/article-content-processor';
 import { EditorService } from './editor.service';
 import { IHotkeyService } from '../../core/base/interfaces/hotkey-service';
@@ -19,7 +19,7 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
   private useInputMethod: boolean = false;
   @ViewChild('editor') private editor: ElementRef;
 
-  constructor(@Inject('WindowService') public windowService: WindowService,
+  constructor(public windowService: WindowService,
               @Inject('DataService<Article>') private dataService: DataService<Article>,
               @Inject('ArticleContentProcessor') private contentProcessor: ArticleContentProcessor,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
