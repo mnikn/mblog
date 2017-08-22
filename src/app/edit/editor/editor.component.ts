@@ -1,8 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/windowService';
 import { ArticleContentProcessor } from '../../core/services/content/article-content-processor';
+import { EditorService } from './editor.service';
+import { IHotkeyService } from '../../core/base/interfaces/hotkey-service';
+import { EditService } from '../edit.service';
 declare let electron: any;
 
 @Component({
@@ -10,18 +13,36 @@ declare let electron: any;
   templateUrl: './editor.component.html'
 })
 
-export class EditorComponent implements AfterViewInit {
+export class EditorComponent implements AfterViewInit, OnDestroy {
 
+  public service: EditorService;
   private useInputMethod: boolean = false;
-  @ViewChild('editor') public editor: ElementRef;
+  @ViewChild('editor') private editor: ElementRef;
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
-              @Inject('ArticleContentProcessor') public contentProcessor: ArticleContentProcessor,
-              @Inject('WindowService') public windowService: WindowService,
+  constructor(@Inject('DataService<Article>') private dataService: DataService<Article>,
+              @Inject('ArticleContentProcessor') private contentProcessor: ArticleContentProcessor,
+              @Inject('WindowService') private windowService: WindowService,
+              @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
+              private editService: EditService,
               private render: Renderer2) {
   }
 
   public ngAfterViewInit() {
+    this.setInputListener();
+    this.initService();
+    this.setHotKeys();
+  }
+
+  public ngOnDestroy(): void {
+    this.hotkeyService.clear();
+  }
+
+  private initService(): void {
+    this.service = new EditorService(this.editor);
+    this.editService.editorService = this.service;
+  }
+
+  private setInputListener(): void {
     let element = this.editor.nativeElement;
     this.render.listen(element, 'compositionstart', () => {
       this.useInputMethod = true;
@@ -44,5 +65,22 @@ export class EditorComponent implements AfterViewInit {
       .doProcess(value);
   }
 
+  private setHotKeys(): void {
+    this.hotkeyService.bindKey('command+b', () => {
+      this.service.insertBold();
+    }).bindKey('command+i', () => {
+      this.service.insertItalic();
+    }).bindKey('command+p', () => {
+      this.service.insertPicture();
+    }).bindKey('command+l', () => {
+      this.service.insertLink();
+    }).bindKey('command+/', () => {
+      this.service.insertComment();
+    }).bindKey('command+`', () => {
+      this.service.insertCode();
+    }).bindKey('enter', () => {
+      this.service.onEnter();
+    });
+  }
 
 }

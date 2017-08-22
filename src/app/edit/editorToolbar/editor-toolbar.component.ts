@@ -1,11 +1,13 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Host, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../core/base/interfaces/data-service';
 import { Article } from '../../core/models/article';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 import { Tag } from '../../core/models/tag';
 import { SuiPopup } from 'ng2-semantic-ui/dist';
 import { Router } from '@angular/router';
-
+import { EditComponent } from '../edit.component';
+import { IHotkeyService } from 'app/core/base/interfaces/hotkey-service';
+import { EditService } from '../edit.service';
 
 export interface IContext {
   title: string;
@@ -17,7 +19,7 @@ export interface IContext {
   templateUrl: './editor-toolbar.component.html'
 })
 
-export class EditorToolbarComponent {
+export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IContext, string, string>;
@@ -30,11 +32,21 @@ export class EditorToolbarComponent {
   private isSaved: boolean;
 
   constructor(@Inject('DataService<Article>') private dataService: DataService<Article>,
+              @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
+              private editService: EditService,
               private modalService: SuiModalService,
               private router: Router) {
     this.originMdContent = this.dataService.getSelected().content.mdContent;
     this.originTitle = this.dataService.getSelected().title;
     this.originTags = this.dataService.getSelected().tags;
+  }
+
+  public ngAfterViewInit(): void {
+    this.setHotKeys();
+  }
+
+  public ngOnDestroy(): void {
+    this.hotkeyService.clear();
   }
 
   public onBack() {
@@ -70,5 +82,14 @@ export class EditorToolbarComponent {
         this.dataService.getSelected().title = config.context.title;
         this.dataService.getSelected().setStringTags(config.context.tags);
       });
+  }
+
+  private setHotKeys(): void {
+    this.hotkeyService.bindKey('command+s', () => {
+      this.onSave(this.popup);
+      console.log('dsa');
+    }).bindKey('command+shift+left', () => {
+      this.onBack();
+    });
   }
 }

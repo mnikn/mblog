@@ -7,8 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
-import { HotkeyModule } from 'angular2-hotkeys';
-import { EditorHelperService } from './editor-helper.service';
+import { HotkeyService } from '../core/services/hotkey.service';
+import { EditService } from "./edit.service";
 
 @NgModule({
   declarations: [
@@ -22,8 +22,7 @@ import { EditorHelperService } from './editor-helper.service';
     FormsModule,
     SharedModule,
     SuiModalModule,
-    SuiPopupModule,
-    HotkeyModule
+    SuiPopupModule
   ],
   exports: [
     EditComponent,
@@ -31,7 +30,8 @@ import { EditorHelperService } from './editor-helper.service';
     EditorToolbarComponent
   ],
   providers: [
-    {provide: 'EditorHelperService', useClass: EditorHelperService}
+    EditService,
+    {provide: 'IHotkeyService', useClass: HotkeyService}
   ]
 })
 
