@@ -19,9 +19,9 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
   private useInputMethod: boolean = false;
   @ViewChild('editor') private editor: ElementRef;
 
-  constructor(@Inject('DataService<Article>') private dataService: DataService<Article>,
+  constructor(@Inject('WindowService') public windowService: WindowService,
+              @Inject('DataService<Article>') private dataService: DataService<Article>,
               @Inject('ArticleContentProcessor') private contentProcessor: ArticleContentProcessor,
-              @Inject('WindowService') private windowService: WindowService,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private editService: EditService,
               private render: Renderer2) {

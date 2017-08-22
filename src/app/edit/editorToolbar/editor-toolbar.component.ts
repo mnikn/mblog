@@ -31,9 +31,9 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   private originTags: Tag[];
   private isSaved: boolean;
 
-  constructor(@Inject('DataService<Article>') private dataService: DataService<Article>,
+  constructor(public editService: EditService,
+              @Inject('DataService<Article>') private dataService: DataService<Article>,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
-              private editService: EditService,
               private modalService: SuiModalService,
               private router: Router) {
     this.originMdContent = this.dataService.getSelected().content.mdContent;
@@ -78,7 +78,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
 
     this.modalService
       .open(config)
-      .onApprove(() => { /* approve callback */
+      .onApprove(() => {
         this.dataService.getSelected().title = config.context.title;
         this.dataService.getSelected().setStringTags(config.context.tags);
       });
@@ -87,7 +87,6 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   private setHotKeys(): void {
     this.hotkeyService.bindKey('command+s', () => {
       this.onSave(this.popup);
-      console.log('dsa');
     }).bindKey('command+shift+left', () => {
       this.onBack();
     });
