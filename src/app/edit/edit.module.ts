@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
 import { HotkeyModule } from 'angular2-hotkeys';
+import { EditorHelperService } from './editor-helper.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,9 @@ import { HotkeyModule } from 'angular2-hotkeys';
     EditComponent,
     EditorComponent,
     EditorToolbarComponent
+  ],
+  providers: [
+    {provide: 'EditorHelperService', useClass: EditorHelperService}
   ]
 })
 

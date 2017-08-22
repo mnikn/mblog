@@ -4,6 +4,7 @@ import { Article } from '../../core/models/article';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 import { Tag } from '../../core/models/tag';
 import { SuiPopup } from 'ng2-semantic-ui/dist';
+import { Router } from '@angular/router';
 
 
 export interface IContext {
@@ -18,22 +19,22 @@ export interface IContext {
 
 export class EditorToolbarComponent {
 
-  private originMdContent: string;
-  private originTitle: string;
-  private originTags: Tag[];
-  private isSaved: boolean;
-
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IContext, string, string>;
   @ViewChild('popup')
   public popup: SuiPopup;
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
-              public modalService: SuiModalService) {
+  private originMdContent: string;
+  private originTitle: string;
+  private originTags: Tag[];
+  private isSaved: boolean;
+
+  constructor(@Inject('DataService<Article>') private dataService: DataService<Article>,
+              private modalService: SuiModalService,
+              private router: Router) {
     this.originMdContent = this.dataService.getSelected().content.mdContent;
     this.originTitle = this.dataService.getSelected().title;
     this.originTags = this.dataService.getSelected().tags;
-
   }
 
   public onBack() {
@@ -42,6 +43,7 @@ export class EditorToolbarComponent {
       this.dataService.getSelected().title = this.originTitle;
       this.dataService.getSelected().tags = this.originTags;
     }
+    this.router.navigate(['/main-page/note-info']);
   }
 
   public onSave(popup: IPopup) {
