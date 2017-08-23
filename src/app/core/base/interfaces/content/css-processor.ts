@@ -1,3 +1,3 @@
-export interface CssProcessor {
+export interface ICssProcessor {
   processHtmlWithCss(htmlText: string): string;
 }

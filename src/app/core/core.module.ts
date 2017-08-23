@@ -10,7 +10,7 @@ import { HotkeyModule } from 'angular2-hotkeys';
   ],
   providers: [
     WindowService,
-    {provide: 'DataService<Article>', useClass: ArticleDataService},
+    {provide: 'IDataService<Article>', useClass: ArticleDataService},
     {provide: 'ArticleContentProcessor', useClass: ArticleContentProcessor},
   ]
 })

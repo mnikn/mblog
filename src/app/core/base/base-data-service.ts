@@ -1,17 +1,17 @@
-import { DataService } from './interfaces/data-service';
-import { DataFilterService } from './interfaces/data-filter-service';
-import { DataPagerService } from './interfaces/data-pager-service';
+import { IDataService } from './interfaces/data/data-service';
+import { IDataFilter } from './interfaces/data/data-filter';
+import { IDataPager } from './interfaces/data/data-pager';
 import { DataOption } from './params/data-option';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export abstract class BaseDataService<T> implements DataService<T> {
+export abstract class BaseDataService<T> implements IDataService<T> {
 
   protected selectedItem: T;
   protected list: T[];
   protected option: DataOption;
-  protected pagerService: DataPagerService<T>;
-  protected filterService: DataFilterService<T>;
+  protected pagerService: IDataPager<T>;
+  protected filterService: IDataFilter<T>;
 
   constructor() {
     this.option = new DataOption();
@@ -25,19 +25,19 @@ export abstract class BaseDataService<T> implements DataService<T> {
     this.selectedItem = item;
   }
 
-  public getFilterService(): DataFilterService<T> {
+  public getFilterService(): IDataFilter<T> {
     return this.filterService;
   }
 
-  public setFilterService(service: DataFilterService<T>) {
+  public setFilterService(service: IDataFilter<T>) {
     this.filterService = service;
   }
 
-  public getPagerService(): DataPagerService<T> {
+  public getPagerService(): IDataPager<T> {
     return this.pagerService;
   }
 
-  public setPagerService(service: DataPagerService<T>) {
+  public setPagerService(service: IDataPager<T>) {
     this.pagerService = service;
   }
 

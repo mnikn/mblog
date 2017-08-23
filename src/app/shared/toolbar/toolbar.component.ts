@@ -1,6 +1,6 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { Article } from '../../core/models/article';
-import { DataService } from '../../core/base/interfaces/data-service';
+import { IDataService } from '../../core/base/interfaces/data/data-service';
 import { ArticleFilter } from 'app/core/models/article-filter';
 import { FILTER_METHOD } from '../../core/base/params/filter-method';
 import { Context } from '../../core/services/context';
@@ -19,7 +19,7 @@ export class ToolbarComponent {
 
   public isDeploying: boolean = false;
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
+  constructor(@Inject('IDataService<Article>') public dataService: IDataService<Article>,
               public modalService: SuiModalService) {
   }
 

@@ -1,4 +1,4 @@
-export interface DataPagerService<T> {
+export interface IDataPager<T> {
   setList(list: T[]): void;
   getList(): T[];
   getListSize(): number;

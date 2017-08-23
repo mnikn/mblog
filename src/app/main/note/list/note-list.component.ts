@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Article } from '../../../core/models/article';
-import { DataService } from '../../../core/base/interfaces/data-service';
+import { IDataService } from '../../../core/base/interfaces/data/data-service';
 import { ArticleFilter } from 'app/core/models/article-filter';
 import { FILTER_METHOD } from '../../../core/base/params/filter-method';
 import { WindowService } from '../../../core/services/window.service';
@@ -12,7 +12,7 @@ import { WindowService } from '../../../core/services/window.service';
 
 export class NoteListComponent {
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>,
+  constructor(@Inject('IDataService<Article>') public dataService: IDataService<Article>,
               public windowService: WindowService) {
   }
 

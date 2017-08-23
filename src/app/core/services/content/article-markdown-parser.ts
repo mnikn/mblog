@@ -1,7 +1,7 @@
-import { MarkdownParser } from '../../base/interfaces/content/markdown-parser';
+import { IMarkdownParser } from '../../base/interfaces/content/markdown-parser';
 declare let electron: any;
 
-export class ArticleMarkdownParser implements MarkdownParser {
+export class ArticleMarkdownParser implements IMarkdownParser {
 
   private marked: any;
 

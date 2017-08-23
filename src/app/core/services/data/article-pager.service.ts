@@ -1,10 +1,10 @@
-import { DataPagerService } from '../../base/interfaces/data-pager-service';
+import { IDataPager } from '../../base/interfaces/data/data-pager';
 import { Article } from '../../models/article';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
 @Injectable()
-export class ArticlePagerService implements DataPagerService<Article> {
+export class ArticlePagerService implements IDataPager<Article> {
   public currentPage: number = 1;
   private pageSize: number = 10;
   private lastPage: number;

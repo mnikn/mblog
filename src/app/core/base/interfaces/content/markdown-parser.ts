@@ -1,3 +1,3 @@
-export interface MarkdownParser {
+export interface IMarkdownParser {
   parseMarkdown(mdText: string): string;
 }

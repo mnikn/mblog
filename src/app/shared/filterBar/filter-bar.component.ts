@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { DataService } from '../../core/base/interfaces/data-service';
+import { IDataService } from '../../core/base/interfaces/data/data-service';
 import { Article } from '../../core/models/article';
 import { ArticleFilter } from '../../core/models/article-filter';
 
@@ -10,7 +10,7 @@ import { ArticleFilter } from '../../core/models/article-filter';
 
 export class FilterBarComponent {
 
-  constructor(@Inject('DataService<Article>') public dataService: DataService<Article>) {
+  constructor(@Inject('IDataService<Article>') public dataService: IDataService<Article>) {
   }
 
   public onCancelClick() {

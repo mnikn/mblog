@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, forwardRef, Host, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { DataService } from '../../core/base/interfaces/data-service';
+import { IDataService } from '../../core/base/interfaces/data/data-service';
 import { Article } from '../../core/models/article';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 import { Tag } from '../../core/models/tag';
@@ -32,7 +32,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   private isSaved: boolean;
 
   constructor(public editService: EditService,
-              @Inject('DataService<Article>') private dataService: DataService<Article>,
+              @Inject('IDataService<Article>') private dataService: IDataService<Article>,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private modalService: SuiModalService,
               private router: Router) {

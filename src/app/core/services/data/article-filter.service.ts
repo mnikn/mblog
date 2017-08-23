@@ -3,11 +3,11 @@ import * as _ from 'lodash';
 import { Article } from '../../models/article';
 import { ArticleFilter } from '../../models/article-filter';
 import { Tag } from '../../models/tag';
-import { DataFilterService } from '../../base/interfaces/data-filter-service';
+import { IDataFilter } from '../../base/interfaces/data/data-filter';
 import { FILTER_METHOD } from '../../base/params/filter-method';
 
 @Injectable()
-export class ArticleFilterService implements DataFilterService<Article> {
+export class ArticleFilterService implements IDataFilter<Article> {
 
   private filter: ArticleFilter = new ArticleFilter();
 
