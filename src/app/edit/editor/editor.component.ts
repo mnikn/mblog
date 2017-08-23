@@ -2,10 +2,11 @@ import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, Renderer2, Vie
 import { IDataService } from '../../core/base/interfaces/data/data-service';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/window.service';
-import { ArticleContentProcessor } from '../../core/services/content/article-content-processor';
 import { EditorService } from './editor.service';
 import { IHotkeyService } from '../../core/base/interfaces/hotkey-service';
 import { EditService } from '../edit.service';
+import { IContentProcessor } from '../../core/base/interfaces/content/content-processor';
+import { MarkdownContentProcessor } from '../../core/services/content/markdown/markdown-content-processor';
 declare let electron: any;
 
 @Component({
@@ -16,12 +17,12 @@ declare let electron: any;
 export class EditorComponent implements AfterViewInit, OnDestroy {
 
   public service: EditorService;
+  private contentProcessor: IContentProcessor = new MarkdownContentProcessor();
   private useInputMethod: boolean = false;
   @ViewChild('editor') private editor: ElementRef;
 
   constructor(public windowService: WindowService,
               @Inject('IDataService<Article>') private dataService: IDataService<Article>,
-              @Inject('ArticleContentProcessor') private contentProcessor: ArticleContentProcessor,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private editService: EditService,
               private render: Renderer2) {

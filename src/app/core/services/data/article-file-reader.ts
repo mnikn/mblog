@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Tag } from '../../models/tag';
 import { Article } from '../../models/article';
-import { Content } from '../../models/content';
-import { ArticleContentProcessor } from '../content/article-content-processor';
+import { IMarkdownContentProcessor } from '../../base/interfaces/content/markdown/markdown-content-processor';
+import { MarkdownContentProcessor } from '../content/markdown/markdown-content-processor';
 declare let electron: any;
 
 @Injectable()
 export class ArticleFileReader {
-  private markdownProcessor: ArticleContentProcessor = new ArticleContentProcessor();
+  private markdownProcessor: IMarkdownContentProcessor = new MarkdownContentProcessor();
 
   public getArticleFromFile(file: string): Article {
     let fs = electron.remote.require('fs');

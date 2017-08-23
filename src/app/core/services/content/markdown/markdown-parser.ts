@@ -1,7 +1,9 @@
-import { IMarkdownParser } from '../../base/interfaces/content/markdown-parser';
+import { IMarkdownParser } from '../../../base/interfaces/content/markdown/markdown-parser';
+import { Injectable } from '@angular/core';
 declare let electron: any;
 
-export class ArticleMarkdownParser implements IMarkdownParser {
+@Injectable()
+export class MarkdownParser implements IMarkdownParser {
 
   private marked: any;
 

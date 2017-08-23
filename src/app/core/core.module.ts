@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ArticleDataService } from './services/data/article-data.service';
 import { WindowService } from './services/window.service';
-import { ArticleContentProcessor } from './services/content/article-content-processor';
 import { HotkeyModule } from 'angular2-hotkeys';
 
 @NgModule({
@@ -10,8 +9,7 @@ import { HotkeyModule } from 'angular2-hotkeys';
   ],
   providers: [
     WindowService,
-    {provide: 'IDataService<Article>', useClass: ArticleDataService},
-    {provide: 'ArticleContentProcessor', useClass: ArticleContentProcessor},
+    {provide: 'IDataService<Article>', useClass: ArticleDataService}
   ]
 })
 
