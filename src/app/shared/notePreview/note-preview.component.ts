@@ -13,7 +13,7 @@ export class NotePreviewComponent {
   @Input() public showInfo: boolean = true;
 
   constructor(public windowService: WindowService,
-              @Inject('IDataService<Article>') public dataService: IDataService<Article>) {
+              @Inject('DataService') public dataService: IDataService<Article>) {
   }
 
 }

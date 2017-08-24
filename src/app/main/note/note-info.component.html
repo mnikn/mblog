@@ -1,7 +1,7 @@
 <div style="margin-bottom: 1px">
   <toolbar></toolbar>
 </div>
-<filter-bar *ngIf="dataService.getFilterService().getFilter().searchValue !== '' "></filter-bar>
+<filter-bar *ngIf="dataService.getFilter().value !== '' "></filter-bar>
 <div class="ui internally celled equal width grid">
   <div class="row">
     <div class="column" style="padding: 0">

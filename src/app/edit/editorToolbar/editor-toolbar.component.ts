@@ -32,7 +32,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   private isSaved: boolean;
 
   constructor(public editService: EditService,
-              @Inject('IDataService<Article>') private dataService: IDataService<Article>,
+              @Inject('DataService') private dataService: IDataService<Article>,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private modalService: SuiModalService,
               private router: Router) {

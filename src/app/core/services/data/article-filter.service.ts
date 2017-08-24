@@ -1,46 +1,34 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Article } from '../../models/article';
-import { ArticleFilter } from '../../models/article-filter';
 import { Tag } from '../../models/tag';
-import { IDataFilter } from '../../base/interfaces/data/data-filter';
-import { FILTER_METHOD } from '../../base/params/filter-method';
+import { DataFilterService } from '../../base/services/data-filter.service';
 
 @Injectable()
-export class ArticleFilterService implements IDataFilter<Article> {
+export class ArticleFilterService extends DataFilterService<Article> {
 
-  private filter: ArticleFilter = new ArticleFilter();
-
-  public getFilter() {
-    return this.filter;
-  }
-
-  public setFilter(filter) {
-    this.filter = filter;
-  }
-
-  public getFilteredList(list: Article[]): Article[] {
-    if (!this.filter.searchValue || this.filter.searchValue.length === 0) {
+  public filterData(list: Article[]): Article[] {
+    if (!this.filter.value || this.filter.value.length === 0) {
       return list;
     }
     let articles = [];
     let judgeCondition;
-    switch (this.filter.filterMethod) {
-      case FILTER_METHOD.FILTER_TAG:
+    switch (this.filter.method) {
+      case 'tag':
         judgeCondition = (value: Article) => {
-          return _.filter(value.tags, (p: Tag) => p.name !== this.filter.searchValue);
+          return _.filter(value.tags, (p: Tag) => p.name !== this.filter.value);
         };
         break;
-      case FILTER_METHOD.FILTER_DATE:
+      case 'date':
         judgeCondition = (value: Article) => {
-          return value.insertDate === new Date(this.filter.searchValue);
+          return value.insertDate === new Date(this.filter.value);
         };
         break;
-      case FILTER_METHOD.FILTER_BLUR:
+      case 'blur':
       default:
         judgeCondition = (value: Article) => {
           let toSearch = value.title.toUpperCase();
-          let searchValue = this.filter.searchValue.toUpperCase();
+          let searchValue = this.filter.value.toUpperCase();
           return toSearch.indexOf(searchValue);
         };
         break;

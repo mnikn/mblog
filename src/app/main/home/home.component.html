@@ -1,5 +1,5 @@
 <div class="ui basic segment">
-  <span style="font-size: 1.2rem;font-weight: bolder">你已经写了 {{dataService.getOriginList().length}} 篇博客，继续加油！</span>
+  <span style="font-size: 1.2rem;font-weight: bolder">你已经写了 {{dataService.getUnProcessList().length}} 篇博客，继续加油！</span>
 
   <div class="ui large feed">
     <div class="event" *ngFor="let article of dataService.getPagerService().currentPageList()">
@@ -18,8 +18,8 @@
       </div>
     </div>
   </div>
-  <div *ngIf="dataService.getOriginList().length !== 0">
-    <sui-pagination [collectionSize]="dataService.getOriginList().length"
+  <div *ngIf="dataService.getUnProcessList().length !== 0">
+    <sui-pagination [collectionSize]="dataService.getUnProcessList().length"
                     [pageSize]="10"
                     [maxSize]="5"
                     [hasEllipses]="true"

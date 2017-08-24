@@ -22,7 +22,7 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
   @ViewChild('editor') private editor: ElementRef;
 
   constructor(public windowService: WindowService,
-              @Inject('IDataService<Article>') private dataService: IDataService<Article>,
+              @Inject('DataService') private dataService: IDataService<Article>,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private editService: EditService,
               private render: Renderer2) {

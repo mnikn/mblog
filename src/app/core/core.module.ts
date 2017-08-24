@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ArticleDataService } from './services/data/article-data.service';
 import { WindowService } from './services/window.service';
 import { HotkeyModule } from 'angular2-hotkeys';
 
@@ -8,8 +7,7 @@ import { HotkeyModule } from 'angular2-hotkeys';
     HotkeyModule
   ],
   providers: [
-    WindowService,
-    {provide: 'IDataService<Article>', useClass: ArticleDataService}
+    WindowService
   ]
 })
 

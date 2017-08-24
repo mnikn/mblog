@@ -1,13 +1,11 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { IDataService } from '../../core/base/interfaces/data/data-service';
-import { ArticleFilter } from 'app/core/models/article-filter';
-import { FILTER_METHOD } from '../../core/base/params/filter-method';
+import { Filter } from 'app/core/models/filter';
 import { Context } from '../../core/services/context';
-import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
-import { ConfirmModal } from "../confirmModal/cofirm-modal";
-import { until } from "selenium-webdriver";
-import { setTimeout } from "timers";
+import { IPopup, SuiModalService } from 'ng2-semantic-ui';
+import { ConfirmModal } from '../confirmModal/cofirm-modal';
+import { setTimeout } from 'timers';
 declare let electron: any;
 
 @Component({
@@ -19,7 +17,7 @@ export class ToolbarComponent {
 
   public isDeploying: boolean = false;
 
-  constructor(@Inject('IDataService<Article>') public dataService: IDataService<Article>,
+  constructor(@Inject('DataService') public dataService: IDataService<Article>,
               public modalService: SuiModalService) {
   }
 
@@ -66,8 +64,6 @@ export class ToolbarComponent {
   }
 
   public onSearchEnter(value) {
-    this.dataService
-      .getFilterService()
-      .setFilter(new ArticleFilter(FILTER_METHOD.FILTER_BLUR, value));
+    this.dataService.setFilter(new Filter('blur', value));
   }
 }

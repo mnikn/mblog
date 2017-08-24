@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Article } from '../../../core/models/article';
 import { IDataService } from '../../../core/base/interfaces/data/data-service';
-import { ArticleFilter } from 'app/core/models/article-filter';
-import { FILTER_METHOD } from '../../../core/base/params/filter-method';
+import { Filter } from 'app/core/models/filter';
 import { WindowService } from '../../../core/services/window.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { WindowService } from '../../../core/services/window.service';
 
 export class NoteListComponent {
 
-  constructor(@Inject('IDataService<Article>') public dataService: IDataService<Article>,
+  constructor(@Inject('DataService') public dataService: IDataService<Article>,
               public windowService: WindowService) {
   }
 
@@ -24,8 +23,6 @@ export class NoteListComponent {
   }
 
   public onTagClick(tag): void {
-    this.dataService
-      .getFilterService()
-      .setFilter(new ArticleFilter(FILTER_METHOD.FILTER_TAG, tag.name));
+    this.dataService.setFilter(new Filter('tag', tag.name));
   };
 }

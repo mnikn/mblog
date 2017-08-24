@@ -9,6 +9,6 @@ import { Article } from '../../core/models/article';
 
 export class NoteInfoComponent {
 
-  constructor(@Inject('IDataService<Article>') public dataService: IDataService<Article>) {
+  constructor(@Inject('DataService') public dataService: IDataService<Article>) {
   }
 }

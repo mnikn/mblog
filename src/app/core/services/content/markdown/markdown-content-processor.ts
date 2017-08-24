@@ -23,14 +23,6 @@ export class MarkdownContentProcessor implements IMarkdownContentProcessor {
     this.cssProcessor = cssProcessor;
   }
 
-  public unRegisterMarkdownParser() {
-    this.markdownParser = null;
-  }
-
-  public unRegisterCssProcessor() {
-    this.cssProcessor = null;
-  }
-
   public doProcess(text: string): string {
     let htmlText = '';
 

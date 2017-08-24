@@ -5,6 +5,4 @@ import { ICssProcessor } from './css-processor';
 export interface IMarkdownContentProcessor extends IContentProcessor {
   registerMarkdownParser(markdownParser: IMarkdownParser);
   registerCssProcessor(cssProcessor: ICssProcessor);
-  unRegisterMarkdownParser();
-  unRegisterCssProcessor();
 }

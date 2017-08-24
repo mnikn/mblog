@@ -1,5 +1,7 @@
+import { Filter } from '../../../models/filter';
+
 export interface IDataFilter<T> {
-  getFilter(): any;
-  setFilter(filter);
-  getFilteredList(list: T[]): T[];
+  getFilter(): Filter;
+  setFilter(filter: Filter): void;
+  filterData(list: T[]): T[];
 }
