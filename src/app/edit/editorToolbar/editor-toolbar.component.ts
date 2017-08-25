@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { EditComponent } from '../edit.component';
 import { IHotkeyService } from 'app/core/base/interfaces/hotkey-service';
 import { EditService } from '../edit.service';
+import { DataService } from "../../core/base/services/data-service";
 
 export interface IContext {
   title: string;
@@ -26,19 +27,11 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   @ViewChild('popup')
   public popup: SuiPopup;
 
-  private originMdContent: string;
-  private originTitle: string;
-  private originTags: Tag[];
-  private isSaved: boolean;
-
   constructor(public editService: EditService,
-              @Inject('DataService') private dataService: IDataService<Article>,
+              @Inject('DataService') private dataService: DataService<Article>,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private modalService: SuiModalService,
               private router: Router) {
-    this.originMdContent = this.dataService.getSelected().content.mdContent;
-    this.originTitle = this.dataService.getSelected().title;
-    this.originTags = this.dataService.getSelected().tags;
   }
 
   public ngAfterViewInit(): void {
@@ -50,17 +43,13 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onBack() {
-    if (!this.isSaved) {
-      this.dataService.getSelected().content.mdContent = this.originMdContent;
-      this.dataService.getSelected().title = this.originTitle;
-      this.dataService.getSelected().tags = this.originTags;
-    }
     this.router.navigate(['/main-page/note-info']);
   }
 
   public onSave(popup: IPopup) {
-    this.dataService.update(this.dataService.getSelected());
-    this.isSaved = true;
+    this.dataService.update(this.editService.article);
+    this.dataService.refresh();
+    this.dataService.setSelected(this.editService.article);
     popup.open();
     setTimeout(() => {
       popup.close();
@@ -72,15 +61,15 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
 
     config.closeResult = 'closed!';
     config.context = {
-      title: this.dataService.getSelected().title,
-      tags: this.dataService.getSelected().tagsToString()
+      title: this.editService.article.title,
+      tags: this.editService.article.tagsToString()
     };
 
     this.modalService
       .open(config)
       .onApprove(() => {
-        this.dataService.getSelected().title = config.context.title;
-        this.dataService.getSelected().setStringTags(config.context.tags);
+        this.editService.article.title = config.context.title;
+        this.editService.article.setStringTags(config.context.tags);
       });
   }
 

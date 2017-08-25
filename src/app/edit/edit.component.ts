@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EditService } from './edit.service';
 
 @Component({
   selector: 'edit',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class EditComponent {
+
+  constructor(public service: EditService) {
+  }
 }

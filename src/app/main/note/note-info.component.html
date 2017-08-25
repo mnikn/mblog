@@ -8,7 +8,7 @@
       <note-list></note-list>
     </div>
     <div class="twelve wide column" *ngIf="dataService.getSelected()" style="padding: 0">
-      <note-preview></note-preview>
+      <note-preview [article]="dataService.getSelected()"></note-preview>
     </div>
   </div>
 </div>

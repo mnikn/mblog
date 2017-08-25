@@ -8,6 +8,8 @@ import { EditService } from '../edit.service';
 import { IContentProcessor } from '../../core/base/interfaces/content/content-processor';
 import { MarkdownContentProcessor } from '../../core/services/content/markdown/markdown-content-processor';
 declare let electron: any;
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'editor',
@@ -19,6 +21,7 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
   public service: EditorService;
   private contentProcessor: IContentProcessor = new MarkdownContentProcessor();
   private useInputMethod: boolean = false;
+  private article: Article;
   @ViewChild('editor') private editor: ElementRef;
 
   constructor(public windowService: WindowService,
@@ -26,6 +29,7 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private editService: EditService,
               private render: Renderer2) {
+    this.article = _.cloneDeep(dataService.getSelected());
   }
 
   public ngAfterViewInit() {
@@ -40,7 +44,8 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
 
   private initService(): void {
     this.service = new EditorService(this.editor);
-    this.editService.editorService = this.service;
+    this.editService.registerEditorService(this.service);
+    this.editService.article = this.article;
   }
 
   private setInputListener(): void {
@@ -61,9 +66,9 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
 
   private processMarkdown(): void {
     let value = this.editor.nativeElement.value;
-    this.dataService.getSelected().content.mdContent = value;
-    this.dataService.getSelected().content.htmlContent = this.contentProcessor
-      .doProcess(value);
+    this.article.content.mdContent = value;
+    this.article.content.htmlContent = this.contentProcessor.doProcess(value);
+    this.editService.article.content = this.article.content;
   }
 
   private setHotKeys(): void {

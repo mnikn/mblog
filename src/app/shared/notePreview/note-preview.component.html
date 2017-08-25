@@ -5,13 +5,13 @@
     <div class="ui equal width grid">
       <div class="column">
         <div class="content">
-          <div class="text">创建日期：{{dataService.getSelected().insertDate | date: 'yyyy/MM/dd'}}</div>
+          <div class="text">创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</div>
           <br>
-          <div class="header">标题：{{dataService.getSelected().title}}</div>
+          <div class="header">标题：{{article.title}}</div>
           <br>
           <div class="text">
             <span class="ui inverted">标签：</span>
-            <div class="ui inverted basic button" *ngFor="let tag of dataService.getSelected().tags">
+            <div class="ui inverted basic button" *ngFor="let tag of article.tags">
               {{tag.name}}
             </div>
           </div>
@@ -22,7 +22,7 @@
   </div>
   <article class="content"
            style="font-size: 1.2em"
-           [innerHTML]="dataService.getSelected().content.htmlContent">
+           [innerHTML]="article.content.htmlContent">
   </article>
 </div>
 

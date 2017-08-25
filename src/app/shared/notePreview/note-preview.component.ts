@@ -11,9 +11,9 @@ import { WindowService } from '../../core/services/window.service';
 export class NotePreviewComponent {
 
   @Input() public showInfo: boolean = true;
+  @Input() public article: Article = new Article();
 
-  constructor(public windowService: WindowService,
-              @Inject('DataService') public dataService: IDataService<Article>) {
+  constructor(public windowService: WindowService) {
   }
 
 }
