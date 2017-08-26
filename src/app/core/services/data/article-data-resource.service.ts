@@ -2,19 +2,12 @@ import { Injectable } from '@angular/core';
 import { DataResourceService } from '../../base/services/data-resource.service';
 import { Article } from '../../models/article';
 import { ArticleFileService } from './article-file.service';
-import { DataPagerService } from '../../base/services/data-pager.service';
-import { ArticleFilterService } from 'app/core/services/data/article-filter.service';
 import * as _ from 'lodash';
 
 @Injectable()
 export class ArticleDataResourceService extends DataResourceService<Article> {
   private fileService;
 
-  constructor() {
-    super();
-    this.registerPagerService(new DataPagerService<Article>());
-    this.registerFilterService(new ArticleFilterService());
-  }
 
   public refresh(): void {
     this.list = this.processResource();

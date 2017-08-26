@@ -4,6 +4,8 @@ import { IDataPager } from '../interfaces/data/data-pager';
 import { IDataFilter } from '../interfaces/data/data-filter';
 import { Injectable } from '@angular/core';
 import { Filter } from '../../models/filter';
+import { DataPagerService } from "./data-pager.service";
+import { DataFilterService } from "./data-filter.service";
 
 @Injectable()
 export abstract class DataResourceService<T> implements IDataResource<T> {
@@ -13,8 +15,10 @@ export abstract class DataResourceService<T> implements IDataResource<T> {
   protected pagerService: IDataPager<T>;
   protected filterService: IDataFilter<T>;
 
-  constructor() {
+  constructor(pagerService: DataPagerService<T>, filterService: DataFilterService<T>) {
     this.list = this.processResource();
+    this.pagerService = pagerService;
+    this.filterService = filterService;
   }
 
   public setDataOption(option: DataOption): void {
@@ -47,15 +51,6 @@ export abstract class DataResourceService<T> implements IDataResource<T> {
 
   public setFilter(filter: Filter): void {
     this.filterService.setFilter(filter);
-  }
-
-  public registerFilterService(service: IDataFilter<T>): void {
-    this.filterService = service;
-  }
-
-  public registerPagerService(service: IDataPager<T>): void {
-    this.pagerService = service;
-    this.pagerService.setList(this.list);
   }
 
   public getPagerService(): IDataPager<T> {

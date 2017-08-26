@@ -16,6 +16,4 @@ export interface IDataResource<T> {
   update(item: T): boolean;
   remove(item: T): boolean;
   getPagerService(): IDataPager<T>;
-  registerFilterService(service: IDataFilter<T>): void;
-  registerPagerService(service: IDataPager<T>): void;
 }
