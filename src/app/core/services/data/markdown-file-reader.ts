@@ -6,7 +6,7 @@ import { MarkdownContentProcessor } from '../content/markdown/markdown-content-p
 declare let electron: any;
 
 @Injectable()
-export class ArticleFileReader {
+export class MarkdownFileReader {
   private markdownProcessor: IMarkdownContentProcessor = new MarkdownContentProcessor();
 
   public getArticleFromFile(file: string): Article {

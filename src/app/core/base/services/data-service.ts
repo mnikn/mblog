@@ -4,6 +4,7 @@ import { Filter } from '../../models/filter';
 import { DataOption } from '../params/data-option';
 import { IDataPager } from '../interfaces/data/data-pager';
 import { IDataResource } from '../interfaces/data/data-resource';
+import { IResourceProcessor } from '../interfaces/data/resource-processor';
 
 @Injectable()
 export class DataService<T> implements IDataService<T> {
@@ -63,6 +64,10 @@ export class DataService<T> implements IDataService<T> {
 
   public setSelected(data: T) {
     this.selectedItem = data;
+  }
+
+  public registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void {
+    this.dataResourceService.registerResourceProcessor(resourceProcessor);
   }
 
 }

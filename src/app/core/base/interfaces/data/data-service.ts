@@ -1,6 +1,7 @@
 import { IDataPager } from './data-pager';
 import { DataOption } from '../../params/data-option';
 import { Filter } from '../../../models/filter';
+import { IResourceProcessor } from './resource-processor';
 
 export interface IDataService<T> {
   refresh(): void;
@@ -14,6 +15,7 @@ export interface IDataService<T> {
   updateItem(item: T): boolean;
   deleteItem(item: T): boolean;
   getPagerService(): IDataPager<T>;
+  registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void;
   getSelected(): T;
   setSelected(data: T);
 }

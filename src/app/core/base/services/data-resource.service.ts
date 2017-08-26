@@ -4,19 +4,28 @@ import { IDataPager } from '../interfaces/data/data-pager';
 import { IDataFilter } from '../interfaces/data/data-filter';
 import { Injectable } from '@angular/core';
 import { Filter } from '../../models/filter';
-import { DataPagerService } from "./data-pager.service";
-import { DataFilterService } from "./data-filter.service";
+import { DataPagerService } from './data-pager.service';
+import { DataFilterService } from './data-filter.service';
+import { IResourceProcessor } from '../interfaces/data/resource-processor';
+import { IDataSort } from '../interfaces/data/data-sort';
 
 @Injectable()
-export abstract class DataResourceService<T> implements IDataResource<T> {
+export class DataResourceService<T> implements IDataResource<T> {
 
   protected list: T[];
   protected option: DataOption = new DataOption();
   protected pagerService: IDataPager<T>;
   protected filterService: IDataFilter<T>;
+  protected resourceProcessor: IResourceProcessor<T>;
+  protected dataSortService: IDataSort<T>;
 
-  constructor(pagerService: DataPagerService<T>, filterService: DataFilterService<T>) {
-    this.list = this.processResource();
+  constructor(resourceProcessor: IResourceProcessor<T>,
+              dataSortService?: IDataSort<T>,
+              pagerService?: DataPagerService<T>,
+              filterService?: DataFilterService<T>) {
+    this.dataSortService = dataSortService;
+    this.resourceProcessor = resourceProcessor;
+    this.list = resourceProcessor.processResource();
     this.pagerService = pagerService;
     this.filterService = filterService;
   }
@@ -38,6 +47,7 @@ export abstract class DataResourceService<T> implements IDataResource<T> {
       this.pagerService.setList(processList);
       processList = this.pagerService.currentPageList();
     }
+    processList = this.dataSortService.sortData(processList);
     return processList;
   }
 
@@ -57,14 +67,36 @@ export abstract class DataResourceService<T> implements IDataResource<T> {
     return this.pagerService;
   }
 
-  public abstract refresh(): void;
+  public refresh(): void {
+    this.list = this.resourceProcessor.processResource();
+    this.pagerService.setList(this.list);
+    console.log(this.list);
+  }
 
-  public abstract processResource(): T[];
+  public add(item: T): number {
+    let successful = this.resourceProcessor.createResource(item);
+    if (successful) {
+      this.refresh();
+      return this.list.length - 1;
+    }
+    return -1;
+  }
 
-  public abstract add(item: T): number;
+  public update(item: T): boolean {
+    return this.resourceProcessor.updateResource(item);
+  }
 
-  public abstract update(item: T): boolean;
+  public remove(item: T): boolean {
+    let successful = this.resourceProcessor.deleteResource(item);
+    if (successful) {
+      this.refresh();
+    }
+    return successful;
+  }
 
-  public abstract remove(item: T): boolean;
+  public registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void {
+    this.resourceProcessor = resourceProcessor;
+    this.refresh();
+  }
 
 }

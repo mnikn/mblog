@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../../models/article';
-import { ArticleFileReader } from './article-file-reader';
+import { MarkdownFileReader } from './markdown-file-reader';
 import { isUndefined } from 'util';
 import { Context } from '../context';
+import { IResourceProcessor } from '../../base/interfaces/data/resource-processor';
 declare let electron: any;
 
 @Injectable()
-export class ArticleFileService {
-  private fileReader = new ArticleFileReader();
+export class MarkdownFileProcessor implements IResourceProcessor<Article> {
+  private fileReader = new MarkdownFileReader();
   private fs = electron.remote.require('fs');
   private config: any;
 
-  public getArticles(): Article[] {
+  public processResource(): Article[] {
     this.readConfig();
     if (!isUndefined(this.config)) {
       return this.getArticlesFromDir(this.config.postArticleDir);
@@ -19,7 +20,27 @@ export class ArticleFileService {
     return [];
   }
 
-  public getArticlesFromDir(dir: string): Article[] {
+  public createResource(item: Article): boolean {
+    let fileName = this.config.postArticleDir + item.title + '.md';
+    item.fileName = fileName;
+    this.fs.writeFileSync(fileName, item.toString(), 'utf8');
+    return true;
+  }
+
+  public deleteResource(item: Article): boolean {
+    if (item.fileName) {
+      this.fs.unlinkSync(item.fileName);
+    }
+    return true;
+  }
+
+  public updateResource(item: Article): boolean {
+    this.deleteResource(item);
+    this.createResource(item);
+    return true;
+  }
+
+  private getArticlesFromDir(dir: string): Article[] {
     let articles: Article[] = [];
     let self = this;
     let files = this.fs.readdirSync(dir);
@@ -31,23 +52,6 @@ export class ArticleFileService {
       }
     }
     return articles;
-  }
-
-  public createArticle(article: Article): void {
-    let fileName = this.config.postArticleDir + article.title + '.md';
-    article.fileName = fileName;
-    this.fs.writeFileSync(fileName, article.toString(), 'utf8');
-  }
-
-  public saveArticle(article: Article): void {
-    this.removeArticle(article);
-    this.createArticle(article);
-  }
-
-  public removeArticle(article: Article): void {
-    if (article.fileName) {
-      this.fs.unlinkSync(article.fileName);
-    }
   }
 
   private readConfig(): void {
