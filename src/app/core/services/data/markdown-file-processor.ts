@@ -48,6 +48,7 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
       if (file.substr(file.lastIndexOf('.')) === '.md') {
         let article = self.fileReader.getArticleFromFile(this.config.postArticleDir + file);
         article.id = articles.length;
+        article.status = 1;
         articles.push(article);
       }
     }

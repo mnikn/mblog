@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { IDataService } from '../../core/base/interfaces/data/data-service';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/window.service';
 import { EditorService } from './editor.service';
@@ -9,6 +8,7 @@ import { IContentProcessor } from '../../core/base/interfaces/content/content-pr
 import { MarkdownContentProcessor } from '../../core/services/content/markdown/markdown-content-processor';
 declare let electron: any;
 import * as _ from 'lodash';
+import { ArticleDataService } from '../../article-data.service';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
   @ViewChild('editor') private editor: ElementRef;
 
   constructor(public windowService: WindowService,
-              @Inject('DataService') private dataService: IDataService<Article>,
+              private dataService: ArticleDataService,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private editService: EditService,
               private render: Renderer2) {

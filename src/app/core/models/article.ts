@@ -1,7 +1,7 @@
 import { Content } from './content';
 import { Tag } from './tag';
 import { DatePipe } from '@angular/common';
-import { IIdentifiable } from "../base/interfaces/models/identifiable";
+import { IIdentifiable } from '../base/interfaces/models/identifiable';
 
 export class Article implements IIdentifiable {
   private _id: number;

@@ -1,7 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { IDataService } from '../../../core/base/interfaces/data/data-service';
-import { Article } from '../../../core/models/article';
+import { Component } from '@angular/core';
 import { Filter } from '../../../core/models/filter';
+import { ArticleDataService } from '../../../article-data.service';
 
 @Component({
   selector: 'filter-bar',
@@ -10,7 +9,7 @@ import { Filter } from '../../../core/models/filter';
 
 export class FilterBarComponent {
 
-  constructor(@Inject('DataService') public dataService: IDataService<Article>) {
+  constructor(public dataService: ArticleDataService) {
   }
 
   public onCancelClick() {

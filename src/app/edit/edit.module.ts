@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
 import { HotkeyService } from '../core/services/hotkey.service';
 import { EditService } from './edit.service';
-import { EditorService } from "./editor/editor.service";
 
 @NgModule({
   declarations: [

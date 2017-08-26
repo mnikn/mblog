@@ -1,8 +1,8 @@
-import { Component, ElementRef, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Article } from '../../../core/models/article';
-import { IDataService } from '../../../core/base/interfaces/data/data-service';
 import { Filter } from 'app/core/models/filter';
 import { WindowService } from '../../../core/services/window.service';
+import { ArticleDataService } from '../../../article-data.service';
 
 @Component({
   selector: 'note-list',
@@ -11,7 +11,7 @@ import { WindowService } from '../../../core/services/window.service';
 
 export class NoteListComponent {
 
-  constructor(@Inject('DataService') public dataService: IDataService<Article>,
+  constructor(public dataService: ArticleDataService,
               public windowService: WindowService) {
   }
 

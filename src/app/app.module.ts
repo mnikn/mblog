@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.moudle';
 import { EditModule } from './edit/edit.module';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { articleDataServiceFactory } from './article-data-service-factory';
+import { ArticleDataService } from './article-data.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { articleDataServiceFactory } from './article-data-service-factory';
     HotkeyModule.forRoot()
   ],
   providers: [
-    {provide: 'DataService', useFactory: articleDataServiceFactory}
+    {provide: ArticleDataService, useFactory: articleDataServiceFactory}
   ],
   bootstrap: [AppComponent]
 })

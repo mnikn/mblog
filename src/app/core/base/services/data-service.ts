@@ -10,13 +10,19 @@ import { IIdentifiable } from '../interfaces/models/identifiable';
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
   protected selectedItem: T;
+  private dataModifyCallback: () => any;
+  private processMethodChangeCallback: () => any;
 
   constructor(@Inject('IDataResource<T>')
               protected dataResourceService: IDataResource<T>) {
   }
 
-  public refresh(): void {
+  public refresh(afterCallback?: () => any): void {
     this.dataResourceService.refresh();
+    if (afterCallback) {
+      afterCallback();
+    }
+    this.dataModifyCallback();
   }
 
   public getFilter(): Filter {
@@ -25,10 +31,12 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
 
   public setFilter(filter: Filter): void {
     this.dataResourceService.setFilter(filter);
+    this.processMethodChangeCallback();
   }
 
   public setDataOption(option: DataOption): void {
     this.dataResourceService.setDataOption(option);
+    this.processMethodChangeCallback();
   }
 
   public getDataOption(): DataOption {
@@ -47,20 +55,40 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return this.dataResourceService.getUnProcessList();
   }
 
-  public createItem(item: T): number {
-    return this.dataResourceService.add(item);
-  }
-
-  public updateItem(item: T): boolean {
-    let result = this.dataResourceService.update(item);
-    if (this.selectedItem.id === item.id) {
-      this.selectedItem = item;
+  public createItem(item: T, successCallback?: () => any): number {
+    let successful = this.dataResourceService.add(item);
+    if (successful) {
+      if (successCallback) {
+        successCallback();
+      }
+      this.dataModifyCallback();
     }
-    return result;
+    return successful;
   }
 
-  public deleteItem(item: T): boolean {
-    return this.dataResourceService.remove(item);
+  public updateItem(item: T, successCallback?: () => any): boolean {
+    let successful = this.dataResourceService.update(item);
+    if (successful) {
+      if (this.selectedItem.id === item.id) {
+        this.selectedItem = item;
+      }
+      if (successCallback) {
+        successCallback();
+      }
+      this.dataModifyCallback();
+    }
+    return successful;
+  }
+
+  public deleteItem(item: T, successCallback?: () => any): boolean {
+    let successful = this.dataResourceService.remove(item);
+    if (successful) {
+      if (successCallback) {
+        successCallback();
+      }
+      this.dataModifyCallback();
+    }
+    return successful;
   }
 
   public getPagerService(): IDataPager<T> {
@@ -77,6 +105,14 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
 
   public registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void {
     this.dataResourceService.registerResourceProcessor(resourceProcessor);
+  }
+
+  public onDataModify(callback: () => any): void {
+    this.dataModifyCallback = callback;
+  }
+
+  public onProcessMethodChange(callback: () => any): void {
+    this.processMethodChangeCallback = callback;
   }
 
 }

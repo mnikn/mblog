@@ -2,7 +2,7 @@
      [style.height]="windowService.getScreenHeight() + 'px'"
      [style.overflow]="'scroll'">
   <div class="ui inverted relaxed divided selection list">
-    <div class="item" #item *ngFor="let article of dataService.getList()" style="cursor: pointer"
+    <div class="item" #item *ngFor="let article of dataService.getPostArticles()" style="cursor: pointer"
          [style.padding-left]="dataService.getSelected() && dataService.getSelected().id === article.id ?
          '32px' :
          '0px'"

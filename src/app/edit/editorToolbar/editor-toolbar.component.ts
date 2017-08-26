@@ -1,14 +1,10 @@
-import { AfterViewInit, Component, forwardRef, Host, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { IDataService } from '../../core/base/interfaces/data/data-service';
-import { Article } from '../../core/models/article';
+import { AfterViewInit, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
-import { Tag } from '../../core/models/tag';
 import { SuiPopup } from 'ng2-semantic-ui/dist';
 import { Router } from '@angular/router';
-import { EditComponent } from '../edit.component';
 import { IHotkeyService } from 'app/core/base/interfaces/hotkey-service';
 import { EditService } from '../edit.service';
-import { DataService } from "../../core/base/services/data-service";
+import { ArticleDataService } from '../../article-data.service';
 
 export interface IContext {
   title: string;
@@ -28,7 +24,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   public popup: SuiPopup;
 
   constructor(public editService: EditService,
-              @Inject('DataService') private dataService: DataService<Article>,
+              private dataService: ArticleDataService,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private modalService: SuiModalService,
               private router: Router) {

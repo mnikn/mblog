@@ -1,11 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Article } from '../../../core/models/article';
-import { IDataService } from '../../../core/base/interfaces/data/data-service';
 import { Filter } from 'app/core/models/filter';
 import { Context } from '../../../core/services/context';
 import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { ConfirmModal } from '../../../shared/confirmModal/cofirm-modal';
 import { setTimeout } from 'timers';
+import { ArticleDataService } from '../../../article-data.service';
 declare let electron: any;
 
 @Component({
@@ -17,7 +17,7 @@ export class ToolbarComponent {
 
   public isDeploying: boolean = false;
 
-  constructor(@Inject('DataService') public dataService: IDataService<Article>,
+  constructor(public dataService: ArticleDataService,
               public modalService: SuiModalService) {
   }
 
