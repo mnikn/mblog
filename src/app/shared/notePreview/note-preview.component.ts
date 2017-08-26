@@ -1,5 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
-import { IDataService } from '../../core/base/interfaces/data/data-service';
+import { Component, Input } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/window.service';
 

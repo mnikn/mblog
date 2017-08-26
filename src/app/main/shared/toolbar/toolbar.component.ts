@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { Article } from '../../core/models/article';
-import { IDataService } from '../../core/base/interfaces/data/data-service';
+import { Article } from '../../../core/models/article';
+import { IDataService } from '../../../core/base/interfaces/data/data-service';
 import { Filter } from 'app/core/models/filter';
-import { Context } from '../../core/services/context';
+import { Context } from '../../../core/services/context';
 import { IPopup, SuiModalService } from 'ng2-semantic-ui';
-import { ConfirmModal } from '../confirmModal/cofirm-modal';
+import { ConfirmModal } from '../../../shared/confirmModal/cofirm-modal';
 import { setTimeout } from 'timers';
 declare let electron: any;
 

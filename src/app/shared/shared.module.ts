@@ -1,7 +1,4 @@
 import { NgModule } from '@angular/core';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FilterBarComponent } from 'app/shared/filterBar/filter-bar.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SuiModalModule, SuiPopupModule, SuiSidebarModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.moudle';
@@ -10,9 +7,6 @@ import { ConfirmModalComponent } from './confirmModal/cofirm-modal';
 
 @NgModule({
   declarations: [
-    SidebarComponent,
-    ToolbarComponent,
-    FilterBarComponent,
     NotePreviewComponent,
     ConfirmModalComponent
   ],
@@ -24,9 +18,6 @@ import { ConfirmModalComponent } from './confirmModal/cofirm-modal';
     AppRoutingModule
   ],
   exports: [
-    SidebarComponent,
-    ToolbarComponent,
-    FilterBarComponent,
     NotePreviewComponent,
     ConfirmModalComponent
   ],

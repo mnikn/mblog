@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { IDataService } from '../../core/base/interfaces/data/data-service';
-import { Article } from '../../core/models/article';
-import { Filter } from '../../core/models/filter';
+import { IDataService } from '../../../core/base/interfaces/data/data-service';
+import { Article } from '../../../core/models/article';
+import { Filter } from '../../../core/models/filter';
 
 @Component({
   selector: 'filter-bar',

@@ -1,5 +1,6 @@
 import { TrashComponent } from './trash.component';
 import { NgModule } from '@angular/core';
+import { MainSharedModule } from '../shared/shared.module';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
@@ -7,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
     TrashComponent
   ],
   imports: [
+    MainSharedModule,
     SharedModule
   ],
   exports: [
