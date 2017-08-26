@@ -3,7 +3,9 @@
      [style.overflow]="'scroll'">
   <div class="ui inverted relaxed divided selection list">
     <div class="item" #item *ngFor="let article of dataService.getList()" style="cursor: pointer"
-         [style.padding-left]="dataService.getSelected() === article ? '32px' :'0px'"
+         [style.padding-left]="dataService.getSelected() && dataService.getSelected().id === article.id ?
+         '32px' :
+         '0px'"
          (click)="onSelect(article,item)">
       <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
       <p></p>

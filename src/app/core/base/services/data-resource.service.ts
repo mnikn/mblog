@@ -22,6 +22,7 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
 
   // use to connect item with id
   private itemFinder: Map<number, T> = new Map();
+  private processListCache: T[];
 
   constructor(resourceProcessor: IResourceProcessor<T>,
               dataSortService?: IDataSort<T>,
@@ -49,16 +50,10 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
   }
 
   public getList(): T[] {
-    let processList = this.list;
-    if (this.option.useFilter && this.filterService) {
-      processList = this.filterService.filterData(processList);
+    if (!this.processListCache) {
+      this.processListCache = this.processList();
     }
-    if (this.option.usePager && this.pagerService) {
-      this.pagerService.setList(processList);
-      processList = this.pagerService.currentPageList();
-    }
-    processList = this.dataSortService.sortData(processList);
-    return processList;
+    return this.processListCache;
   }
 
   public getUnProcessList(): T[] {
@@ -71,6 +66,7 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
 
   public setFilter(filter: Filter): void {
     this.filterService.setFilter(filter);
+    this.processListCache = this.processList();
   }
 
   public getPagerService(): IDataPager<T> {
@@ -81,7 +77,7 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     this.list = this.resourceProcessor.processResource();
     this.updateItemFinder();
     this.pagerService.setList(this.list);
-    console.log(this.list);
+    this.processListCache = null;
   }
 
   public add(item: T): number {
@@ -96,10 +92,7 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
   public update(item: T): boolean {
     let successful = this.resourceProcessor.updateResource(item);
     if (successful) {
-      let index = this.list.findIndex((value) => {
-        return value.id === item.id;
-      });
-      this.list[index] = item;
+      this.refresh();
     }
     return successful;
   }
@@ -122,6 +115,19 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     this.list.forEach((value) => {
       this.itemFinder.set(value.id, value);
     });
+  }
+
+  private processList(): T[] {
+    let processList = this.list;
+    if (this.option.useFilter && this.filterService) {
+      processList = this.filterService.filterData(processList);
+    }
+    if (this.option.usePager && this.pagerService) {
+      this.pagerService.setList(processList);
+      processList = this.pagerService.currentPageList();
+    }
+    processList = this.dataSortService.sortData(processList);
+    return processList;
   }
 
 }
