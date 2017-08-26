@@ -24,7 +24,6 @@ export class DataPagerService<T> implements IDataPager<T> {
   }
 
   public currentPageList(): T[] {
-    console.log(this.currentPage);
     if (this.currentPage <= 1) {
       return _.take(this.list, this.pageSize);
     }

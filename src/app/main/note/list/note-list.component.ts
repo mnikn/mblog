@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject } from '@angular/core';
 import { Article } from '../../../core/models/article';
 import { IDataService } from '../../../core/base/interfaces/data/data-service';
 import { Filter } from 'app/core/models/filter';
