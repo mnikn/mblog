@@ -1,8 +1,9 @@
 import { Content } from './content';
 import { Tag } from './tag';
 import { DatePipe } from '@angular/common';
+import { IIdentifiable } from "../base/interfaces/models/identifiable";
 
-export class Article {
+export class Article implements IIdentifiable {
   private _id: number;
   private _title: string = '标题';
   // -1: trash
@@ -53,6 +54,7 @@ export class Article {
   set fileName(value: string) {
     this._fileName = value;
   }
+
   get insertDate(): Date {
     return this._insertDate;
   }
@@ -60,6 +62,7 @@ export class Article {
   set insertDate(value: Date) {
     this._insertDate = value;
   }
+
   get tags(): Tag[] {
     return this._tags;
   }
@@ -67,6 +70,7 @@ export class Article {
   set tags(value: Tag[]) {
     this._tags = value;
   }
+
   get content(): Content {
     return this._content;
   }
@@ -74,6 +78,7 @@ export class Article {
   set content(value: Content) {
     this._content = value;
   }
+
   get status(): number {
     return this._status;
   }
@@ -81,6 +86,7 @@ export class Article {
   set status(value: number) {
     this._status = value;
   }
+
   get title(): string {
     return this._title;
   }
@@ -88,6 +94,7 @@ export class Article {
   set title(value: string) {
     this._title = value;
   }
+
   get id(): number {
     return this._id;
   }

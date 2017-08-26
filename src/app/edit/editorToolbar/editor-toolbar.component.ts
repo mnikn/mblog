@@ -48,8 +48,6 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
 
   public onSave(popup: IPopup) {
     this.dataService.updateItem(this.editService.article);
-    this.dataService.refresh();
-    this.dataService.setSelected(this.editService.article);
     popup.open();
     setTimeout(() => {
       popup.close();

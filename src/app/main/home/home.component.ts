@@ -16,7 +16,7 @@ export class HomeComponent {
   }
 
   public gotoNoteInfo(article: Article): void {
-    this.dataService.setSelected(article);
+    this.dataService.setSelected(article.id);
     this.dataService.setFilter(new Filter());
     this.router.navigate(['/main-page/note-info']);
   }

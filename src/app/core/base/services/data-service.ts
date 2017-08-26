@@ -5,9 +5,10 @@ import { DataOption } from '../params/data-option';
 import { IDataPager } from '../interfaces/data/data-pager';
 import { IDataResource } from '../interfaces/data/data-resource';
 import { IResourceProcessor } from '../interfaces/data/resource-processor';
+import { IIdentifiable } from '../interfaces/models/identifiable';
 
 @Injectable()
-export class DataService<T> implements IDataService<T> {
+export class DataService<T extends IIdentifiable> implements IDataService<T> {
   protected selectedItem: T;
 
   constructor(@Inject('IDataResource<T>')
@@ -34,6 +35,10 @@ export class DataService<T> implements IDataService<T> {
     return this.dataResourceService.getDataOption();
   }
 
+  public getItem(id: number): T {
+    return this.dataResourceService.getItem(id);
+  }
+
   public getList(): T[] {
     return this.dataResourceService.getList();
   }
@@ -47,7 +52,11 @@ export class DataService<T> implements IDataService<T> {
   }
 
   public updateItem(item: T): boolean {
-    return this.dataResourceService.update(item);
+    let result = this.dataResourceService.update(item);
+    if (this.selectedItem.id === item.id) {
+      this.selectedItem = item;
+    }
+    return result;
   }
 
   public deleteItem(item: T): boolean {
@@ -62,8 +71,8 @@ export class DataService<T> implements IDataService<T> {
     return this.selectedItem;
   }
 
-  public setSelected(data: T) {
-    this.selectedItem = data;
+  public setSelected(id: number) {
+    this.selectedItem = this.dataResourceService.getItem(id);
   }
 
   public registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void {

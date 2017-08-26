@@ -8,9 +8,10 @@ import { DataPagerService } from './data-pager.service';
 import { DataFilterService } from './data-filter.service';
 import { IResourceProcessor } from '../interfaces/data/resource-processor';
 import { IDataSort } from '../interfaces/data/data-sort';
+import { IIdentifiable } from '../interfaces/models/identifiable';
 
 @Injectable()
-export class DataResourceService<T> implements IDataResource<T> {
+export class DataResourceService<T extends IIdentifiable> implements IDataResource<T> {
 
   protected list: T[];
   protected option: DataOption = new DataOption();
@@ -36,6 +37,10 @@ export class DataResourceService<T> implements IDataResource<T> {
 
   public getDataOption(): DataOption {
     return this.option;
+  }
+
+  public getItem(id: number): T {
+    return this.list.find((item) => item.id === id);
   }
 
   public getList(): T[] {
@@ -83,7 +88,14 @@ export class DataResourceService<T> implements IDataResource<T> {
   }
 
   public update(item: T): boolean {
-    return this.resourceProcessor.updateResource(item);
+    let successful = this.resourceProcessor.updateResource(item);
+    if (successful) {
+      let index = this.list.findIndex((value) => {
+        return value.id === item.id;
+      });
+      this.list[index] = item;
+    }
+    return successful;
   }
 
   public remove(item: T): boolean {

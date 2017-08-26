@@ -18,8 +18,8 @@ export class NoteListComponent {
   public onSelect(article: Article): void {
     // when then item has been clicked,the select will be canceled
     article === this.dataService.getSelected() ?
-      this.dataService.setSelected(null) :
-      this.dataService.setSelected(article);
+      this.dataService.setSelected(-1) :
+      this.dataService.setSelected(article.id);
   }
 
   public onTagClick(tag): void {
