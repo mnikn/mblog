@@ -41,15 +41,15 @@ export class DataService<T> implements IDataService<T> {
     return this.dataResourceService.getUnProcessList();
   }
 
-  public add(item: T): number {
+  public createItem(item: T): number {
     return this.dataResourceService.add(item);
   }
 
-  public update(item: T): boolean {
+  public updateItem(item: T): boolean {
     return this.dataResourceService.update(item);
   }
 
-  public remove(item: T): boolean {
+  public deleteItem(item: T): boolean {
     return this.dataResourceService.remove(item);
   }
 

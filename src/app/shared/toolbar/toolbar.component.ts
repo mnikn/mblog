@@ -23,7 +23,7 @@ export class ToolbarComponent {
 
   public onAdd() {
     let article = new Article();
-    this.dataService.add(article);
+    this.dataService.createItem(article);
   }
 
   public onDelete(popup: IPopup) {
@@ -38,7 +38,7 @@ export class ToolbarComponent {
     this.modalService
       .open(new ConfirmModal('确定要删除笔记吗？'))
       .onApprove(() => {
-        this.dataService.remove(this.dataService.getSelected());
+        this.dataService.deleteItem(this.dataService.getSelected());
         this.dataService.setSelected(null);
       });
   }
@@ -57,7 +57,7 @@ export class ToolbarComponent {
       console.log(stderr);
     });
 
-    // remove later
+    // deleteItem later
     setTimeout(() => {
       this.isDeploying = false;
     }, 10000);

@@ -10,9 +10,9 @@ export interface IDataService<T> {
   getDataOption(): DataOption;
   getList(): T[];
   getUnProcessList(): T[];
-  add(item: T): number;
-  update(item: T): boolean;
-  remove(item: T): boolean;
+  createItem(item: T): number;
+  updateItem(item: T): boolean;
+  deleteItem(item: T): boolean;
   getPagerService(): IDataPager<T>;
   getSelected(): T;
   setSelected(data: T);
