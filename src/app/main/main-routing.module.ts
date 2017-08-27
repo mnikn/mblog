@@ -3,15 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { HomeComponent } from './home/home.component';
 import { NoteInfoComponent } from './note/note-info.component';
-import { TrashComponent } from './trash/trash.component';
 
 const mainRoutes: Routes = [
   {
     path: 'main-page', component: MainComponent,
     children: [
       {path: 'home', component: HomeComponent},
-      {path: 'note-info', component: NoteInfoComponent},
-      {path: 'trash', component: TrashComponent},
+      {path: 'note-info/:status', component: NoteInfoComponent},
       {path: '', component: HomeComponent}
     ]
   }

@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
-import { Article } from '../../../core/models/article';
+import { Component, OnInit } from '@angular/core';
+import { Article, ARTICLE_STATUS } from '../../../core/models/article';
 import { Filter } from 'app/core/models/filter';
 import { WindowService } from '../../../core/services/window.service';
 import { ArticleDataService } from '../../../article-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'note-list',
   templateUrl: './note-list.component.html'
 })
 
-export class NoteListComponent {
+export class NoteListComponent implements OnInit {
+
+  public selectStatus: ARTICLE_STATUS;
 
   constructor(public dataService: ArticleDataService,
-              public windowService: WindowService) {
+              public windowService: WindowService,
+              private route: ActivatedRoute) {
+  }
+
+  public ngOnInit(): void {
+    this.route.paramMap.forEach((params) => {
+      this.selectStatus = Number(params.get('status'));
+    });
   }
 
   public onSelect(article: Article): void {

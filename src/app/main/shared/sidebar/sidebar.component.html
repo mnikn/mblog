@@ -1,12 +1,12 @@
 <a class="item" routerLink="/main-page/home" routerLinkActive="active">
   <i class="home icon"></i>主页
 </a>
-<a class="item" routerLink="/main-page/note-info" routerLinkActive="active">
+<a class="item" (click)="gotoPostArticle()">
   <i class="book icon"></i>发表的笔记
 </a>
-<a class="item" routerLink="/main-page/trash" routerLinkActive="active">
+<a class="item" (click)="gotoDraftArticle()">
   <i class="write icon"></i>草稿笔记
 </a>
-<a class="item" routerLink="/main-page/trash" routerLinkActive="active">
+<a class="item" (click)="gotoTrashArticle()">
   <i class="trash icon"></i>废纸篓
 </a>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../../models/article';
+import { Article, ARTICLE_STATUS } from '../../models/article';
 import { MarkdownFileReader } from './markdown-file-reader';
 import { isUndefined } from 'util';
 import { Context } from '../context';
@@ -48,7 +48,7 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
       if (file.substr(file.lastIndexOf('.')) === '.md') {
         let article = self.fileReader.getArticleFromFile(this.config.postArticleDir + file);
         article.id = articles.length;
-        article.status = 1;
+        article.status = ARTICLE_STATUS.POST;
         articles.push(article);
       }
     }

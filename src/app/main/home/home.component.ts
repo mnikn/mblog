@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Article } from '../../core/models/article';
+import { Article, ARTICLE_STATUS } from '../../core/models/article';
 import { Router } from '@angular/router';
 import { Filter } from '../../core/models/filter';
 import { ArticleDataService } from '../../article-data.service';
@@ -13,12 +13,12 @@ export class HomeComponent {
 
   constructor(public dataService: ArticleDataService,
               private router: Router) {
-    dataService.getPagerService().setList(dataService.getPostArticles());
+    dataService.getPagerService().setList(dataService.getArticles());
   }
 
   public gotoNoteInfo(article: Article): void {
     this.dataService.setSelected(article.id);
     this.dataService.setFilter(new Filter());
-    this.router.navigate(['/main-page/note-info']);
+    this.router.navigate(['/main-page/note-info', article.status]);
   }
 }

@@ -3,13 +3,15 @@ import { Tag } from './tag';
 import { DatePipe } from '@angular/common';
 import { IIdentifiable } from '../base/interfaces/models/identifiable';
 
+export enum ARTICLE_STATUS {TRASH = -1, DRAFT, POST}
+
 export class Article implements IIdentifiable {
   private _id: number;
   private _title: string = '标题';
   // -1: trash
   // 0: draft
   // 1: post
-  private _status: number = 1;
+  private _status: ARTICLE_STATUS = ARTICLE_STATUS.POST;
   private _content: Content = new Content();
   private _tags: Tag[] = [];
   private _insertDate: Date = new Date();
@@ -102,4 +104,5 @@ export class Article implements IIdentifiable {
   set id(value: number) {
     this._id = value;
   }
+
 }

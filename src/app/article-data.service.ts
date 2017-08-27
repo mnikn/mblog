@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Article } from './core/models/article';
+import { Article, ARTICLE_STATUS } from './core/models/article';
 import { DataService } from './core/base/services/data-service';
 import { IDataResource } from './core/base/interfaces/data/data-resource';
 
@@ -13,24 +13,25 @@ export class ArticleDataService extends DataService<Article> {
               protected dataResourceService: IDataResource<Article>) {
     super(dataResourceService);
     let updateArticleList = () => {
-      this.postArticles = this.getList().filter((item) => item.status === 1);
-      this.draftArticles = this.getList().filter((item) => item.status === 0);
-      this.trashArticles = this.getList().filter((item) => item.status === -1);
+      this.postArticles = this.getList().filter((item) => item.status === ARTICLE_STATUS.POST);
+      this.draftArticles = this.getList().filter((item) => item.status === ARTICLE_STATUS.DRAFT);
+      this.trashArticles = this.getList().filter((item) => item.status === ARTICLE_STATUS.TRASH);
     };
     updateArticleList();
     this.onDataModify(updateArticleList);
     this.onProcessMethodChange(updateArticleList);
   }
 
-  public getPostArticles(): Article[] {
-    return this.postArticles;
-  }
-
-  public getDraftArticles(): Article[] {
-    return this.draftArticles;
-  }
-
-  public getTrashArticles(): Article[] {
-    return this.trashArticles;
+  public getArticles(status: ARTICLE_STATUS = ARTICLE_STATUS.POST): Article[] {
+    switch (status) {
+      case ARTICLE_STATUS.POST:
+        return this.postArticles;
+      case ARTICLE_STATUS.DRAFT:
+        return this.draftArticles;
+      case ARTICLE_STATUS.TRASH:
+        return this.draftArticles;
+      default:
+        return this.postArticles;
+    }
   }
 }

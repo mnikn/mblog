@@ -23,10 +23,10 @@ import { ArticleDataService } from './article-data.service';
     HttpModule,
     CoreModule,
     CommonModule,
-    AppRoutingModule,
     MainModule,
     EditModule,
-    HotkeyModule.forRoot()
+    HotkeyModule.forRoot(),
+    AppRoutingModule,
   ],
   providers: [
     {provide: ArticleDataService, useFactory: articleDataServiceFactory}
