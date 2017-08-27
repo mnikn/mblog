@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/window.service';
 import { EditorService } from './editor.service';
@@ -9,6 +9,8 @@ import { MarkdownContentProcessor } from '../../core/services/content/markdown/m
 declare let electron: any;
 import * as _ from 'lodash';
 import { ArticleDataService } from '../../article-data.service';
+import { Router } from "@angular/router/src";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 
 @Component({
@@ -16,7 +18,7 @@ import { ArticleDataService } from '../../article-data.service';
   templateUrl: './editor.component.html'
 })
 
-export class EditorComponent implements AfterViewInit, OnDestroy {
+export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public service: EditorService;
   private contentProcessor: IContentProcessor = new MarkdownContentProcessor();
@@ -28,8 +30,14 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
               private dataService: ArticleDataService,
               @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
               private editService: EditService,
-              private render: Renderer2) {
-    this.article = _.cloneDeep(dataService.getSelected());
+              private render: Renderer2,
+              private route: ActivatedRoute) {
+  }
+
+  public ngOnInit(): void {
+    this.route.paramMap.forEach((params) => {
+      this.article = _.cloneDeep(this.dataService.getItem(Number(params.get('id'))));
+    });
   }
 
   public ngAfterViewInit() {

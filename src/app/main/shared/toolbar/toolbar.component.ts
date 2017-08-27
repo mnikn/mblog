@@ -6,6 +6,7 @@ import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { ConfirmModal } from '../../../shared/confirmModal/cofirm-modal';
 import { setTimeout } from 'timers';
 import { ArticleDataService } from '../../../article-data.service';
+import { Router } from '@angular/router';
 declare let electron: any;
 
 @Component({
@@ -18,7 +19,8 @@ export class ToolbarComponent {
   public isDeploying: boolean = false;
 
   constructor(public dataService: ArticleDataService,
-              public modalService: SuiModalService) {
+              public modalService: SuiModalService,
+              private router: Router) {
   }
 
   public onAdd() {
@@ -61,6 +63,10 @@ export class ToolbarComponent {
     setTimeout(() => {
       this.isDeploying = false;
     }, 10000);
+  }
+
+  public onEdit() {
+    this.router.navigate(['/edit', this.dataService.getSelected().id]);
   }
 
   public onSearchEnter(value) {
