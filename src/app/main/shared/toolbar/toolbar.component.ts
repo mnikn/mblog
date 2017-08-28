@@ -5,7 +5,7 @@ import { Context } from '../../../core/services/context';
 import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { ConfirmModal } from '../../../shared/confirmModal/cofirm-modal';
 import { setTimeout } from 'timers';
-import { ArticleDataService } from '../../../article-data.service';
+import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { Router } from '@angular/router';
 declare let electron: any;
 

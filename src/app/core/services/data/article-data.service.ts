@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { Article, ARTICLE_STATUS } from './core/models/article';
-import { DataService } from './core/base/services/data-service';
-import { IDataResource } from './core/base/interfaces/data/data-resource';
+import { Article, ARTICLE_STATUS } from '../../models/article';
+import { DataService } from '../../base/services/data-service';
+import { IDataResource } from '../../base/interfaces/data/data-resource';
 
 @Injectable()
 export class ArticleDataService extends DataService<Article> {

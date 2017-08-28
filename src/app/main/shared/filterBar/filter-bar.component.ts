@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Filter } from '../../../core/models/filter';
-import { ArticleDataService } from '../../../article-data.service';
+import { ArticleDataService } from '../../../core/services/data/article-data.service';
 
 @Component({
   selector: 'filter-bar',

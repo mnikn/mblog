@@ -1,9 +1,9 @@
-import { Article } from './core/models/article';
-import { DataPagerService } from './core/base/services/data-pager.service';
-import { ArticleFilterService } from './core/services/data/article-filter.service';
-import { MarkdownFileProcessor } from './core/services/data/markdown-file-processor';
-import { ArticleSortService } from './core/services/data/article-sort.service';
-import { DataResourceService } from './core/base/services/data-resource.service';
+import { Article } from '../../models/article';
+import { DataPagerService } from '../../base/services/data-pager.service';
+import { ArticleFilterService } from './article-filter.service';
+import { MarkdownFileProcessor } from './markdown-file-processor';
+import { ArticleSortService } from './article-sort.service';
+import { DataResourceService } from '../../base/services/data-resource.service';
 import { ArticleDataService } from './article-data.service';
 
 export let articleDataServiceFactory = () => {
@@ -18,5 +18,4 @@ export let articleDataServiceFactory = () => {
     filterService);
   pagerService.setList(resourceService.getList());
   return new ArticleDataService(resourceService);
-  // return new DataService<Article>(resourceService);
 };

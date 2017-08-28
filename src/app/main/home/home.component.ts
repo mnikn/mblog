@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../core/models/article';
 import { Router } from '@angular/router';
 import { Filter } from '../../core/models/filter';
-import { ArticleDataService } from '../../article-data.service';
+import { ArticleDataService } from '../../core/services/data/article-data.service';
 
 @Component({
   selector: 'home',

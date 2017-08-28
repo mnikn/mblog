@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.moudle';
 import { EditModule } from './edit/edit.module';
 import { HotkeyModule } from 'angular2-hotkeys';
-import { articleDataServiceFactory } from './article-data-service-factory';
-import { ArticleDataService } from './article-data.service';
+import { articleDataServiceFactory } from './core/services/data/article-data-service-factory';
+import { ArticleDataService } from './core/services/data/article-data.service';
 
 @NgModule({
   declarations: [

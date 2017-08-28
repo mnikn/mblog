@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../../core/models/article';
 import { Filter } from 'app/core/models/filter';
 import { WindowService } from '../../../core/services/window.service';
-import { ArticleDataService } from '../../../article-data.service';
+import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

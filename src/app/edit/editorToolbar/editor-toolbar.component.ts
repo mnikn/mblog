@@ -4,7 +4,7 @@ import { SuiPopup } from 'ng2-semantic-ui/dist';
 import { Router } from '@angular/router';
 import { IHotkeyService } from 'app/core/base/interfaces/hotkey-service';
 import { EditService } from '../edit.service';
-import { ArticleDataService } from '../../article-data.service';
+import { ArticleDataService } from '../../core/services/data/article-data.service';
 
 export interface IContext {
   title: string;
@@ -39,7 +39,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onBack() {
-    this.router.navigate(['/main-page/note-info']);
+    this.router.navigate(['/main-page/note-info',this.editService.article.status]);
   }
 
   public onSave(popup: IPopup) {

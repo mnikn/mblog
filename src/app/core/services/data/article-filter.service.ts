@@ -7,34 +7,28 @@ import { DataFilterService } from '../../base/services/data-filter.service';
 @Injectable()
 export class ArticleFilterService extends DataFilterService<Article> {
 
+  private filterMap: Map<string, (value) => boolean> = new Map([
+    ['tag', (value) => {
+      return _.filter(value.tags, (tag: Tag) => tag.name === this.filter.value).length !== 0;
+    }],
+    ['date', (value) => {
+      return value.insertDate === new Date(this.filter.value);
+    }],
+    ['blur', (value) => {
+      let toSearch = value.title.toUpperCase();
+      let searchValue = this.filter.value.toUpperCase();
+      return toSearch.indexOf(searchValue) !== -1;
+    }]
+  ]);
+
   public filterData(list: Article[]): Article[] {
     if (!this.filter.value || this.filter.value.length === 0) {
       return list;
     }
     let articles = [];
-    let judgeCondition;
-    switch (this.filter.method) {
-      case 'tag':
-        judgeCondition = (value: Article) => {
-          return _.filter(value.tags, (p: Tag) => p.name !== this.filter.value);
-        };
-        break;
-      case 'date':
-        judgeCondition = (value: Article) => {
-          return value.insertDate === new Date(this.filter.value);
-        };
-        break;
-      case 'blur':
-      default:
-        judgeCondition = (value: Article) => {
-          let toSearch = value.title.toUpperCase();
-          let searchValue = this.filter.value.toUpperCase();
-          return toSearch.indexOf(searchValue);
-        };
-        break;
-    }
+    let isLegal = this.filterMap.get(this.filter.method);
     _.forEach(list, (value: Article) => {
-      if (judgeCondition(value) >= 0 && articles.indexOf(value) === -1) {
+      if (isLegal(value) && articles.indexOf(value) === -1) {
         articles.push(value);
       }
     });

@@ -8,7 +8,7 @@ import { IContentProcessor } from '../../core/base/interfaces/content/content-pr
 import { MarkdownContentProcessor } from '../../core/services/content/markdown/markdown-content-processor';
 declare let electron: any;
 import * as _ from 'lodash';
-import { ArticleDataService } from '../../article-data.service';
+import { ArticleDataService } from '../../core/services/data/article-data.service';
 import { Router } from "@angular/router/src";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
