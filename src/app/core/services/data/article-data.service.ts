@@ -29,7 +29,7 @@ export class ArticleDataService extends DataService<Article> {
       case ARTICLE_STATUS.DRAFT:
         return this.draftArticles;
       case ARTICLE_STATUS.TRASH:
-        return this.draftArticles;
+        return this.trashArticles;
       default:
         return this.postArticles;
     }
