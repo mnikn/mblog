@@ -19,16 +19,11 @@ export class MarkdownFileReader {
     let lines = fs.readFileSync(file).toString().split('\n');
     for (let line of lines) {
       if (infoLines < 2 && line.includes('title: ')) {
-        let startIndex = line.indexOf('title: ') + 'title: '.length;
-        article.title = line.substring(startIndex);
+        article.title = this.parseTitle(line);
       } else if (infoLines < 2 && line.includes('date: ')) {
-        let startIndex = line.indexOf('date: ') + 'date: '.length;
-        article.insertDate = new Date(line.substring(startIndex).split(' ')[0]);
+        article.insertDate = this.parseTime(line);
       } else if (infoLines < 2 && line.includes('tags: ')) {
-        let trimLine = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
-        for (let tagStr of trimLine.split(',')) {
-          article.tags.push(new Tag(tagStr));
-        }
+        article.tags = this.parseTags(line);
       } else if (infoLines >= 2) {
         article.content.mdContent += (line + '\n');
       } else if (line === '---') {
@@ -38,5 +33,33 @@ export class MarkdownFileReader {
     article.content.htmlContent = this.markdownProcessor.doProcess(article.content.mdContent);
     article.fileName = file;
     return article;
+  }
+
+  private parseTitle(line: string): string {
+    let startIndex = line.indexOf('title: ') + 'title: '.length;
+    return line.substring(startIndex);
+  }
+
+  private parseTime(line: string): Date {
+    let startIndex = line.indexOf('date: ') + 'date: '.length;
+    let str = line.substring(startIndex);
+    let date = str.split('-');
+    let day = date[2].split(' ');
+    let time = day[1].split(':');
+    return new Date(Number.parseInt(date[0]),
+      Number.parseInt(date[1]),
+      Number.parseInt(day[0]),
+      Number.parseInt(time[0]),
+      Number.parseInt(time[1]),
+      Number.parseInt(time[2]));
+  }
+
+  private parseTags(line: string): Tag[] {
+    let trimLine = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
+    let tags: Tag[] = [];
+    for (let tagStr of trimLine.split(',')) {
+      tags.push(new Tag(tagStr));
+    }
+    return tags;
   }
 }
