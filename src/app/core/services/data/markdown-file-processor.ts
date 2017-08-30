@@ -14,14 +14,25 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
 
   public processResource(): Article[] {
     this.readConfig();
+    let articles = [];
     if (!isUndefined(this.config)) {
-      return this.getArticlesFromDir(this.config.postArticleDir);
+      articles = this.getArticlesFromDir(this.config.postArticleDir, ARTICLE_STATUS.POST)
+        .concat(this.getArticlesFromDir(this.config.draftArticleDir, ARTICLE_STATUS.DRAFT));
     }
-    return [];
+    return articles;
   }
 
   public createResource(item: Article): boolean {
-    let fileName = this.config.postArticleDir + item.title + '.md';
+    let dir;
+    switch (item.status) {
+      case ARTICLE_STATUS.DRAFT:
+        dir = this.config.draftArticleDir;
+        break;
+      default:
+        dir = this.config.postArticleDir;
+        break;
+    }
+    let fileName = dir + item.title + '.md';
     item.fileName = fileName;
     this.fs.writeFileSync(fileName, item.toString(), 'utf8');
     return true;
@@ -40,15 +51,15 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
     return true;
   }
 
-  private getArticlesFromDir(dir: string): Article[] {
+  private getArticlesFromDir(dir: string, status: ARTICLE_STATUS): Article[] {
     let articles: Article[] = [];
     let self = this;
     let files = this.fs.readdirSync(dir);
     for (let file of files) {
       if (file.substr(file.lastIndexOf('.')) === '.md') {
-        let article = self.fileReader.getArticleFromFile(this.config.postArticleDir + file);
+        let article = self.fileReader.getArticleFromFile(dir + file);
         article.id = articles.length;
-        article.status = ARTICLE_STATUS.POST;
+        article.status = status;
         articles.push(article);
       }
     }

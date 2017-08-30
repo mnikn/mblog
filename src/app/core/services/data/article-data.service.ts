@@ -9,8 +9,7 @@ export class ArticleDataService extends DataService<Article> {
   private draftArticles: Article[];
   private trashArticles: Article[];
 
-  constructor(@Inject('IDataResource<T>')
-              protected dataResourceService: IDataResource<Article>) {
+  constructor(protected dataResourceService: IDataResource<Article>) {
     super(dataResourceService);
     let updateArticleList = () => {
       this.postArticles = this.getList().filter((item) => item.status === ARTICLE_STATUS.POST);

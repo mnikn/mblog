@@ -1,24 +1,26 @@
 <div class="ui black inverted menu">
-  <a class="item" (click)="onAdd()">
-    <i class="add square icon"></i>添加笔记
-  </a>
-  <a class="item" (click)="onDelete(popup)"
-     suiPopup
-     popupText="你还没有选择笔记！"
-     #popup="suiPopup"
-     popupTrigger="manual">
-    <i class="delete square icon"></i>删除笔记
-  </a>
-  <a class="item" (click)="onDeploy()">
-    <div *ngIf="!isDeploying">
-      <i class="github square icon" ></i>部署到博客
-    </div>
-    <div class="ui active inline loader" *ngIf="isDeploying">
-    </div>
-  </a>
-  <a class="item" (click)="onRefresh()">
-    <i class="refresh square icon"></i>刷新
-  </a>
+  <post-buttons class="left menu" *ngIf="selectStatus === 1"></post-buttons>
+  <draft-buttons class="left menu" *ngIf="selectStatus === 0"></draft-buttons>
+  <!--<a class="item" (click)="onAdd()">-->
+    <!--<i class="add square icon"></i>添加笔记-->
+  <!--</a>-->
+  <!--<a class="item" (click)="onDelete(popup)"-->
+     <!--suiPopup-->
+     <!--popupText="你还没有选择笔记！"-->
+     <!--#popup="suiPopup"-->
+     <!--popupTrigger="manual">-->
+    <!--<i class="delete square icon"></i>删除笔记-->
+  <!--</a>-->
+  <!--<a class="item" (click)="onDeploy()">-->
+    <!--<div *ngIf="!isDeploying">-->
+      <!--<i class="github square icon" ></i>部署到博客-->
+    <!--</div>-->
+    <!--<div class="ui active inline loader" *ngIf="isDeploying">-->
+    <!--</div>-->
+  <!--</a>-->
+  <!--<a class="item" (click)="onRefresh()">-->
+    <!--<i class="refresh square icon"></i>刷新-->
+  <!--</a>-->
   <div class="right menu" style="margin-right: 20%">
     <div class="item">
       <div class="ui icon input">

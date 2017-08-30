@@ -19,7 +19,8 @@ let template = [
             .showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']});
           let config = {
             blogRoot: blogDir[0],
-            postArticleDir: blogDir[0] + '/source/_posts/'
+            postArticleDir: blogDir[0] + '/source/_posts/',
+            draftArticleDir: blogDir[0] + '/source/_drafts/'
           };
           require('fs').writeFileSync('./dist/config.json', JSON.stringify(config), 'utf8');
         }

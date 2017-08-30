@@ -1,0 +1,20 @@
+<a class="item" (click)="onAdd()">
+  <i class="add square icon"></i>添加笔记
+</a>
+<a class="item" (click)="onDelete(popup)"
+   suiPopup
+   popupText="你还没有选择笔记！"
+   #popup="suiPopup"
+   popupTrigger="manual">
+  <i class="delete square icon"></i>删除笔记
+</a>
+<a class="item" (click)="moveToPost(movePopup)"
+   suiPopup
+   popupText="你还没有选择笔记！"
+   #movePopup="suiPopup"
+   popupTrigger="manual">
+  <i class="move square icon"></i>移动到发表箱
+</a>
+<a class="item" (click)="onRefresh()">
+  <i class="refresh square icon"></i>刷新
+</a>

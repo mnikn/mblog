@@ -47,7 +47,7 @@ export class MarkdownFileReader {
     let day = date[2].split(' ');
     let time = day[1].split(':');
     return new Date(Number.parseInt(date[0]),
-      Number.parseInt(date[1]),
+      Number.parseInt(date[1]) - 1,
       Number.parseInt(day[0]),
       Number.parseInt(time[0]),
       Number.parseInt(time[1]),

@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AppRoutingModule } from '../../app-routing.moudle';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ToolbarModule } from './toolbar/toolbar.module';
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    ToolbarComponent,
     FilterBarComponent
   ],
   imports: [
@@ -17,7 +17,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SuiModalModule,
     SuiPopupModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToolbarModule
   ],
   exports: [
     SidebarComponent,
