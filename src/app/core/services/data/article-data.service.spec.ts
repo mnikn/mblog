@@ -15,7 +15,6 @@ let articleB = new Article();
 articleB.title = 'GoodDog';
 articleB.tags.push(new Tag('Fun'));
 let articleC = new Article();
-articleC.status = ARTICLE_STATUS.TRASH;
 articleC.tags.push(new Tag('Play'));
 articleC.title = 'Well';
 articleC.tags.push(new Tag('Test'));
@@ -82,7 +81,7 @@ describe('ArticleDataService without the TestBed', () => {
   });
 
   it('#getArticles should return resultA', () => {
-    let resultA = [articleA, articleB, articleD];
+    let resultA = [articleA, articleB, articleC, articleD];
     expect(service.getArticles().sort()).toEqual(resultA.sort());
   });
 
@@ -91,14 +90,9 @@ describe('ArticleDataService without the TestBed', () => {
     expect(service.getArticles(ARTICLE_STATUS.DRAFT).sort()).toEqual(resultB.sort());
   });
 
-  it('#getArticles should return resultC', () => {
-    let resultC = [articleC];
-    expect(service.getArticles(ARTICLE_STATUS.TRASH).sort()).toEqual(resultC.sort());
-  });
-
   it('#getArticles should return resultD', () => {
     let articleG = new Article();
-    let resultD = [articleA, articleB, articleD, articleG];
+    let resultD = [articleA, articleB, articleC, articleD, articleG];
     service.createItem(articleG);
     expect(service.getArticles().sort()).toEqual(resultD.sort());
   });

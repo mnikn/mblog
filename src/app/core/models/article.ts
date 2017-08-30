@@ -3,7 +3,7 @@ import { Tag } from './tag';
 import { DatePipe } from '@angular/common';
 import { IIdentifiable } from '../base/interfaces/models/identifiable';
 
-export enum ARTICLE_STATUS {TRASH = -1, DRAFT, POST}
+export enum ARTICLE_STATUS {DRAFT, POST}
 
 export class Article implements IIdentifiable {
   private _id: number;

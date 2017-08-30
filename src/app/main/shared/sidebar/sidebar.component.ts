@@ -20,8 +20,8 @@ export class SidebarComponent {
     this.router.navigate(['/main-page/note-info', ARTICLE_STATUS.DRAFT]);
   }
 
-  public gotoTrashArticle() {
-    this.router.navigate(['/main-page/note-info', ARTICLE_STATUS.TRASH]);
-  }
+  // public gotoTrashArticle() {
+  //   this.router.navigate(['/main-page/note-info', ARTICLE_STATUS.TRASH]);
+  // }
 
 }

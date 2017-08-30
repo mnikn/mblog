@@ -20,6 +20,7 @@ export class PostButtonsComponent {
 
   public onAdd() {
     let article = new Article();
+    article.title = '标题' + this.dataService.getUnProcessList().length;
     article.status = ARTICLE_STATUS.POST;
     this.dataService.createItem(article);
   }
@@ -70,7 +71,6 @@ export class PostButtonsComponent {
       return;
     }
     let article = this.dataService.getSelected();
-    console.log(article);
     this.dataService.deleteItem(article);
     article.status = ARTICLE_STATUS.DRAFT;
     this.dataService.createItem(article);

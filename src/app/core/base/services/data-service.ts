@@ -13,8 +13,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
   private dataModifyCallback: () => any;
   private processMethodChangeCallback: () => any;
 
-  constructor(@Inject('IDataResource<T>')
-              protected dataResourceService: IDataResource<T>) {
+  constructor(protected dataResourceService: IDataResource<T>) {
   }
 
   public refresh(afterCallback?: () => any): void {
