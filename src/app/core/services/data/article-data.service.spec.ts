@@ -9,25 +9,31 @@ import { IResourceProcessor } from 'app/core/base/interfaces/data/resource-proce
 
 let articleA = new Article();
 articleA.title = 'Good';
+articleA.id = 1;
 articleA.tags.push(new Tag('Test'));
 articleA.tags.push(new Tag('Play'));
 let articleB = new Article();
 articleB.title = 'GoodDog';
+articleB.id = 2;
 articleB.tags.push(new Tag('Fun'));
 let articleC = new Article();
 articleC.tags.push(new Tag('Play'));
 articleC.title = 'Well';
+articleC.id = 3;
 articleC.tags.push(new Tag('Test'));
 let articleD = new Article();
 articleD.title = 'Fancy';
+articleD.id = 4;
 articleD.tags.push(new Tag('Test'));
 let articleE = new Article();
 articleE.status = ARTICLE_STATUS.DRAFT;
 articleE.title = 'Suck';
+articleE.id = 5;
 articleE.tags.push(new Tag('Test'));
 let articleF = new Article();
 articleF.status = ARTICLE_STATUS.DRAFT;
 articleF.title = 'FxxK';
+articleF.id = 6;
 articleF.tags.push(new Tag('Play'));
 let mockArticles = [articleA, articleB, articleC, articleD, articleE, articleF];
 
@@ -90,11 +96,10 @@ describe('ArticleDataService without the TestBed', () => {
     expect(service.getArticles(ARTICLE_STATUS.DRAFT).sort()).toEqual(resultB.sort());
   });
 
-  it('#getArticles should return resultD', () => {
-    let articleG = new Article();
-    let resultD = [articleA, articleB, articleC, articleD, articleG];
-    service.createItem(articleG);
-    expect(service.getArticles().sort()).toEqual(resultD.sort());
+
+  it('#getItem should return resultC', () => {
+    let resultC = articleB;
+    expect(service.getItem(articleB.id)).toEqual(resultC);
   });
 
 });
