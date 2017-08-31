@@ -39,7 +39,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onBack() {
-    this.router.navigate(['/main-page/note-info',this.editService.article.status]);
+    this.router.navigate(['/main-page/note-info', this.editService.article.status]);
   }
 
   public onSave(popup: IPopup) {

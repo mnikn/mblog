@@ -4,6 +4,7 @@ import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { ConfirmModal } from '../../../../shared/confirmModal/cofirm-modal';
 import { Article } from 'app/core/models/article';
 import { ARTICLE_STATUS } from '../../../../core/models/article';
+import { MainService } from 'app/main/main.service';
 
 @Component({
   selector: 'draft-buttons',
@@ -12,7 +13,8 @@ import { ARTICLE_STATUS } from '../../../../core/models/article';
 export class DraftButtonsComponent {
 
   constructor(public dataService: ArticleDataService,
-              public modalService: SuiModalService) {
+              public modalService: SuiModalService,
+              public mainService: MainService) {
   }
 
   public onAdd() {

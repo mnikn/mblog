@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { NoteInfoComponent } from './note/note-info.component';
 import { MainRoutingModule } from './main-routing.module';
 import { MainSharedModule } from './shared/shared.module';
+import { SuiSidebarModule } from 'ng2-semantic-ui';
+import { MainService } from './main.service';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { MainSharedModule } from './shared/shared.module';
     NoteInfoModule,
     MainSharedModule,
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    SuiSidebarModule
   ],
   exports: [
     MainComponent,
     HomeComponent,
     NoteInfoComponent
-  ]
+  ],
+  providers: [MainService]
 })
 
 export class MainModule {

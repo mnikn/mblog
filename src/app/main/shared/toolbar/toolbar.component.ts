@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Article, ARTICLE_STATUS } from '../../../core/models/article';
+import { Component } from '@angular/core';
 import { Filter } from 'app/core/models/filter';
-import { Context } from '../../../core/services/context';
-import { IPopup, SuiModalService } from 'ng2-semantic-ui';
-import { ConfirmModal } from '../../../shared/confirmModal/cofirm-modal';
-import { setTimeout } from 'timers';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { MainService } from '../../main.service';
 declare let electron: any;
 
 @Component({
@@ -14,19 +10,11 @@ declare let electron: any;
   templateUrl: './toolbar.component.html'
 })
 
-export class ToolbarComponent implements OnInit{
-
-  private selectStatus: ARTICLE_STATUS;
+export class ToolbarComponent {
 
   constructor(public dataService: ArticleDataService,
-              private router: Router,
-              private route: ActivatedRoute) {
-  }
-
-  public ngOnInit(): void {
-    this.route.paramMap.forEach((params) => {
-      this.selectStatus = Number(params.get('status'));
-    });
+              public mainService: MainService,
+              private router: Router) {
   }
 
   public onEdit() {

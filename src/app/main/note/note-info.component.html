@@ -1,13 +1,10 @@
-<div style="margin-bottom: 1px">
-  <toolbar></toolbar>
-</div>
 <filter-bar *ngIf="dataService.getFilter().value !== '' "></filter-bar>
 <div class="ui internally celled equal width grid">
   <div class="row">
     <div class="column" style="padding: 0">
       <note-list></note-list>
     </div>
-    <div class="twelve wide column" *ngIf="dataService.getSelected()" style="padding: 0">
+    <div class="column" *ngIf="dataService.getSelected()" style="padding: 0">
       <note-preview [article]="dataService.getSelected()"></note-preview>
     </div>
   </div>

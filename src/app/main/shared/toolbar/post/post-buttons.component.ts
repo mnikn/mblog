@@ -4,6 +4,7 @@ import { ConfirmModal } from '../../../../shared/confirmModal/cofirm-modal';
 import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { Article, ARTICLE_STATUS } from '../../../../core/models/article';
 import { ArticleDataService } from 'app/core/services/data/article-data.service';
+import { MainService } from '../../../main.service';
 declare let electron: any;
 
 @Component({
@@ -15,7 +16,8 @@ export class PostButtonsComponent {
   public isDeploying: boolean = false;
 
   constructor(public dataService: ArticleDataService,
-              public modalService: SuiModalService) {
+              public modalService: SuiModalService,
+              public mainService: MainService) {
   }
 
   public onAdd() {
