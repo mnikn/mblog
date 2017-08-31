@@ -3,18 +3,15 @@ import { DataOption } from '../../params/data-option';
 import { Filter } from '../../../models/filter';
 import { IResourceProcessor } from './resource-processor';
 import { IIdentifiable } from '../models/identifiable';
+import { IDataSort } from './data-sort';
 
 export interface IDataService<T extends IIdentifiable> {
-  /**
-   * filter
-   */
+
   getFilter(): Filter;
   setFilter(filter: Filter): void;
-
-  /**
-   * pager
-   */
   getPagerService(): IDataPager<T>;
+  getSortService(): IDataSort<T>;
+  registerSortService(sortService: IDataSort<T>): void;
 
   /**
    * data operate

@@ -3,6 +3,7 @@ import { Filter } from '../../../models/filter';
 import { IDataPager } from './data-pager';
 import { IResourceProcessor } from './resource-processor';
 import { IIdentifiable } from '../models/identifiable';
+import { IDataSort } from './data-sort';
 
 export interface IDataResource<T extends IIdentifiable> {
   refresh(): void;
@@ -17,5 +18,7 @@ export interface IDataResource<T extends IIdentifiable> {
   update(item: T): boolean;
   remove(item: T): boolean;
   getPagerService(): IDataPager<T>;
+  getSortService(): IDataSort<T>;
+  registerSortService(sortService: IDataSort<T>): void;
   registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void;
 }

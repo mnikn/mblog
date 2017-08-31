@@ -13,15 +13,23 @@ import { ActivatedRoute } from '@angular/router';
 export class NoteListComponent implements OnInit {
 
   public selectStatus: ARTICLE_STATUS;
+  public articles: Article[];
 
   constructor(public dataService: ArticleDataService,
               public windowService: WindowService,
               private route: ActivatedRoute) {
+    this.dataService.onDataModify(() => {
+      this.articles = this.dataService.getArticles(this.selectStatus);
+    });
+    this.dataService.onProcessMethodChange(() => {
+      this.articles = this.dataService.getArticles(this.selectStatus);
+    });
   }
 
   public ngOnInit(): void {
     this.route.paramMap.forEach((params) => {
       this.selectStatus = Number(params.get('status'));
+      this.articles = this.dataService.getArticles(this.selectStatus);
     });
   }
 

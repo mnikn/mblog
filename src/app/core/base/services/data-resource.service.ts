@@ -73,6 +73,14 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     return this.pagerService;
   }
 
+  public getSortService(): IDataSort<T> {
+    return this.dataSortService;
+  }
+
+  public registerSortService(sortService: IDataSort<T>): void {
+    this.dataSortService = sortService;
+  }
+
   public refresh(): void {
     this.list = this.resourceProcessor.processResource();
     this.updateItemFinder();
@@ -126,7 +134,9 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
       this.pagerService.setList(processList);
       processList = this.pagerService.currentPageList();
     }
-    processList = this.dataSortService.sortData(processList);
+    if (this.option.useSort && this.dataSortService) {
+      processList = this.dataSortService.sortData(processList);
+    }
     return processList;
   }
 

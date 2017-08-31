@@ -1,17 +1,18 @@
 import { IDataService } from '../interfaces/data/data-service';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Filter } from '../../models/filter';
 import { DataOption } from '../params/data-option';
 import { IDataPager } from '../interfaces/data/data-pager';
 import { IDataResource } from '../interfaces/data/data-resource';
 import { IResourceProcessor } from '../interfaces/data/resource-processor';
 import { IIdentifiable } from '../interfaces/models/identifiable';
+import { IDataSort } from '../interfaces/data/data-sort';
 
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
   protected selectedItem: T;
-  private dataModifyCallback: () => any;
-  private processMethodChangeCallback: () => any;
+  private dataModifyCallback: () => any = this.dataModifyHook;
+  private processMethodChangeCallback: () => any = this.processMethodChangeHook;
 
   constructor(protected dataResourceService: IDataResource<T>) {
   }
@@ -94,6 +95,15 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return this.dataResourceService.getPagerService();
   }
 
+  public getSortService(): IDataSort<T> {
+    return this.dataResourceService.getSortService();
+  }
+
+  public registerSortService(sortService: IDataSort<T>): void {
+    this.dataResourceService.registerSortService(sortService);
+    this.processMethodChangeCallback();
+  }
+
   public getSelected(): T {
     return this.selectedItem;
   }
@@ -112,6 +122,12 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
 
   public onProcessMethodChange(callback: () => any): void {
     this.processMethodChangeCallback = callback;
+  }
+
+  private dataModifyHook() {
+  }
+
+  private processMethodChangeHook() {
   }
 
 }
