@@ -11,6 +11,7 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
   private fileReader = new MarkdownFileReader();
   private fs = electron.remote.require('fs');
   private config: any;
+  private nextId: number = 0;
 
   public processResource(): Article[] {
     this.readConfig();
@@ -58,7 +59,7 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
     for (let file of files) {
       if (file.substr(file.lastIndexOf('.')) === '.md') {
         let article = self.fileReader.getArticleFromFile(dir + file);
-        article.id = articles.length;
+        article.id = this.nextId++;
         article.status = status;
         articles.push(article);
       }

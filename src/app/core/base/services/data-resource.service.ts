@@ -20,8 +20,6 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
   protected resourceProcessor: IResourceProcessor<T>;
   protected dataSortService: IDataSort<T>;
 
-  // use to connect item with id
-  private itemFinder: Map<number, T> = new Map();
   private processListCache: T[];
 
   constructor(resourceProcessor: IResourceProcessor<T>,
@@ -34,7 +32,6 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     this.filterService = filterService;
 
     this.list = resourceProcessor.processResource();
-    this.updateItemFinder();
   }
 
   public setDataOption(option: DataOption): void {
@@ -46,7 +43,7 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
   }
 
   public getItem(id: number): T {
-    return this.itemFinder.get(id);
+    return this.list.find((item) => item.id === id);
   }
 
   public getList(): T[] {
@@ -83,7 +80,6 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
 
   public refresh(): void {
     this.list = this.resourceProcessor.processResource();
-    this.updateItemFinder();
     this.pagerService.setList(this.list);
     this.processListCache = null;
   }
@@ -116,13 +112,6 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
   public registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void {
     this.resourceProcessor = resourceProcessor;
     this.refresh();
-  }
-
-  private updateItemFinder(): void {
-    this.itemFinder.clear();
-    this.list.forEach((value) => {
-      this.itemFinder.set(value.id, value);
-    });
   }
 
   private processList(): T[] {
