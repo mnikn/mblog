@@ -16,11 +16,13 @@ export class HomeComponent {
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
               private router: Router) {
-    this.articles = this.processArticles();
+    this.setArticles();
+    this.dataService.onDataModify(() => {
+      this.setArticles();
+    });
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd && val.url === '/main-page/home') {
-        this.articles = this.processArticles();
-        this.dataService.getPagerService().setList(this.articles);
+        this.setArticles();
       }
     });
   }
@@ -30,6 +32,11 @@ export class HomeComponent {
     this.dataService.setFilter(new Filter('blur', this.dataService.getItem(article.id).title));
     this.mainService.selectTab = 2;
     this.router.navigate(['/main-page/note-info', article.status]);
+  }
+
+  private setArticles(): void {
+    this.articles = this.processArticles();
+    this.dataService.getPagerService().setList(this.articles);
   }
 
   private processArticles(): Article[] {
