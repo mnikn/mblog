@@ -6,11 +6,11 @@
          [style.padding-left]="dataService.getSelected() && dataService.getSelected().id === article.id ?
          '32px' :
          '0px'"
-         (click)="onSelect(article,item)">
-      <a>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</a>
+         (click)="onSelect(article)">
+      <p>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</p>
       <p></p>
       <div class="content">
-        <a class="header">标题：{{article.title}}</a><br>
+        <p class="header">标题：{{article.title}}</p><br>
         <div class="description">
           <span class="ui inverted">标签：</span>
           <div class="ui inverted basic button" *ngFor="let tag of article.tags" (click)="onTagClick(tag)">
