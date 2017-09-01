@@ -11,7 +11,7 @@
           <br>
           <div class="text">
             <span class="ui inverted">标签：</span>
-            <div class="ui inverted basic button" *ngFor="let tag of article.tags">
+            <div class="ui inverted basic button" *ngFor="let tag of article.tags" (click)="onTagClick(tag)">
               {{tag.name}}
             </div>
           </div>
