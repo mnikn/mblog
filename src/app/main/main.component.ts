@@ -21,4 +21,10 @@ export class MainComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.mainService.sidebar = this.sidebar;
   }
+
+  public keepSidebarState(): void {
+    this.sidebar.service.wasJustOpened ?
+      this.sidebar.service.setVisibleState(true) :
+      this.sidebar.service.setVisibleState(false);
+  }
 }

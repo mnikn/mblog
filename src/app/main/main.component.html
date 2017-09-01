@@ -3,7 +3,7 @@
   <sui-sidebar class="inverted vertical" [isVisible]="true" #sidebar>
     <sidebar></sidebar>
   </sui-sidebar>
-  <sui-sidebar-sibling style="padding: 0">
+  <sui-sidebar-sibling (click)="keepSidebarState()" style="padding: 0">
     <div class="ui basic segment"
          [style.height]="windowService.getScreenHeight() + 'px'"
          style="padding: 0 1px 1px;overflow: scroll">
