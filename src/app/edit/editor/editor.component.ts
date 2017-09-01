@@ -2,16 +2,14 @@ import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Render
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/services/window.service';
 import { EditorService } from './editor.service';
-import { IHotkeyService } from '../../core/base/interfaces/hotkey-service';
 import { EditService } from '../edit.service';
 import { IContentProcessor } from '../../core/base/interfaces/content/content-processor';
 import { MarkdownContentProcessor } from '../../core/services/content/markdown/markdown-content-processor';
+import { ArticleDataService } from '../../core/services/data/article-data.service';
+import { ActivatedRoute } from '@angular/router';
+import { HotkeyService } from '../../core/services/hotkey.service';
 declare let electron: any;
 import * as _ from 'lodash';
-import { ArticleDataService } from '../../core/services/data/article-data.service';
-import { Router } from "@angular/router/src";
-import { ActivatedRoute, ParamMap } from "@angular/router";
-
 
 @Component({
   selector: 'editor',
@@ -28,7 +26,7 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(public windowService: WindowService,
               private dataService: ArticleDataService,
-              @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
+              private hotkeyService: HotkeyService,
               private editService: EditService,
               private render: Renderer2,
               private route: ActivatedRoute) {

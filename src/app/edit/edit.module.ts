@@ -31,7 +31,7 @@ import { EditService } from './edit.service';
   ],
   providers: [
     EditService,
-    {provide: 'IHotkeyService', useClass: HotkeyService}
+    HotkeyService
   ]
 })
 

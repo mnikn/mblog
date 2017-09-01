@@ -1,7 +1,12 @@
 <div class="ui black inverted menu">
-  <home-buttons class="left menu" *ngIf="mainService.selectTab === 1"></home-buttons>
-  <post-buttons class="left menu" *ngIf="mainService.selectTab === 2"></post-buttons>
-  <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3"></draft-buttons>
+  <div class="left menu">
+    <a class="item" (click)="mainService.toggleSidebar()">
+      <i class="sidebar icon"></i> 菜单栏
+    </a>
+    <home-buttons class="left menu" *ngIf="mainService.selectTab === 1"></home-buttons>
+    <post-buttons class="left menu" *ngIf="mainService.selectTab === 2"></post-buttons>
+    <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3"></draft-buttons>
+  </div>
   <div class="right menu" style="margin-right: 20%" *ngIf="mainService.selectTab !== 1">
     <div class="item">
       <div class="ui icon input">

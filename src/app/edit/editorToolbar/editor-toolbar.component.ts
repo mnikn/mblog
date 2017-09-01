@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { IPopup, ModalTemplate, SuiModalService, TemplateModalConfig } from 'ng2-semantic-ui';
 import { SuiPopup } from 'ng2-semantic-ui/dist';
 import { Router } from '@angular/router';
-import { IHotkeyService } from 'app/core/base/interfaces/hotkey-service';
 import { EditService } from '../edit.service';
 import { ArticleDataService } from '../../core/services/data/article-data.service';
+import { HotkeyService } from 'app/core/services/hotkey.service';
 
 export interface IContext {
   title: string;
@@ -25,7 +25,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
 
   constructor(public editService: EditService,
               private dataService: ArticleDataService,
-              @Inject('IHotkeyService') private hotkeyService: IHotkeyService,
+              private hotkeyService: HotkeyService,
               private modalService: SuiModalService,
               private router: Router) {
   }

@@ -9,6 +9,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { MainSharedModule } from './shared/shared.module';
 import { SuiSidebarModule } from 'ng2-semantic-ui';
 import { MainService } from './main.service';
+import { HotkeyService } from '../core/services/hotkey.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { MainService } from './main.service';
     HomeComponent,
     NoteInfoComponent
   ],
-  providers: [MainService]
+  providers: [MainService, HotkeyService]
 })
 
 export class MainModule {
