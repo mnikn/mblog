@@ -11,7 +11,7 @@ declare let electron: any;
   templateUrl: './toolbar.component.html'
 })
 
-export class ToolbarComponent implements AfterViewInit,OnDestroy {
+export class ToolbarComponent implements AfterViewInit, OnDestroy {
 
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
@@ -22,6 +22,8 @@ export class ToolbarComponent implements AfterViewInit,OnDestroy {
   public ngAfterViewInit(): void {
     this.hotkeyService.bindKey('command+m', () => {
       this.mainService.sidebar.toggle();
+    }).bindKey('command+e', () => {
+      this.onEdit();
     });
   }
 
