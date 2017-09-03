@@ -9,6 +9,7 @@ export class DataPagerService<T> implements IDataPager<T> {
   private pageSize: number = 10;
   private lastPage: number;
   private list: T[] = [];
+  private pageListCache: T[][] = [];
 
   constructor() {
     this.reset();
@@ -24,16 +25,22 @@ export class DataPagerService<T> implements IDataPager<T> {
   }
 
   public currentPageList(): T[] {
+    if (this.pageListCache[this.currentPage]) {
+      return this.pageListCache[this.currentPage];
+    }
+    let list;
     if (this.currentPage <= 1) {
-      return _.take(this.list, this.pageSize);
-    }
-    if (this.currentPage >= this.lastPage) {
-      return _.slice(this.list, this.pageItemCount(this.lastPage),
+      list = _.take(this.list, this.pageSize);
+    } else if (this.currentPage >= this.lastPage) {
+      list = _.slice(this.list, this.pageItemCount(this.lastPage),
         this.pageItemCount(this.lastPage) + this.pageSize);
+    } else {
+      list = _.slice(this.list,
+        this.pageItemCount(this.currentPage),
+        this.pageItemCount(this.currentPage) + this.pageSize);
     }
-    return _.slice(this.list,
-      this.pageItemCount(this.currentPage),
-      this.pageItemCount(this.currentPage) + this.pageSize);
+    this.pageListCache[this.currentPage] = list;
+    return this.pageListCache[this.currentPage];
   }
 
   public setPageSize(pageSize: number): void {
@@ -56,5 +63,6 @@ export class DataPagerService<T> implements IDataPager<T> {
       ++this.lastPage;
       this.lastPage = Math.floor(this.lastPage);
     }
+    this.pageListCache = [];
   }
 }
