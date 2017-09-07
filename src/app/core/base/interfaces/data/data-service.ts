@@ -27,7 +27,7 @@ export interface IDataService<T extends IIdentifiable> {
   setDataOption(option: DataOption): void;
   getDataOption(): DataOption;
   getSelected(): T;
-  setSelected(id: number);
+  setSelected(item: T);
   onDataModify(callback: () => any): void;
 
   /**

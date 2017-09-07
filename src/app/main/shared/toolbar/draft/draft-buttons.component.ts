@@ -57,7 +57,7 @@ export class DraftButtonsComponent {
     this.dataService.deleteItem(article);
     article.status = ARTICLE_STATUS.POST;
     this.dataService.createItem(article);
-    this.dataService.setSelected(-1);
+    this.dataService.setSelected(null);
   }
 
 }

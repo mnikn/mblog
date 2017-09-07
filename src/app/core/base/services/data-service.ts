@@ -108,8 +108,8 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return this.selectedItem;
   }
 
-  public setSelected(id: number) {
-    this.selectedItem = this.dataResourceService.getItem(id);
+  public setSelected(item: T) {
+    this.selectedItem = item;
   }
 
   public registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void {

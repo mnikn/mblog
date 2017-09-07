@@ -38,14 +38,14 @@ export class NoteListComponent implements OnInit, OnDestroy {
       if (this.dataService.getSelected()) {
         let index = this.articles.indexOf(this.dataService.getSelected());
         if (index > 0) {
-          this.dataService.setSelected(this.articles[index - 1].id);
+          this.dataService.setSelected(this.articles[index - 1]);
         }
       }
     }).bindKey('down', () => {
       if (this.dataService.getSelected()) {
         let index = this.articles.indexOf(this.dataService.getSelected());
         if (index < this.articles.length - 1) {
-          this.dataService.setSelected(this.articles[index + 1].id);
+          this.dataService.setSelected(this.articles[index + 1]);
         }
       }
     });
@@ -58,8 +58,8 @@ export class NoteListComponent implements OnInit, OnDestroy {
   public onSelect(article: Article): void {
     // when then item has been clicked,the select will be canceled
     article === this.dataService.getSelected() ?
-      this.dataService.setSelected(-1) :
-      this.dataService.setSelected(article.id);
+      this.dataService.setSelected(null) :
+      this.dataService.setSelected(article);
   }
 
   public onTagClick(tag): void {

@@ -28,7 +28,7 @@ export class HomeComponent {
   }
 
   public gotoNoteInfo(article: Article): void {
-    this.dataService.setSelected(article.id);
+    this.dataService.setSelected(article);
     this.dataService.setFilter(new Filter('blur', this.dataService.getItem(article.id).title));
     this.mainService.selectTab = 2;
     this.router.navigate(['/main-page/note-info', article.status]);
