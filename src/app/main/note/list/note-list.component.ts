@@ -1,4 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild,
+  ViewChildren
+} from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../../core/models/article';
 import { Filter } from 'app/core/models/filter';
 import { WindowService } from '../../../core/services/window.service';
@@ -15,6 +18,8 @@ export class NoteListComponent implements OnInit, OnDestroy {
 
   public selectStatus: ARTICLE_STATUS;
   public articles: Article[];
+  @ViewChild('list') private listElement: ElementRef;
+  @ViewChildren('item') private itemElements: QueryList<ElementRef>;
 
   constructor(public dataService: ArticleDataService,
               public windowService: WindowService,
@@ -38,14 +43,21 @@ export class NoteListComponent implements OnInit, OnDestroy {
       if (this.dataService.getSelected()) {
         let index = this.articles.indexOf(this.dataService.getSelected());
         if (index > 0) {
-          this.dataService.setSelected(this.articles[index - 1]);
+
+          let element = this.itemElements.filter((item, i) => {
+            return i === index - 1;
+          })[0].nativeElement;
+          this.onSelect(this.articles[index - 1], element);
         }
       }
     }).bindKey('down', () => {
       if (this.dataService.getSelected()) {
         let index = this.articles.indexOf(this.dataService.getSelected());
         if (index < this.articles.length - 1) {
-          this.dataService.setSelected(this.articles[index + 1]);
+          let element = this.itemElements.filter((item, i) => {
+            return i === index + 1;
+          })[0].nativeElement;
+          this.onSelect(this.articles[index + 1], element);
         }
       }
     });
@@ -55,11 +67,13 @@ export class NoteListComponent implements OnInit, OnDestroy {
     this.hotkeyService.clear();
   }
 
-  public onSelect(article: Article): void {
+  public onSelect(article: Article, element): void {
     // when then item has been clicked,the select will be canceled
     article === this.dataService.getSelected() ?
       this.dataService.setSelected(null) :
       this.dataService.setSelected(article);
+    console.log(element.offsetTop);
+
   }
 
   public onTagClick(tag): void {

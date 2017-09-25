@@ -1,12 +1,15 @@
 <div class="ui inverted segment"
+     #list
      [style.height]="windowService.getScreenHeight() + 'px'"
      [style.overflow]="'scroll'">
   <div class="ui inverted relaxed divided selection list">
-    <div class="item" #item *ngFor="let article of articles" style="cursor: pointer"
+    <div class="item" #item
+         *ngFor="let article of articles"
+         style="cursor: pointer;"
          [style.padding-left]="dataService.getSelected() && dataService.getSelected().id === article.id ?
          '32px' :
          '0px'"
-         (click)="onSelect(article)">
+         (click)="onSelect(article,item)">
       <p>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</p>
       <p></p>
       <div class="content">
