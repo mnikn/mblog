@@ -1,6 +1,8 @@
 <style>
   #editor {
     font-size: 1.2em;
+    background: #1b1c1d;
+    color: whitesmoke;
     resize: none;
     border: none;
   }
@@ -10,5 +12,7 @@
   <textarea id="editor" #editor
             rows="" cols=""
             style="line-height: 1.5;letter-spacing: 1px"
-            [style.height]="windowService.getScreenHeight() + 'px'">{{article.content.mdContent}}</textarea>
+            [style.height]="windowService.getScreenHeight() + 'px'">
+    {{article.content.mdContent}}
+  </textarea>
 </div>
