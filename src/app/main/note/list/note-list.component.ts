@@ -72,8 +72,7 @@ export class NoteListComponent implements OnInit, OnDestroy {
     article === this.dataService.getSelected() ?
       this.dataService.setSelected(null) :
       this.dataService.setSelected(article);
-    console.log(element.offsetTop);
-
+    this.listElement.nativeElement.scrollTop = element.offsetTop - 100;
   }
 
   public onTagClick(tag): void {
