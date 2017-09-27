@@ -7,7 +7,7 @@
     <post-buttons class="left menu" *ngIf="mainService.selectTab === 2"></post-buttons>
     <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3"></draft-buttons>
   </div>
-  <div class="right menu" style="margin-right: 20%" *ngIf="mainService.selectTab !== 1">
+  <div class="right menu" *ngIf="mainService.selectTab !== 1">
     <div class="item">
       <div class="ui icon input">
         <input #searchFilter type="text" placeholder="搜索..."
