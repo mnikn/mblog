@@ -3,6 +3,9 @@
     <a class="item" (click)="mainService.toggleSidebar()">
       <i class="sidebar icon"></i> 菜单栏
     </a>
+    <a class="item" suiPopup [popupTemplate]="tagsWall" popupTrigger="outsideClick">
+      <i class="tag icon"></i> 标签墙
+    </a>
     <home-buttons class="left menu" *ngIf="mainService.selectTab === 1"></home-buttons>
     <post-buttons class="left menu" *ngIf="mainService.selectTab === 2"></post-buttons>
     <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3"></draft-buttons>
@@ -22,3 +25,14 @@
     </div>
   </div>
 </div>
+
+<ng-template let-popup #tagsWall>
+  <div class="ui equal width grid">
+    <div class="ui basic button" style="margin: 6px" *ngFor="let tag of dataService.getAllTags()"
+         (click)="onTagClick(tag)">
+    <span>
+      {{tag}}
+    </span>
+    </div>
+  </div>
+</ng-template>

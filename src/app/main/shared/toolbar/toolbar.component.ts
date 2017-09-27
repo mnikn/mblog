@@ -4,6 +4,7 @@ import { ArticleDataService } from '../../../core/services/data/article-data.ser
 import { Router } from '@angular/router';
 import { MainService } from '../../main.service';
 import { HotkeyService } from '../../../core/services/hotkey.service';
+import { Tag } from 'app/core/models/tag';
 declare let electron: any;
 
 @Component({
@@ -37,5 +38,9 @@ export class ToolbarComponent implements AfterViewInit, OnDestroy {
 
   public onSearchEnter(value) {
     this.dataService.setFilter(new Filter('blur', value));
+  }
+
+  public onTagClick(tag: string): void {
+    this.dataService.setFilter(new Filter('tag', tag));
   }
 }
