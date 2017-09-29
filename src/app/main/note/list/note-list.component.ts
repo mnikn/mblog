@@ -75,6 +75,11 @@ export class NoteListComponent implements OnInit, OnDestroy {
     this.listElement.nativeElement.scrollTop = element.offsetTop - 100;
   }
 
+  public isSelect(article: Article) {
+    return this.dataService.getSelected() &&
+      this.dataService.getSelected().id === article.id;
+  }
+
   public onTagClick(tag): void {
     this.dataService.setFilter(new Filter('tag', tag.name));
   };

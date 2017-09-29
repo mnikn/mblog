@@ -5,10 +5,9 @@
   <div class="ui inverted relaxed divided selection list">
     <div class="item" #item
          *ngFor="let article of articles"
-         style="cursor: pointer;"
-         [style.padding-left]="dataService.getSelected() && dataService.getSelected().id === article.id ?
-         '32px' :
-         '0px'"
+         style="cursor: pointer"
+         [style.padding-left]="isSelect(article) ? '32px' :'0px'"
+         [style.background]="isSelect(article) ? '#434343' : '#1b1c1d'"
          (click)="onSelect(article,item)">
       <p>创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</p>
       <p></p>
