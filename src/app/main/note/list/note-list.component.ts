@@ -21,6 +21,8 @@ export class NoteListComponent implements OnInit, OnDestroy {
   @ViewChild('list') private listElement: ElementRef;
   @ViewChildren('item') private itemElements: QueryList<ElementRef>;
 
+  private scrollDistance: number = 250;
+
   constructor(public dataService: ArticleDataService,
               public windowService: WindowService,
               private hotkeyService: HotkeyService,
@@ -72,7 +74,8 @@ export class NoteListComponent implements OnInit, OnDestroy {
     article === this.dataService.getSelected() ?
       this.dataService.setSelected(null) :
       this.dataService.setSelected(article);
-    this.listElement.nativeElement.scrollTop = element.offsetTop - 100;
+    this.scrollTo(this.listElement.nativeElement,
+      element.offsetTop - this.scrollDistance);
   }
 
   public isSelect(article: Article) {
@@ -83,4 +86,11 @@ export class NoteListComponent implements OnInit, OnDestroy {
   public onTagClick(tag): void {
     this.dataService.setFilter(new Filter('tag', tag.name));
   };
+
+  private scrollTo(element, pos) {
+    let duration = 100;
+    setTimeout(() => {
+      element.scrollTop = pos;
+    }, duration);
+  }
 }

@@ -6,4 +6,8 @@ export class WindowService {
   public getScreenHeight(): number {
     return $(window).height();
   }
+
+  public getWindow(): Window {
+    return $(window);
+  }
 }
