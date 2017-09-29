@@ -6,7 +6,7 @@ import { Article, ARTICLE_STATUS } from '../../../core/models/article';
 import { Filter } from 'app/core/models/filter';
 import { WindowService } from '../../../core/services/window.service';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HotkeyService } from '../../../core/services/hotkey.service';
 
 @Component({
@@ -26,6 +26,7 @@ export class NoteListComponent implements OnInit, OnDestroy {
   constructor(public dataService: ArticleDataService,
               public windowService: WindowService,
               private hotkeyService: HotkeyService,
+              private router: Router,
               private route: ActivatedRoute) {
     this.dataService.onDataModify(() => {
       this.articles = this.dataService.getArticles(this.selectStatus);
@@ -62,6 +63,8 @@ export class NoteListComponent implements OnInit, OnDestroy {
           this.onSelect(this.articles[index + 1], element);
         }
       }
+    }).bindKey('enter', () => {
+      this.router.navigate(['/edit', this.dataService.getSelected().id]);
     });
   }
 
