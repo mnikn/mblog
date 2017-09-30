@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Article } from '../../models/article';
 import { Tag } from '../../models/tag';
-import { DataFilterService } from '../../base/services/data-filter.service';
+import { DataFilterService } from '../../base/services/data/data-filter.service';
 
 @Injectable()
 export class ArticleFilterService extends DataFilterService<Article> {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IDataFilter } from '../interfaces/data/data-filter';
-import { Filter } from '../../models/filter';
+import { IDataFilter } from '../../interfaces/data/data-filter';
+import { Filter } from '../../../models/filter';
 
 @Injectable()
 export abstract class DataFilterService<T> implements IDataFilter<T> {

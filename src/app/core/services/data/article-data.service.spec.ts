@@ -2,8 +2,8 @@ import { ArticleSortService } from './article-sort.service';
 import { Article, ARTICLE_STATUS } from 'app/core/models/article';
 import { Tag } from '../../models/tag';
 import { ArticleDataService } from './article-data.service';
-import { DataPagerService } from 'app/core/base/services/data-pager.service';
-import { DataResourceService } from '../../base/services/data-resource.service';
+import { DataPagerService } from 'app/core/base/services/data/data-pager.service';
+import { DataResourceService } from '../../base/services/data/data-resource.service';
 import { ArticleFilterService } from 'app/core/services/data/article-filter.service';
 import { IResourceProcessor } from 'app/core/base/interfaces/data/resource-processor';
 

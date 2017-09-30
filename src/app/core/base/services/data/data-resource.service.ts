@@ -1,14 +1,14 @@
-import { IDataResource } from '../interfaces/data/data-resource';
-import { DataOption } from '../params/data-option';
-import { IDataPager } from '../interfaces/data/data-pager';
-import { IDataFilter } from '../interfaces/data/data-filter';
+import { IDataResource } from '../../interfaces/data/data-resource';
+import { DataOption } from '../../params/data-option';
+import { IDataPager } from '../../interfaces/data/data-pager';
+import { IDataFilter } from '../../interfaces/data/data-filter';
 import { Injectable } from '@angular/core';
-import { Filter } from '../../models/filter';
+import { Filter } from '../../../models/filter';
 import { DataPagerService } from './data-pager.service';
 import { DataFilterService } from './data-filter.service';
-import { IResourceProcessor } from '../interfaces/data/resource-processor';
-import { IDataSort } from '../interfaces/data/data-sort';
-import { IIdentifiable } from '../interfaces/models/identifiable';
+import { IResourceProcessor } from '../../interfaces/data/resource-processor';
+import { IDataSort } from '../../interfaces/data/data-sort';
+import { IIdentifiable } from '../../interfaces/models/identifiable';
 
 @Injectable()
 export class DataResourceService<T extends IIdentifiable> implements IDataResource<T> {

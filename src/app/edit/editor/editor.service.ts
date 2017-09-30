@@ -1,4 +1,5 @@
 import { ElementRef, Injectable } from '@angular/core';
+import { StringUtils } from "../../core/base/services/utils/string-utils";
 
 @Injectable()
 export class EditorService {
@@ -35,31 +36,20 @@ export class EditorService {
   public onEnter() {
     let line = this.getCurrentLine();
 
-    let order = 0;
-    let orderType = ['- ', '+ '];
-    let orderIndex = line.indexOf(orderType[0]);
-    if (orderIndex !== -1 && line.match('[a-zA-Z0-9]')) {
-      order = 1;
-    } else if (line.indexOf(orderType[1]) !== -1 && line.match('[a-zA-Z0-9]')) {
-      orderIndex = line.indexOf('+ ');
-      order = 2;
+    // count first space in string
+    let firstSpaceCount = StringUtils.getFirstSpaceCount(line);
+
+    let firstInsertStr = '';
+    if (line.trim().startsWith('-') && line.match('[a-zA-Z0-9]')) {
+      firstInsertStr = '- ';
+    }
+    if (line.trim().startsWith('+') && line.match('[a-zA-Z0-9]')) {
+      firstInsertStr = '+ ';
     }
 
-    let space = '';
-    if (orderIndex !== -1) {
-      space = ' '.repeat(orderIndex);
-    }
-    switch (order) {
-      case 1:
-        this.insertAtCursor('\n' + space + orderType[0], space.length + 3);
-        break;
-      case 2:
-        this.insertAtCursor('\n' + space + orderType[1], space.length + 3);
-        break;
-      default:
-        this.insertAtCursor('\n', 1);
-        break;
-    }
+    let space = ' '.repeat(firstSpaceCount);
+    let insertStr = '\n' + space + firstInsertStr;
+    this.insertAtCursor(insertStr, space.length + 3);
   }
 
   private getCurrentLine(): string {

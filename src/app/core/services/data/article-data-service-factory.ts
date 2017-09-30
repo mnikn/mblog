@@ -1,9 +1,9 @@
 import { Article } from '../../models/article';
-import { DataPagerService } from '../../base/services/data-pager.service';
+import { DataPagerService } from '../../base/services/data/data-pager.service';
 import { ArticleFilterService } from './article-filter.service';
 import { MarkdownFileProcessor } from './markdown-file-processor';
 import { ArticleSortService } from './article-sort.service';
-import { DataResourceService } from '../../base/services/data-resource.service';
+import { DataResourceService } from '../../base/services/data/data-resource.service';
 import { ArticleDataService } from './article-data.service';
 
 export let articleDataServiceFactory = () => {

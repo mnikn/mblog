@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../models/article';
-import { DataService } from '../../base/services/data-service';
+import { DataService } from '../../base/services/data/data-service';
 import { IDataResource } from '../../base/interfaces/data/data-resource';
 import { Tag } from '../../models/tag';
 import * as _ from 'lodash';
