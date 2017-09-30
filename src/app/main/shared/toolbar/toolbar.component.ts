@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Filter } from 'app/core/models/filter';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { Router } from '@angular/router';
 import { MainService } from '../../main.service';
 import { HotkeyService } from '../../../core/services/hotkey.service';
-import { Tag } from 'app/core/models/tag';
 declare let electron: any;
 
 @Component({
@@ -12,7 +11,7 @@ declare let electron: any;
   templateUrl: './toolbar.component.html'
 })
 
-export class ToolbarComponent implements AfterViewInit, OnDestroy {
+export class ToolbarComponent implements AfterViewInit {
 
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
@@ -26,10 +25,6 @@ export class ToolbarComponent implements AfterViewInit, OnDestroy {
     }).bindKey('command+e', () => {
       this.onEdit();
     });
-  }
-
-  public ngOnDestroy(): void {
-    this.hotkeyService.clear();
   }
 
   public onEdit() {
