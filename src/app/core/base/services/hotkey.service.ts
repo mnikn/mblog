@@ -1,4 +1,4 @@
-import { IHotkeyService } from '../base/interfaces/hotkey-service';
+import { IHotkeyService } from '../interfaces/hotkey-service';
 import { HotkeysService } from 'angular2-hotkeys';
 import { Injectable } from '@angular/core';
 

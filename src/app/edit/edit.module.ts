@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
-import { HotkeyService } from '../core/services/hotkey.service';
+import { HotkeyService } from '../core/base/services/hotkey.service';
 import { EditService } from './edit.service';
 
 @NgModule({

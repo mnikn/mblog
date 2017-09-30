@@ -4,10 +4,10 @@ import {
 } from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../../core/models/article';
 import { Filter } from 'app/core/models/filter';
-import { WindowService } from '../../../core/services/window.service';
+import { WindowService } from '../../../core/base/services/window.service';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotkeyService } from '../../../core/services/hotkey.service';
+import { HotkeyService } from '../../../core/base/services/hotkey.service';
 
 @Component({
   selector: 'note-list',

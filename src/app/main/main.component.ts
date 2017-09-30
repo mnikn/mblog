@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { WindowService } from '../core/services/window.service';
+import { WindowService } from '../core/base/services/window.service';
 import { SuiSidebar } from 'ng2-semantic-ui/dist';
 import { MainService } from './main.service';
 import { ArticleDataService } from '../core/services/data/article-data.service';

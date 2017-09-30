@@ -9,7 +9,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { MainSharedModule } from './shared/shared.module';
 import { SuiSidebarModule } from 'ng2-semantic-ui';
 import { MainService } from './main.service';
-import { HotkeyService } from '../core/services/hotkey.service';
+import { HotkeyService } from '../core/base/services/hotkey.service';
 
 @NgModule({
   declarations: [

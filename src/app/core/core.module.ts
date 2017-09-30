@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { WindowService } from './services/window.service';
+import { WindowService } from './base/services/window.service';
 import { HotkeyModule } from 'angular2-hotkeys';
 
 @NgModule({

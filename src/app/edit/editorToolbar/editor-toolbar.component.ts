@@ -4,7 +4,7 @@ import { SuiPopup } from 'ng2-semantic-ui/dist';
 import { Router } from '@angular/router';
 import { EditService } from '../edit.service';
 import { ArticleDataService } from '../../core/services/data/article-data.service';
-import { HotkeyService } from 'app/core/services/hotkey.service';
+import { HotkeyService } from 'app/core/base/services/hotkey.service';
 
 export interface IContext {
   title: string;

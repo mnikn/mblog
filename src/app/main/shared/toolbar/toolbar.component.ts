@@ -3,7 +3,7 @@ import { Filter } from 'app/core/models/filter';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { Router } from '@angular/router';
 import { MainService } from '../../main.service';
-import { HotkeyService } from '../../../core/services/hotkey.service';
+import { HotkeyService } from '../../../core/base/services/hotkey.service';
 declare let electron: any;
 
 @Component({

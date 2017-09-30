@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Article } from '../../core/models/article';
-import { WindowService } from '../../core/services/window.service';
+import { WindowService } from '../../core/base/services/window.service';
 import { EditorService } from './editor.service';
 import { EditService } from '../edit.service';
 import { IContentProcessor } from '../../core/base/interfaces/content/content-processor';
 import { MarkdownContentProcessor } from '../../core/services/content/markdown/markdown-content-processor';
 import { ArticleDataService } from '../../core/services/data/article-data.service';
 import { ActivatedRoute } from '@angular/router';
-import { HotkeyService } from '../../core/services/hotkey.service';
+import { HotkeyService } from '../../core/base/services/hotkey.service';
 declare let electron: any;
 import * as _ from 'lodash';
 
