@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EditService } from '../edit.service';
 import { ArticleDataService } from '../../core/services/data/article-data.service';
 import { HotkeyService } from 'app/core/base/services/hotkey.service';
+import { Context } from '../../core/context';
 
 export interface IContext {
   title: string;
@@ -68,9 +69,9 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   private setHotKeys(): void {
-    this.hotkeyService.bindKey('command+s', () => {
+    this.hotkeyService.bindKey(Context.hotkey.save, () => {
       this.onSave(this.popup);
-    }).bindKey('command+shift+left', () => {
+    }).bindKey(Context.hotkey.back, () => {
       this.onBack();
     });
   }
