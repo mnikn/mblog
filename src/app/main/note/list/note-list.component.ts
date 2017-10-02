@@ -8,6 +8,7 @@ import { WindowService } from '../../../core/base/services/window.service';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotkeyService } from '../../../core/base/services/hotkey.service';
+import { Context } from '../../../core/context';
 
 @Component({
   selector: 'note-list',
@@ -42,7 +43,7 @@ export class NoteListComponent implements OnInit, OnDestroy {
       this.articles = this.dataService.getArticles(this.selectStatus);
     });
 
-    this.hotkeyService.bindKey('up', () => {
+    this.hotkeyService.bindKey(Context.hotkey.up, () => {
       if (this.dataService.getSelected()) {
         let index = this.articles.indexOf(this.dataService.getSelected());
         if (index > 0) {
@@ -53,7 +54,7 @@ export class NoteListComponent implements OnInit, OnDestroy {
           this.onSelect(this.articles[index - 1], element);
         }
       }
-    }).bindKey('down', () => {
+    }).bindKey(Context.hotkey.down, () => {
       if (this.dataService.getSelected()) {
         let index = this.articles.indexOf(this.dataService.getSelected());
         if (index < this.articles.length - 1) {
@@ -63,7 +64,7 @@ export class NoteListComponent implements OnInit, OnDestroy {
           this.onSelect(this.articles[index + 1], element);
         }
       }
-    }).bindKey('enter', () => {
+    }).bindKey(Context.hotkey.edit, () => {
       this.router.navigate(['/edit', this.dataService.getSelected().id]);
     });
   }

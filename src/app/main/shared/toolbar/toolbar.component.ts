@@ -4,6 +4,7 @@ import { ArticleDataService } from '../../../core/services/data/article-data.ser
 import { Router } from '@angular/router';
 import { MainService } from '../../main.service';
 import { HotkeyService } from '../../../core/base/services/hotkey.service';
+import { Context } from '../../../core/context';
 declare let electron: any;
 
 @Component({
@@ -20,9 +21,9 @@ export class ToolbarComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.hotkeyService.bindKey('command+m', () => {
+    this.hotkeyService.bindKey(Context.hotkey.menu, () => {
       this.mainService.sidebar.toggle();
-    }).bindKey('command+e', () => {
+    }).bindKey(Context.hotkey.edit, () => {
       this.onEdit();
     });
   }

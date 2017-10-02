@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HotkeyService } from '../../core/base/services/hotkey.service';
 declare let electron: any;
 import * as _ from 'lodash';
+import { Context } from "../../core/context";
 
 @Component({
   selector: 'editor',
@@ -78,17 +79,17 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setHotKeys(): void {
-    this.hotkeyService.bindKey('command+b', () => {
+    this.hotkeyService.bindKey(Context.hotkey.insertBold, () => {
       this.service.insertBold();
-    }).bindKey('command+i', () => {
+    }).bindKey(Context.hotkey.insertItalic, () => {
       this.service.insertItalic();
-    }).bindKey('command+p', () => {
+    }).bindKey(Context.hotkey.insertPicture, () => {
       this.service.insertPicture();
-    }).bindKey('command+l', () => {
+    }).bindKey(Context.hotkey.insertLink, () => {
       this.service.insertLink();
-    }).bindKey('command+/', () => {
+    }).bindKey(Context.hotkey.insertComment, () => {
       this.service.insertComment();
-    }).bindKey('command+`', () => {
+    }).bindKey(Context.hotkey.insertCode, () => {
       this.service.insertCode();
     }).bindKey('enter', () => {
       this.service.onEnter();
