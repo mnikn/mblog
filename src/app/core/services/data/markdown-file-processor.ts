@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../models/article';
 import { MarkdownFileReader } from './markdown-file-reader';
 import { isUndefined } from 'util';
-import { Context } from '../context';
+import { Context } from '../../context';
 import { IResourceProcessor } from '../../base/interfaces/data/resource-processor';
 declare let electron: any;
 

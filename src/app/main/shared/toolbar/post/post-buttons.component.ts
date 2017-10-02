@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Context } from '../../../../core/services/context';
+import { Context } from '../../../../core/context';
 import { ConfirmModal } from '../../../../shared/confirmModal/cofirm-modal';
 import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { Article, ARTICLE_STATUS } from '../../../../core/models/article';
