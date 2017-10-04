@@ -49,7 +49,8 @@ export class EditorService {
 
     let space = ' '.repeat(firstSpaceCount);
     let insertStr = '\n' + space + firstInsertStr;
-    this.insertAtCursor(insertStr, space.length + 3);
+    console.log(insertStr.length);
+    this.insertAtCursor(insertStr, insertStr.length);
   }
 
   private getCurrentLine(): string {
