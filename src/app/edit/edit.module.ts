@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SuiModalModule, SuiPopupModule } from 'ng2-semantic-ui';
 import { HotkeyService } from '../core/base/services/hotkey.service';
 import { EditService } from './edit.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditService } from './edit.service';
     FormsModule,
     SharedModule,
     SuiModalModule,
-    SuiPopupModule
+    SuiPopupModule,
+    TranslateModule
   ],
   exports: [
     EditComponent,

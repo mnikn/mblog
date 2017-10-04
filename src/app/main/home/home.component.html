@@ -1,5 +1,7 @@
 <div class="ui basic segment">
-  <span style="font-size: 1.2rem;font-weight: bolder">你已经发布了 {{articles.length}} 篇博客啦，继续加油吧！</span>
+  <span [translate]="'HOME.TITLE'" [translateParams]="{value: articles.length}"
+        style="font-size: 1.2rem;font-weight: bolder">
+  </span>
 
   <div class="ui large feed">
     <div class="event" *ngFor="let article of dataService.getPagerService().currentPageList()">

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SuiPaginationModule } from 'ng2-semantic-ui';
 import { RouterModule } from '@angular/router';
 import { MainSharedModule } from '../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MainSharedModule } from '../shared/shared.module';
     MainSharedModule,
     CommonModule,
     SuiPaginationModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   exports: [
     HomeComponent

@@ -1,27 +1,27 @@
 <a class="item" (click)="onAdd()">
-  <i class="add square icon"></i>添加笔记
+  <i class="add square icon"></i>{{'MAIN_TOOLBAR.ADD_ARTICLE' | translate}}
 </a>
 <a class="item" (click)="onDelete(popup)"
    suiPopup
-   popupText="你还没有选择笔记！"
+   [popupText]="'MAIN_POPUP.NEED_SELECT' | translate"
    #popup="suiPopup"
    popupTrigger="manual">
-  <i class="delete square icon"></i>删除笔记
+  <i class="delete square icon"></i>{{'MAIN_TOOLBAR.DELETE_ARTICLE' | translate}}
 </a>
 <a class="item" (click)="moveToDraft(movePopup)"
    suiPopup
-   popupText="你还没有选择笔记！"
+   [popupText]="'MAIN_POPUP.NEED_SELECT' | translate"
    #movePopup="suiPopup"
    popupTrigger="manual">
-  <i class="move square icon"></i>移动到草稿箱
+  <i class="move square icon"></i>{{'MAIN_TOOLBAR.MOVE_TO_DRAFT' | translate}}
 </a>
 <a class="item" (click)="onDeploy()">
   <div *ngIf="!isDeploying">
-    <i class="github square icon"></i>部署到博客
+    <i class="github square icon"></i>{{'MAIN_TOOLBAR.DEPLOY' | translate}}
   </div>
   <div class="ui active inline loader" *ngIf="isDeploying">
   </div>
 </a>
 <a class="item" (click)="onRefresh()">
-  <i class="refresh square icon"></i>刷新
+  <i class="refresh square icon"></i>{{'MAIN_TOOLBAR.REFRESH' | translate}}
 </a>

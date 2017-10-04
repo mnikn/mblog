@@ -12,6 +12,13 @@ import { EditModule } from './edit/edit.module';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { articleDataServiceFactory } from './core/services/data/article-data-service-factory';
 import { ArticleDataService } from './core/services/data/article-data.service';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -21,11 +28,19 @@ import { ArticleDataService } from './core/services/data/article-data.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     CoreModule,
     CommonModule,
     MainModule,
     EditModule,
     HotkeyModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     AppRoutingModule,
   ],
   providers: [

@@ -1,0 +1,39 @@
+{
+  "SIDEBAR": {
+    "HOME": "Home",
+    "POST": "Post box",
+    "DRAFT": "Draft box"
+  },
+  "HOME": {
+    "TITLE": "You had posted {{value}} blog now,keep up!"
+  },
+  "ARTICLE": {
+    "TITLE": "Title",
+    "CREATE_DATE": "Create date",
+    "TAG": "Tags"
+  },
+  "MAIN_TOOLBAR": {
+    "MENU": "Menu",
+    "LABELS": "Labels",
+    "REFRESH": "Refresh",
+    "ADD_ARTICLE": "Add article",
+    "DELETE_ARTICLE": "Delete article",
+    "MOVE_TO_DRAFT": "Move to draft box",
+    "MOVE_TO_POST": "Move to post box",
+    "DEPLOY": "Deploy"
+  },
+  "MAIN_POPUP": {
+    "NEED_SELECT": "You haven't selected any article yet!"
+  },
+  "EDITOR_POPUP": {
+    "GO_BACK": "Go back",
+    "BOLD": "Bold",
+    "ITALIC": "Italic",
+    "PICTURE": "Picture",
+    "LINK": "Link",
+    "UNDO": "Undo",
+    "SAVE": "Save",
+    "SAVE_SUCCESS": "Save success!",
+    "ARTICLE_INFO": "Article info"
+  }
+}

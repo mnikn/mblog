@@ -1,52 +1,55 @@
 <div class="ui black big inverted menu">
   <a class="item" (click)="onBack()"
-     suiPopup popupText="返回">
+     suiPopup [popupText]="'EDITOR_POPUP.GO_BACK' | translate">
     <i class="backward icon"></i>
   </a>
   <a class="item"
-     suiPopup popupText="插入粗体" (click)="editService.editorService.insertBold()">
+     suiPopup [popupText]="'EDITOR_POPUP.BOLD' | translate"
+     (click)="editService.editorService.insertBold()">
     <i class="bold icon"></i>
   </a>
   <a class="item"
-     suiPopup popupText="插入斜体" (click)="editService.editorService.insertItalic()">
+     suiPopup [popupText]="'EDITOR_POPUP.ITALIC' | translate"
+     (click)="editService.editorService.insertItalic()">
     <i class="italic icon"></i>
   </a>
   <a class="item"
-     suiPopup popupText="插入图片" (click)="editService.editorService.insertPicture()">
+     suiPopup [popupText]="'EDITOR_POPUP.PICTURE' | translate"
+     (click)="editService.editorService.insertPicture()">
     <i class="picture icon"></i>
   </a>
   <a class="item"
-     suiPopup popupText="插入链接" (click)="editService.editorService.insertLink()">
+     suiPopup [popupText]="'EDITOR_POPUP.LINK' | translate"
+     (click)="editService.editorService.insertLink()">
     <i class="attach icon"></i>
   </a>
   <a class="item"
-     suiPopup popupText="撤回">
+     suiPopup [popupText]="'EDITOR_POPUP.UNDO' | translate">
     <i class="undo icon"></i>
   </a>
-  <div suiPopup popupText="保存">
+  <div suiPopup [popupText]="'EDITOR_POPUP.SAVE' | translate">
     <a class="item" (click)="onSave(popup)"
-       suiPopup popupText="保存成功！"
+       suiPopup [popupText]="'EDITOR_POPUP.SAVE_SUCCESS' | translate"
        #popup="suiPopup" popupTrigger="manual">
       <i class="save icon"></i>
     </a>
   </div>
   <a class="item" (click)="showNoteInfoModal()"
-     suiPopup
-     popupText="笔记信息">
+     suiPopup [popupText]="'EDITOR_POPUP.ARTICLE_INFO' | translate">
     <i class="info icon"></i>
   </a>
 </div>
 
 <ng-template let-context let-modal="modal" #modalTemplate>
-  <div class="header">笔记信息</div>
+  <div class="header">{{'EDITOR_POPUP.ARTICLE_INFO' | translate}}</div>
   <div class="content">
     <div class="ui form">
       <div class="field">
-        <label>标题：</label>
+        <label>{{'ARTICLE.TITLE' | translate}}：</label>
         <input type="text" [(ngModel)]="context.title">
       </div>
       <div class="field">
-        <label>标签：</label>
+        <label>{{'ARTICLE.TAG' | translate}}：</label>
         <input type="text" [(ngModel)]="context.tags">
       </div>
     </div>

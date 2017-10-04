@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { PostButtonsComponent } from './post/post-buttons.component';
 import { DraftButtonsComponent } from './draft/draft-buttons.component';
 import { HomeButtonsComponent } from './home/home-buttons.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HomeButtonsComponent } from './home/home-buttons.component';
     SuiModalModule,
     SuiPopupModule,
     CommonModule,
+    TranslateModule,
     AppRoutingModule
   ],
   exports: [

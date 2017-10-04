@@ -6,6 +6,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AppRoutingModule } from '../../app-routing.moudle';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarModule } from './toolbar/toolbar.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ToolbarModule } from './toolbar/toolbar.module';
     SuiPopupModule,
     CommonModule,
     AppRoutingModule,
-    ToolbarModule
+    ToolbarModule,
+    TranslateModule
   ],
   exports: [
     SidebarComponent,

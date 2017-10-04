@@ -1,0 +1,39 @@
+{
+  "SIDEBAR": {
+    "HOME": "主页",
+    "POST": "发布箱",
+    "DRAFT": "草稿箱"
+  },
+  "HOME": {
+    "TITLE": "你已经发表了 {{value}} 篇文章啦,继续加油吧！"
+  },
+  "ARTICLE": {
+    "TITLE": "标题",
+    "CREATE_DATE": "创建日期",
+    "TAG": "标签"
+  },
+  "MAIN_TOOLBAR": {
+    "MENU": "菜单栏",
+    "LABELS": "标签墙",
+    "REFRESH": "刷新",
+    "ADD_ARTICLE": "添加文章",
+    "DELETE_ARTICLE": "删除文章",
+    "MOVE_TO_DRAFT": "移到草稿箱",
+    "MOVE_TO_POST": "移到发表箱",
+    "DEPLOY": "部署"
+  },
+  "MAIN_POPUP": {
+    "NEED_SELECT": "你还没有选择文章！"
+  },
+  "EDITOR_POPUP": {
+    "GO_BACK": "返回",
+    "BOLD": "粗体",
+    "ITALIC": "斜体",
+    "PICTURE": "图片",
+    "LINK": "链接",
+    "UNDO": "撤回",
+    "SAVE": "保存",
+    "SAVE_SUCCESS": "保存成功！",
+    "ARTICLE_INFO": "文章信息"
+  }
+}
