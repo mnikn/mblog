@@ -5,6 +5,8 @@ let mainWindow;
 
 function createWindow() {
 
+  app.setName('mblog');
+
   mainWindow = new BrowserWindow({
     width: 1366,
     height: 768,
