@@ -6,9 +6,11 @@
     <a class="item" suiPopup [popupTemplate]="tagsWall" popupTrigger="outsideClick">
       <i class="tag icon"></i> {{'MAIN_TOOLBAR.LABELS' | translate}}
     </a>
-    <home-buttons class="left menu" *ngIf="mainService.selectTab === 1"></home-buttons>
-    <post-buttons class="left menu" *ngIf="mainService.selectTab === 2"></post-buttons>
-    <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3"></draft-buttons>
+    <a class="item" (click)="onRefresh()">
+      <i class="refresh square icon"></i>{{'MAIN_TOOLBAR.REFRESH' | translate}}
+    </a>
+    <post-buttons class="left menu" *ngIf="mainService.selectTab === 2 && hasConfiguration"></post-buttons>
+    <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3 && hasConfiguration"></draft-buttons>
   </div>
   <div class="right menu" *ngIf="mainService.selectTab !== 1">
     <div class="item">

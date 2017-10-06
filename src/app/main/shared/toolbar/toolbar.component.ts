@@ -14,10 +14,13 @@ declare let electron: any;
 
 export class ToolbarComponent implements AfterViewInit {
 
+  public hasConfiguration: boolean;
+
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
               private hotkeyService: HotkeyService,
               private router: Router) {
+    this.hasConfiguration = typeof (Context.config) !== 'undefined';
   }
 
   public ngAfterViewInit(): void {
@@ -26,6 +29,10 @@ export class ToolbarComponent implements AfterViewInit {
     }).bindKey(Context.hotkey.edit, () => {
       this.onEdit();
     });
+  }
+
+  public onRefresh() {
+    this.dataService.refresh();
   }
 
   public onEdit() {
