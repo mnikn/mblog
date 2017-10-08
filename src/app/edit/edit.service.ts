@@ -21,6 +21,5 @@ export class EditService {
 
   public scrollPreviewSync(pos: number) {
     this.previewView.nativeElement.scrollTop = pos;
-    console.log(this.previewView.nativeElement.scrollTop);
   }
 }
