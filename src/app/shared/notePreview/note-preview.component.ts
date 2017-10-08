@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Article } from '../../core/models/article';
 import { WindowService } from '../../core/base/services/window.service';
 import { Tag } from '../../core/models/tag';
@@ -14,6 +14,7 @@ export class NotePreviewComponent {
 
   @Input() public showInfo: boolean = true;
   @Input() public article: Article = new Article();
+  @ViewChild('preview') public preview: ElementRef;
 
   constructor(public windowService: WindowService,
               private dataService: ArticleDataService) {

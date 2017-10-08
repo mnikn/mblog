@@ -69,6 +69,9 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
         this.processMarkdown();
       }
     });
+    this.render.listen(element, 'scroll', () => {
+      this.editService.scrollPreviewSync(element.scrollTop);
+    });
   }
 
   private processMarkdown(): void {
