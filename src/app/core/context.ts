@@ -19,4 +19,9 @@ export class Context {
     insertComment: 'command+/',
     insertCode: 'command+`',
   };
+  public static command: any = {
+    deploy: 'hexo g && hexo d',
+    newPost: 'hexo n post',
+    newDraft: 'hexo n draft',
+  };
 }

@@ -51,7 +51,7 @@ export class PostButtonsComponent {
   public onDeploy() {
     this.isDeploying = true;
     let dir = Context.config.blogRoot.replace(' ', '\\ ');
-    let command = 'cd ' + dir + ' && hexo g && hexo d';
+    let command = 'cd ' + dir + ' && ' + Context.command.deploy;
     electron.remote.require('child_process').exec(command, (error, stdout, stderr) => {
       console.log(error);
       console.log(stdout);
