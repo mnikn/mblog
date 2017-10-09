@@ -11,18 +11,26 @@ import { IDataSort } from '../../interfaces/data/data-sort';
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
   protected selectedItem: T;
-  private dataModifyCallback: () => any = this.dataModifyHook;
-  private processMethodChangeCallback: () => any = this.processMethodChangeHook;
+  private dataModifyCallback: () => any = this.emptyActionHook;
+  private processMethodChangeCallback: () => any = this.emptyActionHook;
 
   constructor(protected dataResourceService: IDataResource<T>) {
   }
 
-  public refresh(afterCallback?: () => any): void {
-    this.dataResourceService.refresh();
-    if (afterCallback) {
-      afterCallback();
-    }
-    this.dataModifyCallback();
+  public refresh(): void {
+    new Promise((resolve) => {
+      resolve(this.dataResourceService.refresh());
+      this.onRefreshStart();
+    }).then((data: T[]) => {
+      this.onRefreshFinish(data);
+      this.dataModifyCallback();
+    });
+  }
+
+  public onRefreshStart(): void {
+  }
+
+  public onRefreshFinish(data: T[]): void {
   }
 
   public getFilter(): Filter {
@@ -124,10 +132,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     this.processMethodChangeCallback = callback;
   }
 
-  private dataModifyHook() {
-  }
-
-  private processMethodChangeHook() {
+  private emptyActionHook() {
   }
 
 }

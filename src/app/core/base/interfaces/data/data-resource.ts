@@ -6,7 +6,11 @@ import { IIdentifiable } from '../models/identifiable';
 import { IDataSort } from './data-sort';
 
 export interface IDataResource<T extends IIdentifiable> {
-  refresh(): void;
+  /**
+   * Refresh data
+   */
+  refresh(): T[];
+
   getFilter(): Filter;
   setFilter(filter: Filter): void;
   setDataOption(option: DataOption): void;

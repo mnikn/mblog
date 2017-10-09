@@ -34,6 +34,13 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     this.list = resourceProcessor.processResource();
   }
 
+  public refresh(): T[] {
+    this.list = this.resourceProcessor.processResource();
+    this.pagerService.setList(this.list);
+    this.processListCache = null;
+    return this.list;
+  }
+
   public setDataOption(option: DataOption): void {
     this.option = option;
   }
@@ -76,12 +83,6 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
 
   public registerSortService(sortService: IDataSort<T>): void {
     this.dataSortService = sortService;
-  }
-
-  public refresh(): void {
-    this.list = this.resourceProcessor.processResource();
-    this.pagerService.setList(this.list);
-    this.processListCache = null;
   }
 
   public add(item: T): number {

@@ -14,9 +14,20 @@ export interface IDataService<T extends IIdentifiable> {
   registerSortService(sortService: IDataSort<T>): void;
 
   /**
-   * data operate
+   * Refresh data
    */
-  refresh(afterCallback?: () => any): void;
+  refresh(): void;
+
+  /**
+   * On refresh start
+   */
+  onRefreshStart(): void;
+
+  /**
+   * On refresh finish
+   */
+  onRefreshFinish(value: T[]): void;
+
   getItem(id: number): T;
   getList(): T[];
   getUnProcessList(): T[];
