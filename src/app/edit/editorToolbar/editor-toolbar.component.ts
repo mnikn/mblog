@@ -6,6 +6,7 @@ import { EditService } from '../edit.service';
 import { ArticleDataService } from '../../core/services/data/article-data.service';
 import { HotkeyService } from 'app/core/base/services/hotkey.service';
 import { Context } from '../../core/context';
+import { PopupUtils } from '../../core/base/services/utils/popup-utils';
 
 export interface IContext {
   title: string;
@@ -45,10 +46,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
 
   public onSave(popup: IPopup) {
     this.dataService.updateItem(this.editService.article);
-    popup.open();
-    setTimeout(() => {
-      popup.close();
-    }, 1000);
+    PopupUtils.openForWhile(popup);
   }
 
   public showNoteInfoModal() {
