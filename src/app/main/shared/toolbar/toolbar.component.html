@@ -6,9 +6,17 @@
     <a class="item" suiPopup [popupTemplate]="tagsWall" popupTrigger="outsideClick">
       <i class="tag icon"></i> {{'MAIN_TOOLBAR.LABELS' | translate}}
     </a>
-    <a class="item" (click)="onRefresh()">
-      <i class="refresh square icon"></i>{{'MAIN_TOOLBAR.REFRESH' | translate}}
+    <a class="item" suiPopup
+       [popupText]="'MAIN_POPUP.REFRESH_SUCCESS' | translate"
+       #refreshPopup="suiPopup" popupTrigger="manual"
+       (click)="onRefresh(refreshPopup)">
+      <div *ngIf="!isRefreshing">
+        <i class="refresh square icon"></i>{{'MAIN_TOOLBAR.REFRESH' | translate}}
+      </div>
+      <div class="ui active inline loader" *ngIf="isRefreshing">
+      </div>
     </a>
+
     <post-buttons class="left menu" *ngIf="mainService.selectTab === 2 && hasConfiguration"></post-buttons>
     <draft-buttons class="left menu" *ngIf="mainService.selectTab === 3 && hasConfiguration"></draft-buttons>
   </div>

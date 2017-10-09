@@ -23,7 +23,8 @@
     "DEPLOY": "Deploy"
   },
   "MAIN_POPUP": {
-    "NEED_SELECT": "You haven't selected any article yet!"
+    "NEED_SELECT": "You haven't selected any article yet!",
+    "REFRESH_SUCCESS": "Refresh successful！"
   },
   "EDITOR_POPUP": {
     "GO_BACK": "Go back",

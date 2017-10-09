@@ -23,7 +23,8 @@
     "DEPLOY": "部署"
   },
   "MAIN_POPUP": {
-    "NEED_SELECT": "你还没有选择文章！"
+    "NEED_SELECT": "你还没有选择文章！",
+    "REFRESH_SUCCESS": "刷新完成！"
   },
   "EDITOR_POPUP": {
     "GO_BACK": "返回",

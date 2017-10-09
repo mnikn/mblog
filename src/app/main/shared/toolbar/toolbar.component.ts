@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { MainService } from '../../main.service';
 import { HotkeyService } from '../../../core/base/services/hotkey.service';
 import { Context } from '../../../core/context';
+import { IPopup } from "ng2-semantic-ui";
+import { PopupUtils } from "../../../core/base/services/utils/popup-utils";
 declare let electron: any;
 
 @Component({
@@ -15,6 +17,7 @@ declare let electron: any;
 export class ToolbarComponent implements AfterViewInit {
 
   public hasConfiguration: boolean;
+  public isRefreshing: boolean = false;
 
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
@@ -31,7 +34,14 @@ export class ToolbarComponent implements AfterViewInit {
     });
   }
 
-  public onRefresh() {
+  public onRefresh(popup: IPopup) {
+    this.dataService.onRefreshStart = () => {
+      this.isRefreshing = true;
+    };
+    this.dataService.onRefreshFinish = () => {
+      this.isRefreshing = false;
+      PopupUtils.openForWhile(popup, 1000);
+    };
     this.dataService.refresh();
   }
 
