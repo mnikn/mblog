@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Article, ARTICLE_STATUS } from '../../core/models/article';
 import { NavigationEnd, Router } from '@angular/router';
 import { Filter } from '../../core/models/filter';
@@ -10,17 +10,20 @@ import { MainService } from '../main.service';
   templateUrl: './home.component.html',
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   private articles: Article[];
 
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
               private router: Router) {
-    this.setArticles();
     this.dataService.onDataModify = () => {
       this.setArticles();
     };
-    router.events.subscribe((val) => {
+  }
+
+  public ngOnInit(): void {
+    this.setArticles();
+    this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd && val.url === '/main-page/home') {
         this.setArticles();
       }

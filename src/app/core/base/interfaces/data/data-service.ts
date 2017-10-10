@@ -4,6 +4,7 @@ import { Filter } from '../../../models/filter';
 import { IResourceProcessor } from './resource-processor';
 import { IIdentifiable } from '../models/identifiable';
 import { IDataSort } from './data-sort';
+import { Observable } from 'rxjs/Observable';
 
 export interface IDataService<T extends IIdentifiable> {
 
@@ -29,7 +30,7 @@ export interface IDataService<T extends IIdentifiable> {
   onRefreshFinish(value: T[]): void;
 
   getItem(id: number): T;
-  getList(): T[];
+  getList(): Observable<T[]>;
   getUnProcessList(): T[];
   createItem(item: T, successCallback?: () => any): number;
   updateItem(item: T, successCallback?: () => any): boolean;
@@ -51,4 +52,3 @@ export interface IDataService<T extends IIdentifiable> {
   onProcessMethodChange(): void;
 
 }
-

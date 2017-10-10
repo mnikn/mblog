@@ -7,6 +7,8 @@ import { IDataResource } from '../../interfaces/data/data-resource';
 import { IResourceProcessor } from '../../interfaces/data/resource-processor';
 import { IIdentifiable } from '../../interfaces/models/identifiable';
 import { IDataSort } from '../../interfaces/data/data-sort';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromPromise';
 
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
@@ -53,8 +55,13 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return this.dataResourceService.getItem(id);
   }
 
-  public getList(): T[] {
-    return this.dataResourceService.getList();
+  public getList(): Observable<T[]> {
+    return Observable.fromPromise(new Promise<T[]>((resolve) => {
+      resolve(this.dataResourceService.getList());
+    }));
+    // return new Promise<T[]>((resolve) => {
+    //   resolve(this.dataResourceService.getList());
+    // });
   }
 
   public getUnProcessList(): T[] {

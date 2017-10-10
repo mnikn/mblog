@@ -30,17 +30,19 @@ export class NoteListComponent implements OnInit, OnDestroy {
               private router: Router,
               private route: ActivatedRoute) {
     this.dataService.onDataModify = () => {
-      this.articles = this.dataService.getArticles(this.selectStatus);
+      this.getArticles();
+      // this.articles = this.dataService.getArticles(this.selectStatus);
     };
     this.dataService.onProcessMethodChange = () => {
-      this.articles = this.dataService.getArticles(this.selectStatus);
+      this.getArticles();
+      // this.articles = this.dataService.getArticles(this.selectStatus);
     };
   }
 
   public ngOnInit(): void {
     this.route.paramMap.forEach((params) => {
       this.selectStatus = Number(params.get('status'));
-      this.articles = this.dataService.getArticles(this.selectStatus);
+      this.getArticles();
     });
 
     this.hotkeyService.bindKey(Context.hotkey.up, () => {
@@ -90,6 +92,13 @@ export class NoteListComponent implements OnInit, OnDestroy {
   public onTagClick(tag): void {
     this.dataService.setFilter(new Filter('tag', tag.name));
   };
+
+  private getArticles(): void {
+    this.dataService.getArticles(this.selectStatus)
+      .subscribe((articles: Article[]) => {
+        this.articles = articles;
+      });
+  }
 
   private scrollTo(element, pos) {
     let duration = 100;
