@@ -17,9 +17,9 @@ export class HomeComponent {
               public mainService: MainService,
               private router: Router) {
     this.setArticles();
-    this.dataService.onDataModify(() => {
+    this.dataService.onDataModify = () => {
       this.setArticles();
-    });
+    };
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd && val.url === '/main-page/home') {
         this.setArticles();

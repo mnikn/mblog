@@ -39,12 +39,16 @@ export interface IDataService<T extends IIdentifiable> {
   getDataOption(): DataOption;
   getSelected(): T;
   setSelected(item: T);
-  onDataModify(callback: () => any): void;
 
   /**
-   * when we change the way process originList,eg: change the filter or pager
+   * On data modify,trigger when refresh or modify list
    */
-  onProcessMethodChange(callback: () => any): void;
+  onDataModify(): void;
+
+  /**
+   * trigger when we change the way process originList,eg: change the filter or pager
+   */
+  onProcessMethodChange(): void;
 
 }
 

@@ -29,12 +29,12 @@ export class NoteListComponent implements OnInit, OnDestroy {
               private hotkeyService: HotkeyService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.dataService.onDataModify(() => {
+    this.dataService.onDataModify = () => {
       this.articles = this.dataService.getArticles(this.selectStatus);
-    });
-    this.dataService.onProcessMethodChange(() => {
+    };
+    this.dataService.onProcessMethodChange = () => {
       this.articles = this.dataService.getArticles(this.selectStatus);
-    });
+    };
   }
 
   public ngOnInit(): void {

@@ -11,8 +11,6 @@ import { IDataSort } from '../../interfaces/data/data-sort';
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
   protected selectedItem: T;
-  private dataModifyCallback: () => any = this.emptyActionHook;
-  private processMethodChangeCallback: () => any = this.emptyActionHook;
 
   constructor(protected dataResourceService: IDataResource<T>) {
   }
@@ -23,7 +21,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       this.onRefreshStart();
     }).then((data: T[]) => {
       this.onRefreshFinish(data);
-      this.dataModifyCallback();
+      this.onDataModify();
     });
   }
 
@@ -39,12 +37,12 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
 
   public setFilter(filter: Filter): void {
     this.dataResourceService.setFilter(filter);
-    this.processMethodChangeCallback();
+    this.onProcessMethodChange();
   }
 
   public setDataOption(option: DataOption): void {
     this.dataResourceService.setDataOption(option);
-    this.processMethodChangeCallback();
+    this.onProcessMethodChange();
   }
 
   public getDataOption(): DataOption {
@@ -69,7 +67,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       if (successCallback) {
         successCallback();
       }
-      this.dataModifyCallback();
+      this.onProcessMethodChange();
     }
     return successful;
   }
@@ -83,7 +81,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       if (successCallback) {
         successCallback();
       }
-      this.dataModifyCallback();
+      this.onDataModify();
     }
     return successful;
   }
@@ -94,7 +92,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       if (successCallback) {
         successCallback();
       }
-      this.dataModifyCallback();
+      this.onDataModify();
     }
     return successful;
   }
@@ -109,7 +107,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
 
   public registerSortService(sortService: IDataSort<T>): void {
     this.dataResourceService.registerSortService(sortService);
-    this.processMethodChangeCallback();
+    this.onProcessMethodChange();
   }
 
   public getSelected(): T {
@@ -124,15 +122,10 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     this.dataResourceService.registerResourceProcessor(resourceProcessor);
   }
 
-  public onDataModify(callback: () => any): void {
-    this.dataModifyCallback = callback;
+  public onDataModify(): void {
   }
 
-  public onProcessMethodChange(callback: () => any): void {
-    this.processMethodChangeCallback = callback;
-  }
-
-  private emptyActionHook() {
+  public onProcessMethodChange(): void {
   }
 
 }
