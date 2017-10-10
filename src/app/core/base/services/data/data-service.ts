@@ -8,7 +8,7 @@ import { IResourceProcessor } from '../../interfaces/data/resource-processor';
 import { IIdentifiable } from '../../interfaces/models/identifiable';
 import { IDataSort } from '../../interfaces/data/data-sort';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
+import * as Rx from 'rxjs';
 
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
@@ -18,13 +18,14 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
   }
 
   public refresh(): void {
-    Observable.fromPromise(new Promise((resolve) => {
+    Rx.Observable.fromPromise(new Promise((resolve) => {
       resolve(this.dataResourceService.refresh());
       this.onRefreshStart();
-    })).subscribe((data: T[]) => {
-      this.onRefreshFinish(data);
-      this.onDataModify();
-    });
+    }), Rx.Scheduler.async)
+      .subscribe((data: T[]) => {
+        this.onRefreshFinish(data);
+        this.onDataModify();
+      });
   }
 
   public onRefreshStart(): void {
@@ -56,9 +57,9 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
   }
 
   public getList(): Observable<T[]> {
-    return Observable.fromPromise(new Promise<T[]>((resolve) => {
+    return Rx.Observable.fromPromise(new Promise<T[]>((resolve) => {
       resolve(this.dataResourceService.getList());
-    }));
+    }), Rx.Scheduler.async);
   }
 
   public getUnProcessList(): T[] {
