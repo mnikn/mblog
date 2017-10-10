@@ -9,6 +9,7 @@ export class Context {
     edit: 'enter',
     up: 'up',
     down: 'down',
+    delete: 'delete',
     // editor
     back: 'command+shift+left',
     save: 'command+s',

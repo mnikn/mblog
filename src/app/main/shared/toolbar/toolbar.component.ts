@@ -3,7 +3,6 @@ import { Filter } from 'app/core/models/filter';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { Router } from '@angular/router';
 import { MainService } from '../../main.service';
-import { HotkeyService } from '../../../core/base/services/hotkey.service';
 import { Context } from '../../../core/context';
 import { IPopup } from 'ng2-semantic-ui';
 import { PopupUtils } from '../../../core/base/services/utils/popup-utils';
@@ -14,24 +13,15 @@ declare let electron: any;
   templateUrl: './toolbar.component.html'
 })
 
-export class ToolbarComponent implements AfterViewInit {
+export class ToolbarComponent {
 
   public hasConfiguration: boolean;
   public isRefreshing: boolean = false;
 
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
-              private hotkeyService: HotkeyService,
               private router: Router) {
     this.hasConfiguration = typeof (Context.config) !== 'undefined';
-  }
-
-  public ngAfterViewInit(): void {
-    this.hotkeyService.bindKey(Context.hotkey.menu, () => {
-      this.mainService.sidebar.toggle();
-    }).bindKey(Context.hotkey.edit, () => {
-      this.onEdit();
-    });
   }
 
   public onRefresh(popup: IPopup) {

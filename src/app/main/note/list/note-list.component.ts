@@ -15,27 +15,23 @@ import { Context } from '../../../core/context';
   templateUrl: './note-list.component.html'
 })
 
-export class NoteListComponent implements OnInit, OnDestroy {
+export class NoteListComponent implements OnInit {
 
   public selectStatus: ARTICLE_STATUS;
   public articles: Article[];
-  @ViewChild('list') private listElement: ElementRef;
-  @ViewChildren('item') private itemElements: QueryList<ElementRef>;
+  @ViewChild('list') public listElement: ElementRef;
+  @ViewChildren('item') public itemElements: QueryList<ElementRef>;
 
   private scrollDistance: number = 250;
 
   constructor(public dataService: ArticleDataService,
               public windowService: WindowService,
-              private hotkeyService: HotkeyService,
-              private router: Router,
               private route: ActivatedRoute) {
     this.dataService.onDataModify = () => {
       this.getArticles();
-      // this.articles = this.dataService.getArticles(this.selectStatus);
     };
     this.dataService.onProcessMethodChange = () => {
       this.getArticles();
-      // this.articles = this.dataService.getArticles(this.selectStatus);
     };
   }
 
@@ -44,35 +40,6 @@ export class NoteListComponent implements OnInit, OnDestroy {
       this.selectStatus = Number(params.get('status'));
       this.getArticles();
     });
-
-    this.hotkeyService.bindKey(Context.hotkey.up, () => {
-      if (this.dataService.getSelected()) {
-        let index = this.articles.indexOf(this.dataService.getSelected());
-        if (index > 0) {
-
-          let element = this.itemElements.filter((item, i) => {
-            return i === index - 1;
-          })[0].nativeElement;
-          this.onSelect(this.articles[index - 1], element);
-        }
-      }
-    }).bindKey(Context.hotkey.down, () => {
-      if (this.dataService.getSelected()) {
-        let index = this.articles.indexOf(this.dataService.getSelected());
-        if (index < this.articles.length - 1) {
-          let element = this.itemElements.filter((item, i) => {
-            return i === index + 1;
-          })[0].nativeElement;
-          this.onSelect(this.articles[index + 1], element);
-        }
-      }
-    }).bindKey(Context.hotkey.edit, () => {
-      this.router.navigate(['/edit', this.dataService.getSelected().id]);
-    });
-  }
-
-  public ngOnDestroy(): void {
-    this.hotkeyService.clear();
   }
 
   public onSelect(article: Article, element): void {
