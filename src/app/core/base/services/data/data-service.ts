@@ -18,10 +18,10 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
   }
 
   public refresh(): void {
-    new Promise((resolve) => {
+    Observable.fromPromise(new Promise((resolve) => {
       resolve(this.dataResourceService.refresh());
       this.onRefreshStart();
-    }).then((data: T[]) => {
+    })).subscribe((data: T[]) => {
       this.onRefreshFinish(data);
       this.onDataModify();
     });
@@ -59,9 +59,6 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return Observable.fromPromise(new Promise<T[]>((resolve) => {
       resolve(this.dataResourceService.getList());
     }));
-    // return new Promise<T[]>((resolve) => {
-    //   resolve(this.dataResourceService.getList());
-    // });
   }
 
   public getUnProcessList(): T[] {
