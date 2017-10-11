@@ -6,7 +6,7 @@ export class Context {
   public static hotkey: any = {
     // main page
     menu: 'command+m',
-    edit: 'enter',
+    edit: 'command+e',
     up: 'up',
     down: 'down',
     delete: 'delete',
