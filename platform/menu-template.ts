@@ -11,7 +11,7 @@ let template = [
           const options = {
             type: 'info',
             title: '信息',
-            message: 'mblog 是一个管理 hexo 博客文章的软件，开发者：mnikn。如有问题，恕不负责！',
+            message: 'mblog 是一个管理 hexo 博客文章的软件，开发者：mnikn。如有 bug，自求多福！',
             buttons: ['Ok']
           };
           dialog.showMessageBox(options);
@@ -31,7 +31,9 @@ let template = [
             postArticleDir: blogDir[0] + '/source/_posts/',
             draftArticleDir: blogDir[0] + '/source/_drafts/'
           };
-          require('fs').writeFileSync('./dist/config.json', JSON.stringify(config), 'utf8');
+          require('fs').writeFile('./dist/config.json', JSON.stringify(config), 'utf8',() => {
+            // todo refresh
+          });
         }
       },
       {

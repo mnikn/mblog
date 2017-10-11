@@ -15,6 +15,7 @@ import { ArticleDataService } from './core/services/data/article-data.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Context } from './core/context';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
   ],
   providers: [
-    {provide: ArticleDataService, useFactory: articleDataServiceFactory}
+    {provide: ArticleDataService, useFactory: articleDataServiceFactory},
+    Context
   ],
   bootstrap: [AppComponent]
 })

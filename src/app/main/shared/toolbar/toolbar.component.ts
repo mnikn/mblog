@@ -30,6 +30,7 @@ export class ToolbarComponent {
     };
     this.dataService.onRefreshFinish = () => {
       this.isRefreshing = false;
+      this.hasConfiguration = typeof (Context.config) !== 'undefined';
       PopupUtils.openForWhile(popup);
     };
     this.dataService.refresh();
