@@ -4,7 +4,6 @@ import { Filter } from '../../../models/filter';
 import { IResourceProcessor } from './resource-processor';
 import { IIdentifiable } from '../models/identifiable';
 import { IDataSort } from './data-sort';
-import { Observable } from 'rxjs/Observable';
 
 export interface IDataService<T extends IIdentifiable> {
 
@@ -29,8 +28,23 @@ export interface IDataService<T extends IIdentifiable> {
    */
   onRefreshFinish(value: T[]): void;
 
+  /**
+   * get item
+   * @param id
+   * @return item
+   */
   getItem(id: number): T;
-  getList(): Observable<T[]>;
+
+  /**
+   * get process list depend on data option
+   * @param successCallback
+   */
+  getList(successCallback?: (items: T[]) => any): void;
+
+  /**
+   * get list without process
+   * @return list
+   */
   getUnProcessList(): T[];
 
   /**

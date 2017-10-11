@@ -61,10 +61,9 @@ export class NoteListComponent implements OnInit {
   };
 
   private getArticles(): void {
-    this.dataService.getArticles(this.selectStatus)
-      .subscribe((articles: Article[]) => {
-        this.articles = articles;
-      });
+    this.dataService.getArticles((articles: Article[]) => {
+      this.articles = articles;
+    }, this.selectStatus);
   }
 
   private scrollTo(element, pos) {

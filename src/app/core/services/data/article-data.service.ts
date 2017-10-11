@@ -3,7 +3,6 @@ import { Article, ARTICLE_STATUS } from '../../models/article';
 import { DataService } from '../../base/services/data/data-service';
 import { IDataResource } from '../../base/interfaces/data/data-resource';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ArticleDataService extends DataService<Article> {
@@ -12,18 +11,18 @@ export class ArticleDataService extends DataService<Article> {
     super(dataResourceService);
   }
 
-  public getArticles(status: ARTICLE_STATUS = ARTICLE_STATUS.POST): Observable<Article[]> {
+  public getArticles(successCallback: (items: Article[]) => any,
+                     status: ARTICLE_STATUS = ARTICLE_STATUS.POST): void {
     switch (status) {
       case ARTICLE_STATUS.DRAFT:
-        return this.getList()
-          .map((articles: Article[]) => {
-            return articles.filter((item) => item.status === ARTICLE_STATUS.DRAFT);
-          });
+        this.getList((list: Article[]) => {
+          successCallback(list.filter((item) => item.status === ARTICLE_STATUS.DRAFT));
+        });
+        break;
       default:
-        return this.getList()
-          .map((articles: Article[]) => {
-            return articles.filter((item) => item.status === ARTICLE_STATUS.POST);
-          });
+        this.getList((list: Article[]) => {
+          successCallback(list.filter((item) => item.status === ARTICLE_STATUS.POST));
+        });
     }
   }
 
