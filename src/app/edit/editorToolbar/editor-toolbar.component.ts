@@ -45,8 +45,9 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onSave(popup: IPopup) {
-    this.dataService.updateItem(this.editService.article);
-    PopupUtils.openForWhile(popup);
+    this.dataService.updateItem(this.editService.article, () => {
+      PopupUtils.openForWhile(popup);
+    });
   }
 
   public showNoteInfoModal() {

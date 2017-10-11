@@ -93,12 +93,12 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     return newItem;
   }
 
-  public update(item: T): boolean {
-    let successful = this.resourceProcessor.updateResource(item);
-    if (successful) {
+  public update(item: T): T {
+    let updateItem = this.resourceProcessor.updateResource(item);
+    if (updateItem !== null) {
       this.refresh();
     }
-    return successful;
+    return updateItem;
   }
 
   public remove(item: T): boolean {

@@ -40,7 +40,13 @@ export interface IDataService<T extends IIdentifiable> {
    */
   createItem(item: T, successCallback: (item: T) => any): void;
 
-  updateItem(item: T, successCallback?: () => any): boolean;
+  /**
+   * update item
+   * @param item
+   * @param successCallback
+   */
+  updateItem(item: T, successCallback?: (item: T) => any): void;
+
   deleteItem(item: T, successCallback?: () => any): boolean;
   registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void;
   setDataOption(option: DataOption): void;

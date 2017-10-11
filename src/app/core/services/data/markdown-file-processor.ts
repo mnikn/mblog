@@ -47,10 +47,10 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
     return true;
   }
 
-  public updateResource(item: Article): boolean {
+  public updateResource(item: Article): Article {
     this.deleteResource(item);
-    this.createResource(item);
-    return true;
+    let newItem = this.createResource(item);
+    return newItem;
   }
 
   private getArticlesFromDir(dir: string, status: ARTICLE_STATUS): Article[] {
@@ -69,17 +69,6 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
   }
 
   private readConfig(): void {
-    // this.fs.exists('./dist/config.json', (exists) => {
-    //   if (exists) {
-    //     this.fs.readFile('./dist/config.json', (error, data) => {
-    //       this.config = JSON.parse(data);
-    //       Context.config = this.config;
-    //     });
-    //     this.config = JSON.parse(this.fs.readFileSync('./dist/config.json'));
-    //     Context.config = this.config;
-    //   }
-    // });
-
     if (this.fs.existsSync('./dist/config.json')) {
       this.config = JSON.parse(this.fs.readFileSync('./dist/config.json'));
       Context.config = this.config;

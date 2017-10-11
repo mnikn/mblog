@@ -25,7 +25,14 @@ export interface IDataResource<T extends IIdentifiable> {
    * @return new item
    */
   add(item: T): T;
-  update(item: T): boolean;
+
+  /**
+   * Update item
+   * @param item
+   */
+  update(item: T): T;
+
+
   remove(item: T): boolean;
   getPagerService(): IDataPager<T>;
   getSortService(): IDataSort<T>;

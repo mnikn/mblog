@@ -7,5 +7,11 @@ export interface IResourceProcessor<T> {
    */
   createResource(item: T): T;
   deleteResource(item: T): boolean;
-  updateResource(item: T): boolean;
+
+  /**
+   * update resource
+   * @param item
+   * @return update item
+   */
+  updateResource(item: T): T;
 }
