@@ -71,8 +71,10 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       resolve(this.dataResourceService.add(item));
     }), Rx.Scheduler.async)
       .subscribe((newItem: T) => {
-        successCallback(newItem);
-        this.onDataModify();
+        if (newItem !== null) {
+          successCallback(newItem);
+          this.onDataModify();
+        }
       });
   }
 
@@ -80,24 +82,27 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     Rx.Observable.fromPromise(new Promise<T>((resolve) => {
       resolve(this.dataResourceService.add(item));
     }), Rx.Scheduler.async)
-      .subscribe((newItem: T) => {
-        if (this.selectedItem.id === item.id) {
-          this.selectedItem = item;
+      .subscribe((updateItem: T) => {
+        if (updateItem !== null) {
+          if (this.selectedItem.id === updateItem.id) {
+            this.selectedItem = updateItem;
+          }
+          successCallback(updateItem);
+          this.onDataModify();
         }
-        successCallback(newItem);
-        this.onDataModify();
       });
   }
 
-  public deleteItem(item: T, successCallback?: () => any): boolean {
-    let successful = this.dataResourceService.remove(item);
-    if (successful) {
-      if (successCallback) {
-        successCallback();
-      }
-      this.onDataModify();
-    }
-    return successful;
+  public deleteItem(item: T, successCallback?: () => any): void {
+    Rx.Observable.fromPromise(new Promise<boolean>((resolve) => {
+      resolve(this.dataResourceService.remove(item));
+    }), Rx.Scheduler.async)
+      .subscribe((successful: boolean) => {
+        if (successful) {
+          successCallback();
+        }
+        this.onDataModify();
+      });
   }
 
   public getPagerService(): IDataPager<T> {

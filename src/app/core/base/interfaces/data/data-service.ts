@@ -47,7 +47,13 @@ export interface IDataService<T extends IIdentifiable> {
    */
   updateItem(item: T, successCallback?: (item: T) => any): void;
 
-  deleteItem(item: T, successCallback?: () => any): boolean;
+  /**
+   * delete item
+   * @param item
+   * @param successCallback
+   */
+  deleteItem(item: T, successCallback?: () => any): void;
+
   registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void;
   setDataOption(option: DataOption): void;
   getDataOption(): DataOption;

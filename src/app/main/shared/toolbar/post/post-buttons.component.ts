@@ -39,8 +39,9 @@ export class PostButtonsComponent {
     this.modalService
       .open(new ConfirmModal('确定要删除笔记吗？'))
       .onApprove(() => {
-        this.dataService.deleteItem(this.dataService.getSelected());
-        this.dataService.setSelected(null);
+        this.dataService.deleteItem(this.dataService.getSelected(), () => {
+          this.dataService.setSelected(null);
+        });
       });
   }
 
