@@ -18,7 +18,13 @@ export interface IDataResource<T extends IIdentifiable> {
   getItem(id: number): T;
   getList(): T[];
   getUnProcessList(): T[];
-  add(item: T): number;
+
+  /**
+   * Add new item
+   * @param item
+   * @return new item
+   */
+  add(item: T): T;
   update(item: T): boolean;
   remove(item: T): boolean;
   getPagerService(): IDataPager<T>;

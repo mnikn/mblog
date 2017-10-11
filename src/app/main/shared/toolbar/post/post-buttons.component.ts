@@ -5,6 +5,7 @@ import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { Article, ARTICLE_STATUS } from '../../../../core/models/article';
 import { ArticleDataService } from 'app/core/services/data/article-data.service';
 import { MainService } from '../../../main.service';
+import { PopupUtils } from "../../../../core/base/services/utils/popup-utils";
 declare let electron: any;
 
 @Component({
@@ -20,19 +21,18 @@ export class PostButtonsComponent {
               public mainService: MainService) {
   }
 
-  public onAdd() {
+  public onAdd(popup: IPopup) {
     let article = new Article();
     article.title = '标题' + this.dataService.getUnProcessList().length;
     article.status = ARTICLE_STATUS.POST;
-    this.dataService.createItem(article);
+    this.dataService.createItem(article, () => {
+      PopupUtils.openForWhile(popup);
+    });
   }
 
   public onDelete(popup: IPopup) {
     if (!this.dataService.getSelected()) {
-      popup.open();
-      setTimeout(() => {
-        popup.close();
-      }, 1000);
+      PopupUtils.openForWhile(popup);
       return;
     }
 

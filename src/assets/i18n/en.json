@@ -24,7 +24,8 @@
   },
   "MAIN_POPUP": {
     "NEED_SELECT": "You haven't selected any article yet!",
-    "REFRESH_SUCCESS": "Refresh successful！"
+    "REFRESH_SUCCESS": "Refresh successful！",
+    "CREATE_SUCCESS": "Create successful!"
   },
   "EDITOR_POPUP": {
     "GO_BACK": "Go back",

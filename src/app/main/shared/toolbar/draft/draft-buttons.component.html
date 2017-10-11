@@ -1,4 +1,8 @@
-<a class="item" (click)="onAdd()">
+<a class="item" (click)="onAdd(addPopup)"
+   suiPopup
+   [popupText]="'MAIN_POPUP.CREATE_SUCCESS' | translate"
+   #addPopup="suiPopup"
+   popupTrigger="manual">
   <i class="add square icon"></i>{{'MAIN_TOOLBAR.ADD_ARTICLE' | translate}}
 </a>
 <a class="item" (click)="onDelete(popup)"

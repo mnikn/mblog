@@ -85,13 +85,12 @@ export class DataResourceService<T extends IIdentifiable> implements IDataResour
     this.dataSortService = sortService;
   }
 
-  public add(item: T): number {
-    let successful = this.resourceProcessor.createResource(item);
-    if (successful) {
+  public add(item: T): T {
+    let newItem = this.resourceProcessor.createResource(item);
+    if (newItem !== null) {
       this.refresh();
-      return this.list.length - 1;
     }
-    return -1;
+    return newItem;
   }
 
   public update(item: T): boolean {

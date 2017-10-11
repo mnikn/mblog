@@ -32,7 +32,14 @@ export interface IDataService<T extends IIdentifiable> {
   getItem(id: number): T;
   getList(): Observable<T[]>;
   getUnProcessList(): T[];
-  createItem(item: T, successCallback?: () => any): number;
+
+  /**
+   * create new item
+   * @param item
+   * @param successCallback
+   */
+  createItem(item: T, successCallback: (item: T) => any): void;
+
   updateItem(item: T, successCallback?: () => any): boolean;
   deleteItem(item: T, successCallback?: () => any): boolean;
   registerResourceProcessor(resourceProcessor: IResourceProcessor<T>): void;

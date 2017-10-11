@@ -5,6 +5,7 @@ import { ConfirmModal } from '../../../../shared/confirmModal/cofirm-modal';
 import { Article } from 'app/core/models/article';
 import { ARTICLE_STATUS } from '../../../../core/models/article';
 import { MainService } from 'app/main/main.service';
+import { PopupUtils } from '../../../../core/base/services/utils/popup-utils';
 
 @Component({
   selector: 'draft-buttons',
@@ -17,19 +18,18 @@ export class DraftButtonsComponent {
               public mainService: MainService) {
   }
 
-  public onAdd() {
+  public onAdd(popup: IPopup) {
     let article = new Article();
     article.title = '标题' + this.dataService.getUnProcessList().length;
     article.status = ARTICLE_STATUS.DRAFT;
-    this.dataService.createItem(article);
+    this.dataService.createItem(article, () => {
+      PopupUtils.openForWhile(popup);
+    });
   }
 
   public onDelete(popup: IPopup) {
     if (!this.dataService.getSelected()) {
-      popup.open();
-      setTimeout(() => {
-        popup.close();
-      }, 1000);
+      PopupUtils.openForWhile(popup);
       return;
     }
 

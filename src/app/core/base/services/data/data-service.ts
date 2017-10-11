@@ -66,15 +66,14 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return this.dataResourceService.getUnProcessList();
   }
 
-  public createItem(item: T, successCallback?: () => any): number {
-    let successful = this.dataResourceService.add(item);
-    if (successful) {
-      if (successCallback) {
-        successCallback();
-      }
-      this.onProcessMethodChange();
-    }
-    return successful;
+  public createItem(item: T, successCallback?: (item: T) => any): void {
+    Rx.Observable.fromPromise(new Promise<T>((resolve) => {
+      resolve(this.dataResourceService.add(item));
+    }), Rx.Scheduler.async)
+      .subscribe((newItem: T) => {
+        successCallback(newItem);
+        this.onDataModify();
+      });
   }
 
   public updateItem(item: T, successCallback?: () => any): boolean {

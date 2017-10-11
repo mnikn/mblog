@@ -5,6 +5,7 @@ import { isUndefined } from 'util';
 import { Context } from '../../context';
 import { IResourceProcessor } from '../../base/interfaces/data/resource-processor';
 declare let electron: any;
+import * as Rx from 'rxjs';
 
 @Injectable()
 export class MarkdownFileProcessor implements IResourceProcessor<Article> {
@@ -23,7 +24,7 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
     return articles;
   }
 
-  public createResource(item: Article): boolean {
+  public createResource(item: Article): Article {
     let dir;
     switch (item.status) {
       case ARTICLE_STATUS.DRAFT:
@@ -36,7 +37,7 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
     let fileName = dir + item.title + '.md';
     item.fileName = fileName;
     this.fs.writeFileSync(fileName, item.toString(), 'utf8');
-    return true;
+    return item;
   }
 
   public deleteResource(item: Article): boolean {
@@ -68,6 +69,17 @@ export class MarkdownFileProcessor implements IResourceProcessor<Article> {
   }
 
   private readConfig(): void {
+    // this.fs.exists('./dist/config.json', (exists) => {
+    //   if (exists) {
+    //     this.fs.readFile('./dist/config.json', (error, data) => {
+    //       this.config = JSON.parse(data);
+    //       Context.config = this.config;
+    //     });
+    //     this.config = JSON.parse(this.fs.readFileSync('./dist/config.json'));
+    //     Context.config = this.config;
+    //   }
+    // });
+
     if (this.fs.existsSync('./dist/config.json')) {
       this.config = JSON.parse(this.fs.readFileSync('./dist/config.json'));
       Context.config = this.config;

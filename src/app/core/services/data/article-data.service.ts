@@ -24,7 +24,6 @@ export class ArticleDataService extends DataService<Article> {
           .map((articles: Article[]) => {
             return articles.filter((item) => item.status === ARTICLE_STATUS.POST);
           });
-      // return this.getList().filter((item) => item.status === ARTICLE_STATUS.POST);
     }
   }
 
