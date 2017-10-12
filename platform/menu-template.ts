@@ -31,7 +31,7 @@ let template = [
             postArticleDir: blogDir[0] + '/source/_posts/',
             draftArticleDir: blogDir[0] + '/source/_drafts/'
           };
-          require('fs').writeFile('./dist/config.json', JSON.stringify(config), 'utf8',() => {
+          require('fs').writeFile('./dist/config.json', JSON.stringify(config), 'utf8', () => {
             // todo refresh
           });
         }
@@ -95,6 +95,43 @@ let template = [
           }
         }
       }
+    ]
+  }, {
+    label: '编辑',
+    submenu: [
+      {
+        label: '撤销',
+        accelerator: 'CmdOrCtrl+Z',
+        role: 'undo'
+      },
+      {
+        label: '重做',
+        accelerator: 'Shift+CmdOrCtrl+Z',
+        role: 'redo'
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: '剪切',
+        accelerator: 'CmdOrCtrl+X',
+        role: 'cut'
+      },
+      {
+        label: '复制',
+        accelerator: 'CmdOrCtrl+C',
+        role: 'copy'
+      },
+      {
+        label: '粘贴',
+        accelerator: 'CmdOrCtrl+V',
+        role: 'paste'
+      },
+      {
+        label: '全选',
+        accelerator: 'CmdOrCtrl+A',
+        role: 'selectall'
+      },
     ]
   },
   {
