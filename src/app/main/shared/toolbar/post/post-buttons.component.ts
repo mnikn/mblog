@@ -73,9 +73,5 @@ export class PostButtonsComponent {
     let article = this.dataService.getSelected();
     article.status = ARTICLE_STATUS.DRAFT;
     this.dataService.updateItem(article);
-    // this.dataService.deleteItem(article);
-    // article.status = ARTICLE_STATUS.DRAFT;
-    // this.dataService.createItem(article);
-    // this.dataService.setSelected(null);
   }
 }

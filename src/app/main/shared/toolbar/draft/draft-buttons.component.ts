@@ -54,11 +54,6 @@ export class DraftButtonsComponent {
     let article = this.dataService.getSelected();
     article.status = ARTICLE_STATUS.POST;
     this.dataService.updateItem(article);
-
-    // this.dataService.deleteItem(article);
-    // article.status = ARTICLE_STATUS.POST;
-    // this.dataService.createItem(article);
-    // this.dataService.setSelected(null);
   }
 
 }
