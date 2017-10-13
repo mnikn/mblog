@@ -3,19 +3,31 @@
    [popupText]="'MAIN_POPUP.CREATE_SUCCESS' | translate"
    #addPopup="suiPopup"
    popupTrigger="manual">
-  <i class="add square icon"></i>{{'MAIN_TOOLBAR.ADD_ARTICLE' | translate}}
+  <div *ngIf="!isCreating">
+    <i class="add square icon"></i>{{'MAIN_TOOLBAR.ADD_ARTICLE' | translate}}
+  </div>
+  <div class="ui active inline loader" *ngIf="isCreating">
+  </div>
 </a>
 <a class="item" (click)="onDelete(popup)"
    suiPopup
    [popupText]="'MAIN_POPUP.NEED_SELECT' | translate"
    #popup="suiPopup"
    popupTrigger="manual">
-  <i class="delete square icon"></i>{{'MAIN_TOOLBAR.DELETE_ARTICLE' | translate}}
+  <div *ngIf="!isDeleting">
+    <i class="delete square icon"></i>{{'MAIN_TOOLBAR.DELETE_ARTICLE' | translate}}
+  </div>
+  <div class="ui active inline loader" *ngIf="isDeleting">
+  </div>
 </a>
 <a class="item" (click)="moveToPost(movePopup)"
    suiPopup
    [popupText]="'MAIN_POPUP.NEED_SELECT' | translate"
    #movePopup="suiPopup"
    popupTrigger="manual">
-  <i class="move square icon"></i>{{'MAIN_TOOLBAR.MOVE_TO_POST' | translate}}
+  <div *ngIf="!isMoving">
+    <i class="move square icon"></i>{{'MAIN_TOOLBAR.MOVE_TO_POST' | translate}}
+  </div>
+  <div class="ui active inline loader" *ngIf="isMoving">
+  </div>
 </a>

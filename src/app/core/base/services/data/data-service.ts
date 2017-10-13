@@ -8,7 +8,7 @@ import { IResourceProcessor } from '../../interfaces/data/resource-processor';
 import { IIdentifiable } from '../../interfaces/models/identifiable';
 import { IDataSort } from '../../interfaces/data/data-sort';
 import * as Rx from 'rxjs';
-import { FuncUtils } from "../utils/func-utils";
+import { FuncUtils } from '../utils/func-utils';
 
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
@@ -71,9 +71,12 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     return this.dataResourceService.getUnProcessList();
   }
 
-  public createItem(item: T, successCallback?: (item: T) => any): void {
+  public createItem(item: T,
+                    startCallback?: (item: T) => any,
+                    successCallback?: (item: T) => any): void {
     Rx.Observable.fromPromise(new Promise<T>((resolve) => {
       resolve(this.dataResourceService.add(item));
+      FuncUtils.exec(startCallback, item);
     }), Rx.Scheduler.async)
       .subscribe((newItem: T) => {
         if (newItem !== null) {
@@ -83,9 +86,12 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       });
   }
 
-  public updateItem(item: T, successCallback?: (item: T) => any): void {
+  public updateItem(item: T,
+                    startCallback?: (item: T) => any,
+                    successCallback?: (item: T) => any): void {
     Rx.Observable.fromPromise(new Promise<T>((resolve) => {
       resolve(this.dataResourceService.update(item));
+      FuncUtils.exec(startCallback, item);
     }), Rx.Scheduler.async)
       .subscribe((updateItem: T) => {
         if (updateItem !== null) {
@@ -98,9 +104,12 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
       });
   }
 
-  public deleteItem(item: T, successCallback?: () => any): void {
+  public deleteItem(item: T,
+                    startCallback?: (item: T) => any,
+                    successCallback?: () => any): void {
     Rx.Observable.fromPromise(new Promise<boolean>((resolve) => {
       resolve(this.dataResourceService.remove(item));
+      FuncUtils.exec(startCallback, item);
     }), Rx.Scheduler.async)
       .subscribe((successful: boolean) => {
         if (successful) {

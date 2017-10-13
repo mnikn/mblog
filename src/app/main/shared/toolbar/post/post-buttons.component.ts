@@ -15,6 +15,9 @@ declare let electron: any;
 export class PostButtonsComponent {
 
   public isDeploying: boolean = false;
+  public isCreating: boolean = false;
+  public isDeleting: boolean = false;
+  public isMoving: boolean = false;
 
   constructor(public dataService: ArticleDataService,
               public modalService: SuiModalService,
@@ -26,7 +29,10 @@ export class PostButtonsComponent {
     article.title = '标题' + this.dataService.getUnProcessList().length;
     article.status = ARTICLE_STATUS.POST;
     this.dataService.createItem(article, () => {
+      this.isCreating = true;
+    }, () => {
       PopupUtils.openForWhile(popup);
+      this.isCreating = false;
     });
   }
 
@@ -40,13 +46,12 @@ export class PostButtonsComponent {
       .open(new ConfirmModal('确定要删除笔记吗？'))
       .onApprove(() => {
         this.dataService.deleteItem(this.dataService.getSelected(), () => {
+          this.isDeleting = true;
+        }, () => {
+          this.isDeleting = false;
           this.dataService.setSelected(null);
         });
       });
-  }
-
-  public onRefresh() {
-    this.dataService.refresh();
   }
 
   public onDeploy() {
@@ -72,6 +77,10 @@ export class PostButtonsComponent {
     }
     let article = this.dataService.getSelected();
     article.status = ARTICLE_STATUS.DRAFT;
-    this.dataService.updateItem(article);
+    this.dataService.updateItem(article, () => {
+      this.isMoving = true;
+    }, () => {
+      this.isMoving = false;
+    });
   }
 }
