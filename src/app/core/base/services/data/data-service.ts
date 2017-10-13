@@ -17,21 +17,15 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
   constructor(protected dataResourceService: IDataResource<T>) {
   }
 
-  public refresh(): void {
+  public refresh(startCallback?: () => any, successCallback?: (data: T[]) => any): void {
     Rx.Observable.fromPromise(new Promise((resolve) => {
       resolve(this.dataResourceService.refresh());
-      this.onRefreshStart();
+      FuncUtils.exec(startCallback);
     }), Rx.Scheduler.async)
       .subscribe((data: T[]) => {
-        this.onRefreshFinish(data);
+        FuncUtils.exec(successCallback, data);
         this.onDataModify();
       });
-  }
-
-  public onRefreshStart(): void {
-  }
-
-  public onRefreshFinish(data: T[]): void {
   }
 
   public getFilter(): Filter {

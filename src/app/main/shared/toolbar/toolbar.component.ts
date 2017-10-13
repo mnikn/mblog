@@ -25,15 +25,13 @@ export class ToolbarComponent {
   }
 
   public onRefresh(popup: IPopup) {
-    this.dataService.onRefreshStart = () => {
+    this.dataService.refresh(() => {
       this.isRefreshing = true;
-    };
-    this.dataService.onRefreshFinish = () => {
+    }, () => {
       this.isRefreshing = false;
       this.hasConfiguration = typeof (Context.config) !== 'undefined';
       PopupUtils.openForWhile(popup);
-    };
-    this.dataService.refresh();
+    });
   }
 
   public onEdit() {

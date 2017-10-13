@@ -15,18 +15,10 @@ export interface IDataService<T extends IIdentifiable> {
 
   /**
    * Refresh data
+   * @param startCallback
+   * @param successCallback
    */
-  refresh(): void;
-
-  /**
-   * On refresh start
-   */
-  onRefreshStart(): void;
-
-  /**
-   * On refresh finish
-   */
-  onRefreshFinish(value: T[]): void;
+  refresh(startCallback?: () => any, successCallback?: (data: T[]) => any): void;
 
   /**
    * get item
