@@ -67,16 +67,15 @@ export class PostButtonsComponent {
 
   public moveToDraft(popup: IPopup): void {
     if (!this.dataService.getSelected()) {
-      popup.open();
-      setTimeout(() => {
-        popup.close();
-      }, 1000);
+      PopupUtils.openForWhile(popup);
       return;
     }
     let article = this.dataService.getSelected();
-    this.dataService.deleteItem(article);
     article.status = ARTICLE_STATUS.DRAFT;
-    this.dataService.createItem(article);
-    this.dataService.setSelected(null);
+    this.dataService.updateItem(article);
+    // this.dataService.deleteItem(article);
+    // article.status = ARTICLE_STATUS.DRAFT;
+    // this.dataService.createItem(article);
+    // this.dataService.setSelected(null);
   }
 }

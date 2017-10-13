@@ -8,6 +8,7 @@ import { IResourceProcessor } from '../../interfaces/data/resource-processor';
 import { IIdentifiable } from '../../interfaces/models/identifiable';
 import { IDataSort } from '../../interfaces/data/data-sort';
 import * as Rx from 'rxjs';
+import { FuncUtils } from "../utils/func-utils";
 
 @Injectable()
 export class DataService<T extends IIdentifiable> implements IDataService<T> {
@@ -76,7 +77,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     }), Rx.Scheduler.async)
       .subscribe((newItem: T) => {
         if (newItem !== null) {
-          successCallback(newItem);
+          FuncUtils.exec(successCallback, newItem);
           this.onDataModify();
         }
       });
@@ -84,14 +85,14 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
 
   public updateItem(item: T, successCallback?: (item: T) => any): void {
     Rx.Observable.fromPromise(new Promise<T>((resolve) => {
-      resolve(this.dataResourceService.add(item));
+      resolve(this.dataResourceService.update(item));
     }), Rx.Scheduler.async)
       .subscribe((updateItem: T) => {
         if (updateItem !== null) {
           if (this.selectedItem.id === updateItem.id) {
             this.selectedItem = updateItem;
           }
-          successCallback(updateItem);
+          FuncUtils.exec(successCallback, updateItem);
           this.onDataModify();
         }
       });
@@ -103,7 +104,7 @@ export class DataService<T extends IIdentifiable> implements IDataService<T> {
     }), Rx.Scheduler.async)
       .subscribe((successful: boolean) => {
         if (successful) {
-          successCallback();
+          FuncUtils.exec(successCallback);
         }
         this.onDataModify();
       });
