@@ -49,8 +49,11 @@ export class EditorService {
 
     let space = ' '.repeat(firstSpaceCount);
     let insertStr = '\n' + space + firstInsertStr;
-    console.log(insertStr.length);
     this.insertAtCursor(insertStr, insertStr.length);
+  }
+
+  public insertTab() {
+    this.insertAtCursor('    ', 4);
   }
 
   private getCurrentLine(): string {

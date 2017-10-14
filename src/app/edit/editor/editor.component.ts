@@ -96,6 +96,8 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
       this.service.insertCode();
     }).bindKey('enter', () => {
       this.service.onEnter();
+    }).bindKey('tab', () => {
+      this.service.insertTab();
     });
   }
 
