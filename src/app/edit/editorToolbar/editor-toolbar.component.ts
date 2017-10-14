@@ -7,6 +7,7 @@ import { ArticleDataService } from '../../core/services/data/article-data.servic
 import { HotkeyService } from 'app/core/base/services/hotkey.service';
 import { Context } from '../../core/context';
 import { PopupUtils } from '../../core/base/services/utils/popup-utils';
+import { ConfirmModal } from "../../shared/confirmModal/cofirm-modal";
 
 export interface IContext {
   title: string;
@@ -24,12 +25,15 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   public modalTemplate: ModalTemplate<IContext, string, string>;
   @ViewChild('popup')
   public popup: SuiPopup;
+  // use to check content modify
+  private originContent: string;
 
   constructor(public editService: EditService,
               private dataService: ArticleDataService,
               private hotkeyService: HotkeyService,
               private modalService: SuiModalService,
               private router: Router) {
+    this.originContent = this.dataService.getSelected().content.mdContent;
   }
 
   public ngAfterViewInit(): void {
@@ -41,10 +45,24 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onBack() {
-    this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+    let component = this;
+    if (this.originContent !== this.editService.article.content.mdContent) {
+      this.modalService
+        .open(new ConfirmModal('你还没有保存，要保存后再返回主页吗？'))
+        .onApprove(() => {
+          component.onSave(null);
+          this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+        })
+        .onDeny(() => {
+          this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+        });
+    } else {
+      this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+    }
   }
 
   public onSave(popup: IPopup) {
+    this.originContent = this.editService.article.content.mdContent
     this.dataService.updateItem(this.editService.article, () => {
       PopupUtils.openForWhile(popup);
     });
