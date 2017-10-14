@@ -5,7 +5,6 @@ import { isUndefined } from 'util';
 import { Context } from '../../context';
 import { IResourceProcessor } from '../../base/interfaces/data/resource-processor';
 declare let electron: any;
-import * as Rx from 'rxjs';
 
 @Injectable()
 export class MarkdownFileProcessor implements IResourceProcessor<Article> {

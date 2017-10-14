@@ -5,7 +5,8 @@ import { IPopup, SuiModalService } from 'ng2-semantic-ui';
 import { Article, ARTICLE_STATUS } from '../../../../core/models/article';
 import { ArticleDataService } from 'app/core/services/data/article-data.service';
 import { MainService } from '../../../main.service';
-import { PopupUtils } from "../../../../core/base/services/utils/popup-utils";
+import { PopupUtils } from '../../../../core/base/services/utils/popup-utils';
+import { Tag } from '../../../../core/models/tag';
 declare let electron: any;
 
 @Component({
@@ -28,6 +29,11 @@ export class PostButtonsComponent {
     let article = new Article();
     article.title = '标题' + this.dataService.getUnProcessList().length;
     article.status = ARTICLE_STATUS.POST;
+    let filter = this.dataService.getFilter();
+    if (filter && filter.method === 'tag') {
+      article.tags.push(new Tag(filter.value));
+    }
+
     this.dataService.createItem(article, () => {
       this.isCreating = true;
     }, () => {

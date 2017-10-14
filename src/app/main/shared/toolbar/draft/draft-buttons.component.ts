@@ -6,6 +6,7 @@ import { Article } from 'app/core/models/article';
 import { ARTICLE_STATUS } from '../../../../core/models/article';
 import { MainService } from 'app/main/main.service';
 import { PopupUtils } from '../../../../core/base/services/utils/popup-utils';
+import { Tag } from '../../../../core/models/tag';
 
 @Component({
   selector: 'draft-buttons',
@@ -26,6 +27,11 @@ export class DraftButtonsComponent {
     let article = new Article();
     article.title = '标题' + this.dataService.getUnProcessList().length;
     article.status = ARTICLE_STATUS.DRAFT;
+    let filter = this.dataService.getFilter();
+    if (filter && filter.method === 'tag') {
+      article.tags.push(new Tag(filter.value));
+    }
+
     this.dataService.createItem(article, () => {
       this.isCreating = true;
     }, () => {
