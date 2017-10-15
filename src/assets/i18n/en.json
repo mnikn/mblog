@@ -25,7 +25,8 @@
   "MAIN_POPUP": {
     "NEED_SELECT": "You haven't selected any article yet!",
     "REFRESH_SUCCESS": "Refresh successful！",
-    "CREATE_SUCCESS": "Create successful!"
+    "CREATE_SUCCESS": "Create successful!",
+    "DEPLOY_SUCCESS": "Deploy successful!"
   },
   "EDITOR_POPUP": {
     "GO_BACK": "Go back",

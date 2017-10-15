@@ -1,8 +1,14 @@
 <div class="header" *ngIf="modal.context.title">{{ modal.context.title }}</div>
 <div class="content">
-  <p>{{ modal.context.question }}</p>
+  <p>{{ modal.context.content }}</p>
 </div>
 <div class="actions">
-  <button class="ui red button" (click)="modal.deny('denied')">取消</button>
-  <button class="ui green button" (click)="modal.approve('approved')" autofocus>确定</button>
+  <button class="ui red button" (click)="modal.deny('denied')"
+          *ngIf="modal.context.config.useNegBtn">
+    取消
+  </button>
+  <button class="ui green button" (click)="modal.approve('approved')" autofocus
+          *ngIf="modal.context.config.usePosBtn">
+    确定
+  </button>
 </div>

@@ -25,7 +25,8 @@
   "MAIN_POPUP": {
     "NEED_SELECT": "你还没有选择文章!",
     "REFRESH_SUCCESS": "刷新完成!",
-    "CREATE_SUCCESS": "添加成功!"
+    "CREATE_SUCCESS": "添加成功!",
+    "DEPLOY_SUCCESS": "部署成功!"
   },
   "EDITOR_POPUP": {
     "GO_BACK": "返回",

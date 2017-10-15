@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { SuiModal, ComponentModalConfig, ModalSize } from 'ng2-semantic-ui';
+import { isUndefined } from "util";
 
 interface IConfirmModalContext {
-  question: string;
+  content: string;
   title?: string;
+  config?: any;
 }
 
 @Component({
@@ -11,13 +13,21 @@ interface IConfirmModalContext {
   templateUrl: './confirm-modal.html'
 })
 export class ConfirmModalComponent {
+
   constructor(public modal: SuiModal<IConfirmModalContext, void, void>) {
   }
 }
 
 export class ConfirmModal extends ComponentModalConfig<IConfirmModalContext, void, void> {
-  constructor(question: string, title?: string) {
-    super(ConfirmModalComponent, {question, title});
+  constructor(content: string, title?: string, config?: any) {
+    console.log(config);
+    if (!config.usePosBtn) {
+      config.usePosBtn = true;
+    }
+    if (isUndefined(config.useNegBtn)) {
+      config.useNegBtn = true;
+    }
+    super(ConfirmModalComponent, {content, title, config});
 
     this.isClosable = false;
     this.transitionDuration = 200;

@@ -61,19 +61,24 @@ export class PostButtonsComponent {
   }
 
   public onDeploy() {
-    this.isDeploying = true;
-    let dir = Context.config.blogRoot.replace(' ', '\\ ');
-    let command = 'cd ' + dir + ' && ' + Context.command.deploy;
-    electron.remote.require('child_process').exec(command, (error, stdout, stderr) => {
-      console.log(error);
-      console.log(stdout);
-      console.log(stderr);
-    });
+    const dir = Context.config.blogRoot.replace(' ', '\\ ');
+    const command = 'cd ' + dir + ' && ' + Context.command.deploy;
 
-    // deleteItem later
-    setTimeout(() => {
-      this.isDeploying = false;
-    }, 10000);
+    this.isDeploying = true;
+    electron.remote.require('child_process')
+      .exec(command, (error, stdout, stderr) => {
+        let modal = error === null ?
+          new ConfirmModal('部署成功!', null, {useNegBtn: false}) :
+          new ConfirmModal('部署失败!\n' + error, null, {useNegBtn: false});
+        console.log(stderr);
+        console.log(stdout);
+        electron.remote.getCurrentWindow().focus();
+        this.modalService
+          .open(modal)
+          .onApprove(() => {
+            this.isDeploying = false;
+          });
+      });
   }
 
   public moveToDraft(popup: IPopup): void {
