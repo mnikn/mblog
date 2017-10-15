@@ -33,6 +33,10 @@ let template = [
           };
           require('fs').writeFile('./dist/config.json', JSON.stringify(config), 'utf8', () => {
             // todo refresh
+            require('electron').remote.getCurrentWebContents().send('refresh');
+            // require('electron').ipcMain.on('refresh', (event, arg) => {
+            //   event.sender.send('refresh');
+            // });
           });
         }
       },

@@ -6,9 +6,9 @@
     <a class="item" suiPopup [popupTemplate]="tagsWall" popupTrigger="outsideClick">
       <i class="tag icon"></i> {{'MAIN_TOOLBAR.LABELS' | translate}}
     </a>
-    <a class="item" suiPopup
+    <a class="item" suiPopup #refreshPopup="suiPopup"
        [popupText]="'MAIN_POPUP.REFRESH_SUCCESS' | translate"
-       #refreshPopup="suiPopup" popupTrigger="manual"
+       popupTrigger="manual"
        (click)="onRefresh(refreshPopup)">
       <div *ngIf="!isRefreshing">
         <i class="refresh square icon"></i>{{'MAIN_TOOLBAR.REFRESH' | translate}}

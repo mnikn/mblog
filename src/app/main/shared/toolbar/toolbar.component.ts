@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Filter } from 'app/core/models/filter';
 import { ArticleDataService } from '../../../core/services/data/article-data.service';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { MainService } from '../../main.service';
 import { Context } from '../../../core/context';
 import { IPopup } from 'ng2-semantic-ui';
 import { PopupUtils } from '../../../core/base/services/utils/popup-utils';
+import { SuiPopup } from 'ng2-semantic-ui/dist';
 declare let electron: any;
 
 @Component({
@@ -13,15 +14,26 @@ declare let electron: any;
   templateUrl: './toolbar.component.html'
 })
 
-export class ToolbarComponent {
+export class ToolbarComponent implements AfterViewInit {
 
   public hasConfiguration: boolean;
   public isRefreshing: boolean = false;
+  @ViewChild('refreshPopup') refreshPopup: SuiPopup;
 
   constructor(public dataService: ArticleDataService,
               public mainService: MainService,
               private router: Router) {
     this.hasConfiguration = typeof (Context.config) !== 'undefined';
+  }
+
+  public ngAfterViewInit(): void {
+    const remote = electron.ipcRenderer;
+    const component = this;
+
+    // when click set blogDir menuItem,it will refresh
+    remote.on('refresh', () => {
+      component.onRefresh(this.refreshPopup);
+    });
   }
 
   public onRefresh(popup: IPopup) {
