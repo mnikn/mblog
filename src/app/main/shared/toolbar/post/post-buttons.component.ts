@@ -70,8 +70,6 @@ export class PostButtonsComponent {
         let modal = error === null ?
           new ConfirmModal('部署成功!', null, {useNegBtn: false}) :
           new ConfirmModal('部署失败!\n' + error, null, {useNegBtn: false});
-        console.log(stderr);
-        console.log(stdout);
         electron.remote.getCurrentWindow().focus();
         this.modalService
           .open(modal)

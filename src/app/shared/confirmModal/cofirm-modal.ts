@@ -20,8 +20,11 @@ export class ConfirmModalComponent {
 
 export class ConfirmModal extends ComponentModalConfig<IConfirmModalContext, void, void> {
   constructor(content: string, title?: string, config?: any) {
-    console.log(config);
-    if (!config.usePosBtn) {
+    if (!config) {
+      config = {};
+    }
+
+    if (isUndefined(config.usePosBtn)) {
       config.usePosBtn = true;
     }
     if (isUndefined(config.useNegBtn)) {
