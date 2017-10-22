@@ -1,4 +1,8 @@
 {
+  "COMMON": {
+    "CANCEL": "Cancel",
+    "OK": "Ok"
+  },
   "SIDEBAR": {
     "HOME": "Home",
     "POST": "Post box",
@@ -37,6 +41,7 @@
     "UNDO": "Undo",
     "SAVE": "Save",
     "SAVE_SUCCESS": "Save success!",
-    "ARTICLE_INFO": "Article info"
+    "ARTICLE_INFO": "Article info",
+    "HINT_SAVE": "You haven't saved yet,do you want to save before go back to home page?"
   }
 }

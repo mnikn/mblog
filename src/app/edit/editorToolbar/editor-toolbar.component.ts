@@ -7,7 +7,8 @@ import { ArticleDataService } from '../../core/services/data/article-data.servic
 import { HotkeyService } from 'app/core/base/services/hotkey.service';
 import { Context } from '../../core/context';
 import { PopupUtils } from '../../core/base/services/utils/popup-utils';
-import { ConfirmModal } from "../../shared/confirmModal/cofirm-modal";
+import { ConfirmModal } from '../../shared/confirmModal/cofirm-modal';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface IContext {
   title: string;
@@ -32,6 +33,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
               private dataService: ArticleDataService,
               private hotkeyService: HotkeyService,
               private modalService: SuiModalService,
+              private translateService: TranslateService,
               private router: Router) {
     this.originContent = this.dataService.getSelected().content.mdContent;
   }
@@ -47,14 +49,18 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   public onBack() {
     let component = this;
     if (this.originContent !== this.editService.article.content.mdContent) {
-      this.modalService
-        .open(new ConfirmModal('你还没有保存，要保存后再返回主页吗？'))
-        .onApprove(() => {
-          component.onSave(null);
-          this.router.navigate(['/main-page/note-info', this.editService.article.status]);
-        })
-        .onDeny(() => {
-          this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+      this.translateService
+        .get('EDITOR_POPUP.HINT_SAVE')
+        .subscribe((question) => {
+          this.modalService
+            .open(new ConfirmModal(question))
+            .onApprove(() => {
+              component.onSave(null);
+              this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+            })
+            .onDeny(() => {
+              this.router.navigate(['/main-page/note-info', this.editService.article.status]);
+            });
         });
     } else {
       this.router.navigate(['/main-page/note-info', this.editService.article.status]);
@@ -62,7 +68,7 @@ export class EditorToolbarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onSave(popup: IPopup) {
-    this.originContent = this.editService.article.content.mdContent
+    this.originContent = this.editService.article.content.mdContent;
     this.dataService.updateItem(this.editService.article, () => {
       PopupUtils.openForWhile(popup);
     });

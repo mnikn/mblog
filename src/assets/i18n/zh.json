@@ -1,4 +1,8 @@
 {
+  "COMMON": {
+    "CANCEL": "取消",
+    "OK": "确定"
+  },
   "SIDEBAR": {
     "HOME": "主页",
     "POST": "发布箱",
@@ -37,6 +41,7 @@
     "UNDO": "撤回",
     "SAVE": "保存",
     "SAVE_SUCCESS": "保存成功！",
-    "ARTICLE_INFO": "文章信息"
+    "ARTICLE_INFO": "文章信息",
+    "HINT_SAVE": "你还没有保存，要保存后再返回主页吗？"
   }
 }

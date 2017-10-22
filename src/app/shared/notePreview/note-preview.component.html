@@ -5,12 +5,12 @@
     <div class="ui equal width grid">
       <div class="column">
         <div class="content">
-          <div class="text">创建日期：{{article.insertDate | date: 'yyyy/MM/dd'}}</div>
+          <div class="text">{{'ARTICLE.CREATE_DATE' | translate}}：{{article.insertDate | date: 'yyyy/MM/dd'}}</div>
           <br>
-          <div class="header">标题：{{article.title}}</div>
+          <div class="header">{{'ARTICLE.TITLE' | translate}}：{{article.title}}</div>
           <br>
           <div class="text">
-            <span>标签：</span>
+            <span>{{'ARTICLE.TAG' | translate}}：</span>
             <div class="ui basic button" *ngFor="let tag of article.tags" (click)="onTagClick(tag)">
               {{tag.name}}
             </div>
